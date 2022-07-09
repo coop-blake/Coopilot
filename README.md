@@ -6,7 +6,7 @@ You will need [**Docker** and **docker-compose**](https://www.docker.com) to bui
 ## Getting Balek
 Clone the repository and submodules
 
-    git clone --recurse-submodules https://github.com/coop-blake/coopilot.git  
+    git clone --recurse-submodules https://github.com/coop-blake/Coopilot.git  
 
  > The [dojo toolkit](https://dojotoolkit.org) is included as a submodule. If the `--recurse-submodules` 
  > flag is omitted durring cloning or you download the zip file, you can run `git submodule update --init --recursive` in 
