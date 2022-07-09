@@ -1,6 +1,7 @@
 {
 	"Session Settings": {
-		"Main Module": "coopilot/saleTagScan"
+		"Main Module": "coopilot/saleTagScan",
+		"Main Module": "coopilot/login"
 	},
 	"Network Settings":{
 		"Server Address" : "0.0.0.0",

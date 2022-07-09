@@ -85,14 +85,14 @@ define(['dojo/_base/declare',
                 domConstruct.place(domConstruct.toDom("<style>" + this._mainCssString + "</style>"), win.body());
                 domConstruct.place(domConstruct.toDom("<style>" + this._resizeHandleCssString + "</style>"), win.body());
 
-                console.log("quill", this._workspaceContainableState );
+               // console.log("quill", this._workspaceContainableState );
                 if (this._workspaceContainableState !== null)
                 {
                     this._workspaceContainableStateWatchHandle = this._workspaceContainableState.watch(lang.hitch(this, this.onWorkspaceContainableStateUpdate));
 
                     let containerName = this._workspaceContainableState.get("containerName");
 
-                    console.log("quill", this._workspaceContainableState );
+                  //  console.log("quill", this._workspaceContainableState );
 
                     if(containerName)
                     {
@@ -160,7 +160,7 @@ define(['dojo/_base/declare',
             //##########################################################################################################
             _onTopMouseDown: function(mouseEvent){
                 this.workspaceManagerCommands.activateContainerInWorkspace(this.workspaceManagerCommands.getActiveWorkspace(), this._containerKey);
-                console.log("Mousedown");
+             //   console.log("Mousedown");
             },
             onWidgetMoveStop: function (){
                 this.updateMovableContainerElementBox()
@@ -170,22 +170,22 @@ define(['dojo/_base/declare',
             },
             _onDockNodeMouseDown: function(mouseEvent){
 
-                console.log("Mousedown", mouseEvent);
+              //  console.log("Mousedown", mouseEvent);
                 mouseEvent.stopPropagation();
 
                 if(this.containerCommands !== null
                 && this.containerCommands.setDocked && typeof this.containerCommands.setDocked === "function" ){
-                    console.log("Mousedown", this.containerCommands.setDocked);
+                  //  console.log("Mousedown", this.containerCommands.setDocked);
 
                     this.containerCommands.setDocked();
 
                 }else {
-                    console.log("Mousedown", this.containerCommands);
+                  //  console.log("Mousedown", this.containerCommands);
                 }
 
             },
             _onCloseNodeMouseDown: function(mouseEvent){
-                console.log("Mousedown",    mouseEvent);
+              // console.log("Mousedown",    mouseEvent);
 
                 mouseEvent.stopPropagation();
 

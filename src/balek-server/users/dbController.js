@@ -49,6 +49,28 @@ define(['dojo/_base/declare',
                 }));
 
             },
+            getUserByKeyFromDatabase: function (userKey) {
+
+                return new Promise(lang.hitch(this, function (Resolve, Reject) {
+                    let query = this._dbConnection.query('SELECT id, name, password, userKey, icon, permission_groups FROM ' + this._mysqlSettings.database + '.users WHERE userKey = ?;', userKey);
+                    let userToReturn = [];
+                    query.on('error', function (err) {
+                        console.log(err);
+                        Reject(err);
+                    })
+                        .on('result', lang.hitch(this, function (row) {
+                            //todo get connection from pool to pause
+                            // this._dbConnection.pause();
+                            userToReturn.push(row);
+                        }))
+                        .on('end', function () {
+                            // all rows have been received
+                            //console.log("All rows received");
+                            Resolve(userToReturn);
+                        });
+                }));
+
+            },
             getUsersFromDatabase: function () {
 
                 return new Promise(lang.hitch(this, function (Resolve, Reject) {
@@ -80,7 +102,6 @@ define(['dojo/_base/declare',
                         } else if (userData.icon && userData.password && userData.name) {
                             query = this._dbConnection.query('UPDATE ' + this._mysqlSettings.database + '.users SET icon = ?, password=?, name=? WHERE id = ? ;', [userData.icon, userData.password, userData.name, userData.id]);
                         }
-
                     } else if (userData.name, userData.password, userData.icon, userData.userKey, userData.permissionGroups) {
                         //todo check username is available
                         console.log("no user identifer; Adding New user");

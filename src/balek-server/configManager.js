@@ -39,7 +39,12 @@ define(['dojo/_base/declare', 'dojo/_base/lang', "dojo/topic", "dojo/node!fs"],
                 mongoCallback(this._configObject["Database Settings"]["Mongo Database Connection"]);
             },
             getHttpsSettingsWithCallback: function (httpsCallback) {
-
+/*
+                const httpsOptions = {
+                    key: fsNodeObject.readFileSync("src/balek-server/etc/cert/auto-server.key").toString(),
+                    cert: fsNodeObject.readFileSync("src/balek-server/etc/cert/auto.csr").toString()
+                };
+*/
                 const httpsOptions = {
                     key: fsNodeObject.readFileSync("src/balek-server/etc/cert/key.pem").toString(),
                     cert: fsNodeObject.readFileSync("src/balek-server/etc/cert/cert.pem").toString()

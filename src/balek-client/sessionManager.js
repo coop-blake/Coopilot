@@ -91,7 +91,7 @@ define(['dojo/_base/declare',
                            //     _permissionGroups: permissionGroups,
                            //     _username: userName
                           //  });
-                            topic.publish("loadBackground", "flowerOfLife");
+                          // topic.publish("loadBackground", "flowerOfLife");
 
                         }));
                     }));

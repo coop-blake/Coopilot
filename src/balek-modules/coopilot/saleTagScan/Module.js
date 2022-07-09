@@ -67,6 +67,18 @@ define(['dojo/_base/declare',
 
                 }));
             },
+            removeEntries: function(){
+                this._saleTagScanDBConnection._db.collection('saleTagScan', lang.hitch(this, function (err, collection) {
+                    collection.deleteMany({}, lang.hitch(this, function (error, response) {
+                        console.log(response, error);
+                        if(response)
+                        {
+                            this.sendRemoveEntriesToAllActiveInterfaces()
+
+                        }
+                    }));
+                }));
+            },
             newInstance: function (args) {
                 args._module = this;
                 this._instances[args._instanceKey] = new moduleInstance(args);
@@ -87,6 +99,20 @@ define(['dojo/_base/declare',
                     }))
                 }
 
+            },
+            sendRemoveEntriesToAllActiveInterfaces(){
+                for (const instanceKey in this._instances) {
+                    topic.publish("getSessionWSSConnection", this._instances[instanceKey]._sessionKey, lang.hitch(this, function (sessionWSSConnection) {
+                        if (sessionWSSConnection !== null) {
+                            topic.publish("sendBalekProtocolMessage", sessionWSSConnection, {
+                                moduleMessage: {
+                                    instanceKey: instanceKey,
+                                    messageData: {removeEntries: "all"}
+                                }
+                            });
+                        }
+                    }))
+                }
             }
         });
     }

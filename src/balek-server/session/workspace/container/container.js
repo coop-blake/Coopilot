@@ -39,7 +39,6 @@ define(['dojo/_base/declare',
                 this.containerStateWatchHandle = this._containerState.watch( lang.hitch(this, this.onContainerStateChange));
                 //todo unwatch this when unloaded
 
-
             },
             onContainerStateChange: function(name, oldState, newState){
                 console.log(name, oldState, newState);
@@ -53,7 +52,7 @@ define(['dojo/_base/declare',
             connectWorkspaceInterface(interfaceCallback){
 
                 this._interfaceConnectionCallback = interfaceCallback;
-                console.log("Mousedown", {stateUpdate:{containerState: JSON.stringify(this._containerState)}});
+             //   console.log("Mousedown", {stateUpdate:{containerState: JSON.stringify(this._containerState)}});
 
 
                 interfaceCallback({stateUpdate:{containerState: JSON.stringify(this._containerState)}});
@@ -63,7 +62,7 @@ define(['dojo/_base/declare',
             },
             connectWorkspaceContainerInterface(interfaceCallback){
 
-                console.log("Mousedown", {stateUpdate:{containerState: JSON.stringify(this._containerState)}});
+            //    console.log("Mousedown", {stateUpdate:{containerState: JSON.stringify(this._containerState)}});
 
                 this._interfaceConnectionCallback = interfaceCallback;
 

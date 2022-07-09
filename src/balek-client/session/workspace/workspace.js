@@ -105,7 +105,7 @@ define(['dojo/_base/declare',
                 {
                     try{
                         let containersState = JSON.parse(stateChangeUpdate.containersState);
-                        console.log("workspaceUpdate", containersState, this );
+                     //   console.log("workspaceUpdate", containersState, this );
 
                         for (const name in containersState)
                         {
@@ -155,11 +155,11 @@ define(['dojo/_base/declare',
                 let workspaceContainers = this._workspaceContainers;
 
                 this._activeContainerKey = null;
-                console.log("workspaceUpdate", workspaceContainers );
+             //   console.log("workspaceUpdate", workspaceContainers );
 
                 for(const containerKey in workspaceContainers)
                 {
-                    console.log("workspaceUpdate", containerKey );
+             //       console.log("workspaceUpdate", containerKey );
 
                     this.activateContainer(containerKey);
                 }
@@ -168,7 +168,7 @@ define(['dojo/_base/declare',
             {
                 let workspaceContainers = this._workspaceContainers;
 
-                console.log("workspaceUpdate", containerKey, workspaceContainers, this );
+              //  console.log("workspaceUpdate", containerKey, workspaceContainers, this );
 
                 if(workspaceContainers[containerKey]){
                     let workspaceContainerDomNode =  workspaceContainers[containerKey].getWorkspaceDomNode();
@@ -198,7 +198,7 @@ define(['dojo/_base/declare',
                 if(workspaceContainers[containerKey] && workspaceContainers[containerKey].getWorkspaceDomNode) {
 
                     let workspaceContainerDomNode =  workspaceContainers[containerKey].getWorkspaceDomNode();
-                    console.log("workspaceUpdate", workspaceContainers[containerKey], workspaceContainerDomNode );
+                 //   console.log("workspaceUpdate", workspaceContainers[containerKey], workspaceContainerDomNode );
 
                     domConstruct.place(workspaceContainerDomNode, this.domNode);
                     this._activeContainerKey = containerKey;
@@ -251,7 +251,7 @@ define(['dojo/_base/declare',
                 } else if(this._workspaceContainers[String(name)] === undefined )
                 {
                     this._workspaceContainers[String(name)] = this.containerManager.getContainer(String(name));
-                    console.log("workspaceUpdate", name, this._workspaceContainers );
+                //    console.log("workspaceUpdate", name, this._workspaceContainers );
                 }
 
             },

@@ -1,0 +1,58 @@
+.coopilotMenuInterfaceWorkspacesMenuMenuWidget{
+    position: absolute;
+    display: none;
+    top:40px;
+    right: 0;
+    background: none;
+    z-index: 500;
+    color: white;
+    outline: none;
+    opacity: 1;
+    -webkit-box-shadow: 0px 0px 15px 8px #050530;
+    box-shadow: 0px 0px 15px 8px #050530;
+    border-radius: 0 0 15px 15px;
+    border: solid black 3px;
+    padding:0;
+    margin: 0;
+    background: rgba(11, 36, 72, .6);
+    padding-top: 5px;
+    font-size: 12pt;
+    background: grey;
+
+}
+
+.coopilotMenuInterfaceWorkspacesMenuMenuWidgetAddCommandDiv{
+    border: none;
+    cursor: pointer;
+}
+
+.coopilotMenuInterfaceWorkspacesMenuNewWorkspaceDiv{
+    padding: 3px;
+    padding-right: 10px;
+    cursor: pointer;
+    border: none;
+    border-bottom: solid white 2px;
+}
+.coopilotMenuInterfaceWorkspacesMenuNewWorkspaceDiv:hover{
+    filter: invert(100%);
+}
+
+.coopilotMenuInterfaceWorkspacesMenuMenuWidgetWorkspaceNameDiv{
+    border: none;
+    border-bottom: solid white 3px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 0;
+    padding:5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    color: white;
+}
+
+.coopilotMenuInterfaceWorkspacesMenuMenuWidgetWorkspaceNameDiv:hover{
+    border-bottom: solid black 3px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: black;
+}

@@ -221,10 +221,10 @@ define(['dojo/_base/declare',
                 if(String(name) === "activeOverlayWorkspace")
                 {
                     if(this._workspaces[newState.toString()] === undefined){
-                        console.log("workspaceUpdate", "Creating workspace overlay");
+                 //       console.log("workspaceUpdate", "Creating workspace overlay");
                         this.createWorkspaceInterface(newState.toString(),  "Active Overlay");
                         topic.publish("addToMainContentLayerAlwaysOnTop", this._workspaces[newState.toString()].domNode );
-                        this._workspaces[newState.toString()].onActivate();
+                        this._workspaces[newState.toString()].onActivated();
                     }
                 }
             },
@@ -235,7 +235,7 @@ define(['dojo/_base/declare',
                     topic.publish("addToMainContentLayer", workspaces[newWorkspaceKey].domNode );
                    // this.addToMainContentLayer(workspaces[newWorkspaceKey].domNode);
                 } else {
-                    console.log("AAA", newWorkspaceKey, workspaces );
+                 //   console.log("AAA", newWorkspaceKey, workspaces );
                     domConstruct.place(workspaces[newWorkspaceKey].domNode, workspaces[oldWorkspaceKey].domNode, "replace");
                 }
                 workspaces[newWorkspaceKey].onActivated();

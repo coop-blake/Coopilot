@@ -167,7 +167,7 @@ define(['dojo/_base/declare',
                                     }
 
                                     let isVisible = this._containerState.get("isVisible");
-                                    console.log("Mousedown",this, isVisible, isDocked, this._containerState);
+                                 //   console.log("Mousedown",this, isVisible, isDocked, this._containerState);
 
                                     if(isVisible === true )
                                     {
@@ -185,20 +185,20 @@ define(['dojo/_base/declare',
                                     let activeWorkspaceContainers =  this.workspaceManagerCommands.getWorkspaceContainers(activeWorkspace.getWorkspaceKey());
                                     let activeOverlayWorkspaceContainers =  this.workspaceManagerCommands.getWorkspaceContainers(activeOverlayWorkspace.getWorkspaceKey());
 
-                                    console.log("workspaceUpdate", activeWorkspace, activeWorkspaceContainers);
+                                   // console.log("workspaceUpdate", activeWorkspace, activeWorkspaceContainers);
 
                                     if(activeWorkspaceContainers !== null && activeWorkspaceContainers[this._containerKey]){
                                         activeWorkspace.activateContainer(this._containerKey);
-                                        console.log("workspaceUpdate", activeWorkspace, activeWorkspaceContainers);
+                                      //  console.log("workspaceUpdate", activeWorkspace, activeWorkspaceContainers);
 
                                     }else if( activeOverlayWorkspaceContainers !== null && activeOverlayWorkspaceContainers[this._containerKey]){
                                         activeOverlayWorkspace.activateContainer(this._containerKey);
-                                        console.log("workspaceUpdate", activeWorkspace, activeWorkspaceContainers);
+                                      //  console.log("workspaceUpdate", activeWorkspace, activeWorkspaceContainers);
 
                                     }
                                     else
                                     {
-                                        console.log("workspaceUpdate", "no");
+                                       // console.log("workspaceUpdate", "no");
 
                                         console.log("no!",this._containerKey, activeWorkspaceContainers );
                                     }
@@ -271,7 +271,7 @@ define(['dojo/_base/declare',
 
             },
             onContainerStateUpdateReceived: function(containerState){
-                console.log("Mousedown", containerState);
+           //     console.log("Mousedown", containerState);
                 let keysUpdated = false;
                 if(containerState.instanceKey){
                     this._interfaceKeys.instanceKey = containerState.instanceKey;
@@ -282,12 +282,12 @@ define(['dojo/_base/declare',
                     keysUpdated = true;
                 }
                 if(containerState.containerWidgetPath){
-                    console.log("Mousedown", "in seting");
+               //     console.log("Mousedown", "in seting");
 
                     this._containerState.set("containerWidgetPath", containerState.containerWidgetPath);
                 }
                 if(containerState.movableContainerElementBox){
-                    console.log("Mousedown", "in seting");
+                //    console.log("Mousedown", "in seting");
 
                     this._containerState.set("movableContainerElementBox", containerState.movableContainerElementBox);
                 }
@@ -317,7 +317,7 @@ define(['dojo/_base/declare',
             {
                // console.log("Container State Updated! If we get Ready Status we ");
 
-                console.log("Mousedown", name, oldState, newState);
+               // console.log("Mousedown", name, oldState, newState);
                 if(name === 'elementBox' && oldState === undefined){
                     this.updateWidgetWithElementBox(newState);
                     // this.moveTo(Math.round(newState.t), Math.round(newState.l));
@@ -333,7 +333,7 @@ define(['dojo/_base/declare',
                    this.refreshContainerWidget();
                 }
                 if(name === 'isDocked' ){
-                    console.log("Mousedown", name, oldState, newState);
+               //     console.log("Mousedown", name, oldState, newState);
 
                     if(newState === true)
                     {
@@ -400,9 +400,9 @@ define(['dojo/_base/declare',
                 this.updateInstanceElementBox();
             },
             updateInstanceElementBox: function(){
+                //todo remove this, probably not used
                 let elementBox = domGeometry.getContentBox(this._workspaceContainerWidget.domNode);
-             //   console.log("resized sending Box", elementBox);
-                this._componentStateSet("diaplodeWorkspaceContainer", "elementBox", elementBox);
+               console.log("Does this happen? resized sending Box", elementBox);
             },
             toggleShowView: function()
             {

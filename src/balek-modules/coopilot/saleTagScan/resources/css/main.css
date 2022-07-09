@@ -2,24 +2,24 @@ body {
 text-align:center
 }
 
-.digivigilWWWSaleTagScanMainInterfaceButton{
+.coopilotTagScanMainInterfaceButton{
     background: transparent;
     cursor: pointer;
     color: white;
     border: solid white 2px;
     display: inline-block;
     border-radius: 5px;
-    position: absolute;
+    position: relative;
     right: 30px;
     top: 15%;
 
 }
-.digivigilWWWSaleTagScanMainInterfaceButton:hover {
+.coopilotTagScanMainInterfaceButton:hover {
     cursor: pointer;
     filter: invert(100%);
     background: black;
 }
-.digivigilWWWSaleTagScanMainInterfaceButton:active {
+.coopilotTagScanMainInterfaceButton:active {
     cursor: pointer;
     background: red;
     filter: invert(0%);
@@ -27,9 +27,9 @@ text-align:center
     border: solid white 2px;
 }
 
-.digivigilWWWSaleTagScanMainInterfaceButtonImage{
+.coopilotTagScanMainInterfaceButtonImage{
     height: 2vh;
-    min-height: 25px;
+    min-height: 15px;
     margin: 3px;
     -webkit-user-drag: none;
     -khtml-user-drag: none;
@@ -38,61 +38,44 @@ text-align:center
     user-drag: none;
 }
 
-.digivigilWWWSaleTagScanMainInterfaceListDiv{
+.coopilotTagScanMainInterfaceListDiv{
 
 }
 
-.digivigilWWWSaleTagScanMainInterfaceMainHeaderTitle{
-    font-size: calc(20px + 2vh);
-    color: grey;
-    display: inline-block;
-    margin-right: 20px;
+.coopilotTagScanMainInterfaceMainHeaderToolbar{
+   float: right
+}
+
+
+.coopilotTagScanMainInterface{
+
     position: absolute;
-    left: 30px;
-    top: calc(10px );;
-}
-
-.digivigilWWWSaleTagScanMainInterface{
-    background: rgba(28, 110, 164, 0.2);
-    display: inline;
+    background: none;
     display: inline-block;
-    text-align: center;
-    padding: 30px;
-    border: solid black 3px;
-    border-radius: 25px;
+    padding: 0;
+    margin: 0;
+    border: none;
     visibility: visible;
-    z-index: 5;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    top: 5%;
-    left: 5%;
-    right: 5%;
-    bottom: 5%;
-    -webkit-box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-    -moz-box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-    outline: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-.digivigilWWWSaleTagScanMainInterfaceMainHeaderDiv{
-    border: solid #144b73 6px;
-    background: #144b73;
-    border-top-left-radius: 25px;
+.coopilotTagScanMainInterfaceMainHeaderDiv{
+
+    background: rgba(20, 75, 115, 0.41);
     position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
+    top: 2px;
+    left: 0;
+    right: 0;
     overflow: hidden;
-    height: 5%;
-    min-height: 50px;
-    -webkit-box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-    -moz-box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    min-height: 25px;
     color: white;
     z-index: 100;
+    padding: 3px;
 }
-.digivigilWWWSaleTagScanMainInterfaceMainContentDiv{
+.coopilotTagScanMainInterfaceMainContentDiv{
     position: absolute;
     top: 5%;
     min-top: 50px;
@@ -104,9 +87,9 @@ text-align:center
     z-index: 50;
 }
 
-.digivigilWWWSaleTagScanMainInterfaceMainDiv{
-    border: solid #144b73 6px;
-    border-radius: 25px;
+.coopilotTagScanMainInterfaceMainDiv{
+
+
     position: absolute;
     top: -3px;
     left: -3px;
@@ -116,10 +99,9 @@ text-align:center
 }
 
 
-.digivigilWWWSaleTagScanMainInterfaceBackgroundDiv{
+.coopilotTagScanMainInterfaceBackgroundDiv{
     background : rgba(38, 145, 43, 0.3);
-    border: solid black 3px;
-    border-radius: 25px;
+
     position: absolute;
     top: -3px;
     left: -3px;
@@ -128,7 +110,7 @@ text-align:center
     overflow: hidden;
 }
 
-.digivigilWWWSaleTagScanMainInterfaceBackgroundDivImage{
+.coopilotTagScanMainInterfaceBackgroundDivImage{
    opacity: .7;
     position: absolute;
     top: 0;

@@ -1,0 +1,11 @@
+<div class="${baseClass}" data-dojo-attach-event="onfocus:_onFocus,onblur:_onBlur" tabindex="1">
+    <div class="${baseClass}MenuDiv" >
+        <div title="Coopilot Info" class="${baseClass}DockMenuButtonDiv" data-dojo-attach-event="onclick:_onInfoClicked">ℹ️</div>
+        <div title="Mobile Scans" class="${baseClass}DockMenuButtonDiv" data-dojo-attach-event="onclick:_onScansClicked">📱</div>
+        <div title="Import Tabbed Data" class="${baseClass}DockMenuButtonDiv" data-dojo-attach-event="onclick:_onImportClicked">📥</div>
+
+        <div  title="Workspaces Menu" class="${baseClass}DockWorkspacesMenuButtonDiv" data-dojo-attach-point='_workspacesMenuDiv' style="float: right" data-dojo-attach-event="onclick:_onWorkspacesClicked">❖</div>
+
+        <div title="Load a Balek Module" class="${baseClass}DockMenuButtonDiv" style="float: right"data-dojo-attach-event="onclick:_onLoadModuleButtonClicked">🧩</div>
+    </div>
+</div>

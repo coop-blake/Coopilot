@@ -1,0 +1,52 @@
+body {
+    text-align: center
+}
+
+.coopilotLoginInterface * {
+
+}
+
+.coopilotLoginInterface {
+    background: rgba(77, 164, 164, 0.84);
+    display: inline;
+    display: inline-block;
+    text-align: center;
+    padding: 30px;
+    border: solid #050530 3px;
+    -webkit-box-shadow: 0px 0px 15px 8px #050530;
+    box-shadow: 0px 0px 15px 8px #050530;
+    border-radius: 50%;
+    visibility: visible;
+    z-index: 5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    outline: none;
+}
+
+.coopilotLoginInterfaceUsernameField {
+    text-align: center;
+    border-radius: 25px;
+    background: #050530;
+    color: white;
+    outline: none;
+}
+
+.coopilotLoginInterfacePasswordField {
+    text-align: center;
+    border-radius: 25px;
+    background: #050530;
+    color: white;
+    outline: none;
+}
+
+.coopilotLoginInterfaceLoginButton {
+    color: #1c6ea4;
+}
+
+.layerManagerBackgroundLayerNode{
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(166, 255, 178, 0.45)), to(#a6ffb2));
+
+}

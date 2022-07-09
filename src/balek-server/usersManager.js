@@ -48,6 +48,8 @@ define(['dojo/_base/declare',
 
                 //replace these with state object
                 topic.subscribe("getUserFromDatabase", lang.hitch(this, this.getUserFromDatabase));
+                topic.subscribe("getUserByKeyFromDatabase", lang.hitch(this, this.getUserByKeyFromDatabase));
+
                 topic.subscribe("getUsersFromDatabase", lang.hitch(this, this.getUsersFromDatabase));
 
                 topic.subscribe("receiveUserManagerMessage", lang.hitch(this, this.receiveUserManagerMessage));
@@ -69,6 +71,14 @@ define(['dojo/_base/declare',
                     returnGetUserFromDatabase(results);
                 }).catch(function (error) {
                     returnGetUserFromDatabase(error);
+                });
+            },
+            getUserByKeyFromDatabase: function (userKey, returnGetUserByKeyFromDatabase) {
+                this._dbController.getUserByKeyFromDatabase(userKey).then(function (results) {
+                    //todo update User Store
+                    returnGetUserByKeyFromDatabase(results);
+                }).catch(function (error) {
+                    returnGetUserByKeyFromDatabase(error);
                 });
             },
             getUsersFromDatabase: function (returnGetUsersFromDatabase) {
@@ -113,10 +123,9 @@ define(['dojo/_base/declare',
 
             },
             updateUserFromSession: function (sessionKey, updateUserData) {
-
                 return new Promise(lang.hitch(this, function (Resolve, Reject) {
                     topic.publish("getSessionUserInfo", sessionKey, lang.hitch(this, function (userInfo) {
-
+                    if(userInfo[0] && userInfo[0].permission_groups){
                         let permissionGroups = JSON.parse(String.fromCharCode(...new Uint8Array(userInfo[0].permission_groups)));
 
                         let userKey = userInfo[0].userKey;
@@ -131,25 +140,32 @@ define(['dojo/_base/declare',
 
                             if (!updateUserData.permissionGroups) {
                                 updateUserData.permissionGroups = `["users"]`;
-                            }
+                                console.log("Permission set",updateUserData.permissionGroups)
 
+                            }else
+                            {
+                                console.log("Permission",updateUserData.permissionGroups)
+                            }
                             if (updateUserData.icon != null) {
-                                var iconData = Object.values(updateUserData.icon.data);
-                                var base64Buffer = Buffer.from(iconData);
+                                let iconData = Object.values(updateUserData.icon.data);
+                                let base64Buffer = Buffer.from(iconData);
                                 updateUserData.icon = base64Buffer;
+                            }else
+                            {
+                                updateUserData.icon = Buffer.from("")
                             }
                             if (updateUserData.password != null) {
-                                var passwordData = updateUserData.password;
+                                let passwordData = updateUserData.password;
                                 updateUserData.password = passwordData;
                                 //what is the point of this?
                             }
 
-                            topic.publish("getSessionByKey", sessionKey, lang.hitch(this, function (session) {
+                        //    topic.publish("getSessionByKey", sessionKey, lang.hitch(this, function (session) {
                                 //todo update user state which session watches
-                                session.updateSessionStatus({
-                                    userName: updateUserData.userName
-                                });
-                            }));
+                          //      session.updateSessionStatus({
+                          //          userName: updateUserData.userName
+                         //       });
+                         //   }));
 
 
                             this._dbController.updateUserInDatabase(updateUserData).then(function (results) {
@@ -162,6 +178,10 @@ define(['dojo/_base/declare',
                         } else {
                             Reject("Permission Denied");
                         }
+                    }else {
+                        console.log("No user?",userInfo, sessionKey, updateUserData)
+                    }
+
 
                     }));
                 }));

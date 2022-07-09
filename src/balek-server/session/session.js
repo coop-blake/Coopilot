@@ -71,7 +71,6 @@ define([ 	'dojo/_base/declare',
                         }));
                         this.getState().set("availableSessions", availableSessions);
                     }));
-
                 }
             },
             addAvailableSession: function(availableSession)

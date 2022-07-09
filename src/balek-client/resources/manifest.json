@@ -1,14 +1,14 @@
 {
-  "short_name": "Diaplode",
-  "name": "Diaplode: Workspaces for you",
+  "short_name": "Coopilot",
+  "name": "Coopilot: Workspaces for you",
   "icons": [
     {
-      "src": "/png/Diaplode-icon-192.png",
+      "src": "/png/Coopilot-icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/png/Diaplode-icon-512.png",
+      "src": "/png/Coopilot-icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

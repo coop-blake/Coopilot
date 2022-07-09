@@ -320,7 +320,15 @@ define(['dojo/_base/declare',
             setSessionDisconnected: function (sessionKey) {
                 if(this._sessions[sessionKey] && this._sessions[sessionKey].updateSessionStatus)
                 {
-                    this._sessions[sessionKey].updateSessionStatus({sessionStatus: 2});
+                    let currentStatus = this._sessions[sessionKey].getStatus()
+                    if(currentStatus === 0)
+                    {
+                        console.log("Unloading Session")
+                        this.unloadSession(sessionKey);
+                    }else{
+                        console.log("Keeping Session")
+                        this._sessions[sessionKey].updateSessionStatus({sessionStatus: 2});
+                    }
                 }
             },
 
@@ -375,7 +383,7 @@ define(['dojo/_base/declare',
                 returnUserGroups(this._sessions[sessionKey].getPermissionGroups());
             },
             getSessionUserInfo: function (sessionKey, returnUserInfo) {
-                topic.publish("getUserFromDatabase", this._sessions[sessionKey].getUserName(), lang.hitch(this, function (userInfo) {
+                topic.publish("getUserByKeyFromDatabase", this._sessions[sessionKey].getUserKey(), lang.hitch(this, function (userInfo) {
                     returnUserInfo(userInfo)
                 }));
             },

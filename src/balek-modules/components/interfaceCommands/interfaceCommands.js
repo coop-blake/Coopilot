@@ -7,7 +7,7 @@ Extend this class to share commands with other interfaces
     ],
     function (declare, lang) {
 
-        return declare("diaplodeComponentInterfaceCommands", null, {
+        return declare("componentInterfaceCommands", null, {
             _containers: null,
             _sessionKey: null,
 
@@ -18,7 +18,7 @@ Extend this class to share commands with other interfaces
 
             constructor: function (args) {
                 declare.safeMixin(this, args);
-                console.log("Initializing Diaplode Component Interface Commands...");
+                console.log("Initializing Component Interface Commands...");
             },
             isReady: function () {
                 return false;
