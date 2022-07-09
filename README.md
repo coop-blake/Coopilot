@@ -33,9 +33,9 @@ Stop the Balek containers
 
 
 
-## Accessing Balek  
+## Accessing Coopilot  
 
-Once the containers are up and running you can access your Balek instance through [https://localhost/](https://localhost/)
+Once the containers are up and running you can access your Coopilot instance through [https://localhost/](https://localhost/)
 
 To access the built/minified interface you have to request [https://localhost/release/](https://localhost/release/)  
 
@@ -44,8 +44,11 @@ To access the built/minified interface you have to request [https://localhost/re
 
 
 ## Configuring Coopilot
+The configuration directory for the docker build can be found at [`builds/coopilot/conf`](builds/coopilot/conf)
 ### SSL certificates
-You can place your own ssl certificates in the `builds/coopilot/conf/cert` directory and restart(Stop/Run) your containers to use them.
+Self signed certificates are auto generated along with a directory to hold them durring the build process
+
+You can place your own ssl certificates in the [`builds/coopilot/conf/cert`](builds/coopilot/conf/cert) directory and restart(Stop/Run) your containers to use them.
 ### Advanced Configuration
 Modify [`builds/coopilot/conf/config.json`](builds/coopilot/conf/config.json) and restart containers.  
 See the [`src/balek-server/etc/README.md`](src/balek-server/etc/README.md) for more info.
