@@ -1,0 +1,34 @@
+{
+  "scripts": {
+    "start": "node loadServer.js",
+    "build": "./lib/dojo-release-src/util/buildscripts/build.sh --profile ./balek.profile.js --language_in=ECMASCRIPT6",
+    "buildDevelopmentDatabases": "docker build -f builds/docker/mysql/Dockerfile .  -t balek-mysqldb:develop && docker build -f builds/docker/mongo/Dockerfile .  -t balek-mongo:develop ",
+    "startDevelopmentDatabases": "docker-compose -f builds/docker/mysql/docker-compose.yml up -d && docker-compose -f builds/docker/mongo/docker-compose.yml up -d",
+    "stopDevelopmentDatabases": "docker-compose -f builds/docker/mysql/docker-compose.yml down && docker-compose -f builds/docker/mongo/docker-compose.yml down",
+    "buildDigivigilGuestbookDockerRelease": "docker build -f builds/digivigilGuestbook/Dockerfile .  -t balek-digivigil-guestbook:release",
+    "startDigivigilGuestbookDockerRelease": "docker-compose -f builds/digivigilGuestbook/docker-compose.yml up -d",
+    "preBuild": "npm run buildLibraries --prefix src/balek-modules/",
+    "postBuild": "npm run buildRelease --prefix src/balek-modules/",
+    "buildAll": "npm run preBuild && npm run build && npm run postBuild",
+    "buildCertificates": "echo 'Coming soon!'"
+  },
+  "dependencies": {
+    "mongodb": "^3.6.9",
+    "mysql2": "^1.7.0",
+    "sanitize-html": "^2.4.0",
+    "websocket": "^1.0.34"
+  },
+  "name": "balek",
+  "description": "balek",
+  "version": "0.0.01",
+  "main": "balek.profile.js",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@digivigil.com/home/git/balek/balek.git"
+  },
+  "author": "Blake Glanville",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "stylus": "^0.54.8"
+  }
+}

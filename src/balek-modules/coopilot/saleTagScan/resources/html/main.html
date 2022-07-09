@@ -1,0 +1,19 @@
+<div class="${baseClass}" data-dojo-attach-event="onkeyup:_onKeyUp" tabindex="0">
+    <div class="${baseClass}BackgroundDiv">
+        <img class="${baseClass}BackgroundDivImage"
+             src="balek-modules/coopilot/saleTagScan/resources/images/book.svg">
+    </div>
+    <div class="${baseClass}MainDiv">
+        <div class="${baseClass}MainHeaderDiv">
+            <div class="${baseClass}MainHeaderTitle">Tag Scan</div>
+            <div data-dojo-attach-event="onclick:_onCopyClicked" class="${baseClass}Button">
+                <img class="${baseClass}ButtonImage"
+                     src="balek-modules/coopilot/saleTagScan/resources/images/file.svg">
+            </div>
+
+        </div>
+        <div class="${baseClass}MainContentDiv" data-dojo-attach-point='_mainContentDiv'>
+            <div class="${baseClass}ListDiv" data-dojo-attach-point='_listDiv'></div>
+        </div>
+    </div>
+</div>
