@@ -1,6 +1,6 @@
 {
 	"Session Settings": {
-		"Main Module": "coopilot/saleTagScan"
+		"Main Module": "coopilot/login"
 	},
 	"Network Settings":{
 		"Server Address" : "0.0.0.0",
@@ -8,7 +8,7 @@
 	},
 	"Database Settings": {
 		"MySQL Database Connection": {
-			"host": "localhost",
+			"host": "mysqld-coopilot",
 			"user": "balekAppUser",
 			"password": "balekAppPassword",
 			"database": "balek"

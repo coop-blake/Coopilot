@@ -1,7 +1,7 @@
 version: '3'
 services:
   balek-coopilot:
-    image: "balek-coopilot-guestbook:release"
+    image: "balek-coopilot-node:release"
     build:
       context: "../.."
       dockerfile: "builds/coopilot/Dockerfile"
@@ -9,6 +9,19 @@ services:
       - "443:8080"
     volumes:
       - ./conf:/balek/src/balek-server/etc
+  mysqld-coopilot:
+    image: "balek-coopilot-mysql:release"
+    build: "../docker/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootPass
+      - MYSQL_DATABASE=balek
+      - MYSQL_USER=balekAppUser
+      - MYSQL_PASSWORD=balekAppPassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./config/initSQL:/docker-entrypoint-initdb.d/:ro
+      - ./data/mysqlDB:/var/lib/mysql
   mongodb-coopilot:
     image: "balek-coopilot-mongodb:release"
     build: "../docker/mongo"
