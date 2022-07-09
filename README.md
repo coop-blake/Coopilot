@@ -3,7 +3,7 @@ A Web Application
 
 You will need [**Docker** and **docker-compose**](https://www.docker.com) to build and run Coopilot using these instructions.
 
-## Getting Balek
+## Getting Coopilot
 Clone the repository and submodules
 
     git clone --recurse-submodules https://github.com/coop-blake/Coopilot.git  
