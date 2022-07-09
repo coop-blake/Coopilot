@@ -10,28 +10,28 @@ and secure websocket connections, are found in the [`cert/`](cert/README.md) sub
 **_[Example from Coopilot Docker Build](../../../builds/coopilot/conf/config.json)_**
 
     {
-	"Session Settings": {
-		"Main Module": "coopilot/login"
-	},
-	"Network Settings":{
-		"Server Address" : "0.0.0.0",
-		"Server Port" : "8080"
-	},
-	"Database Settings": {
-		"MySQL Database Connection": {
-			"host": "mysqld-coopilot",
-			"user": "balekAppUser",
-			"password": "balekAppPassword",
-			"database": "balek"
+		"Session Settings": {
+			"Main Module": "coopilot/login"
 		},
-		"Mongo Database Connection": {
-			"host": "mongodb-coopilot",
-			"port": "27017",
-			"user": "root",
-			"password": "rootPass",
-			"database": "balek"
+		"Network Settings":{
+			"Server Address" : "0.0.0.0",
+			"Server Port" : "8080"
+		},
+		"Database Settings": {
+			"MySQL Database Connection": {
+				"host": "mysqld-coopilot",
+				"user": "balekAppUser",
+				"password": "balekAppPassword",
+				"database": "balek"
+			},
+			"Mongo Database Connection": {
+				"host": "mongodb-coopilot",
+				"port": "27017",
+				"user": "root",
+				"password": "rootPass",
+				"database": "balek"
+			}
 		}
-	}
 	}
 
 
