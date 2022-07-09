@@ -14,7 +14,9 @@ Clone the repository and submodules
 
 ## Building and Running Coopilot
 
-_Enter commands in the repository root:_
+_Enter the repository root:_
+
+    cd Coopilot
 
 ### Build:
 Will take a few minutes to complete
