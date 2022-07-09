@@ -46,7 +46,7 @@ Once the containers are up and running you can access your Coopilot instance thr
 
 To access the built/minified interface you have to request [https://localhost/release/](https://localhost/release/)  
 
-📝 _A release build should be created_
+📝 _A release docker container build should be created_
 
 
 
