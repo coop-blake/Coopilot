@@ -36,7 +36,7 @@ and secure websocket connections, are found in the [`cert/`](cert/README.md) sub
 
 
 ### SSL Certificate
-`src/balek-server/etc/cert/cert.pem`
+`builds/coopilot/conf/cert/cert.pem`
 
 ### SSL Private Key
-`src/balek-server/etc/cert/key.pem`
+`builds/coopilot/conf/cert/key.pem`
