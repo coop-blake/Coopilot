@@ -26,7 +26,7 @@ _This builds the Mongo and SQL database server containers as well as the node.js
 
 _It also copies the repository to the main container and builds the minified interface files_
 ### Run:
-Start up the Balek containers in the background  
+Start up the Coopilot containers in the background  
 
     docker-compose -f ./builds/coopilot/docker-compose.yml up -d
 _This starts up the Mongo, SQL, and Node.js containers and runs the Server instance using the source files copied to the container Volume durring the build process_
@@ -34,7 +34,7 @@ _This starts up the Mongo, SQL, and Node.js containers and runs the Server insta
 _There are three local directories in [builds/coopilot](./builds/coopilot) that get mounted in the containers when they are brought up. This allows for the Coopilot configuration and database data to live on the host where it can be retained, copied, and modified_
 
 ### Stop:
-Stop the Balek containers  
+Stop the Coopilot containers  
 
     docker-compose -f ./builds/coopilot/docker-compose.yml down
 
