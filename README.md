@@ -9,7 +9,7 @@ Clone the repository and submodules
     git clone --recurse-submodules https://github.com/coop-blake/coopilot.git  
 
  > The [dojo toolkit](https://dojotoolkit.org) is included as a submodule. If the `--recurse-submodules` 
- > flag is omitted durring cloning, you can run `git submodule update --init --recursive` in 
+ > flag is omitted durring cloning or you download the zip file, you can run `git submodule update --init --recursive` in 
  > the root directory to download the dojo toolkit submodules.
 
 ## Building and Running Coopilot
