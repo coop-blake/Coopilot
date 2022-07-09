@@ -4,7 +4,7 @@ _This directory contains the configuration needed to run Coopilot in a Docker Co
 
 ## Configuration
 ### Coopilot
-The [`conf/`](conf/) contains the configuration for the Coopilot instance and is a local directory that can be modified to change the behaviour of the contianer when it is ran.
+The [`conf/`](conf/) directory contains the configuration for the Coopilot instance and is a local directory that can be modified to change the behaviour of the container when it is ran.
 ### Mongo
 The mongo container is configured using environment variables passed through the [`docker-compose.yml`](docker-compose.yml) file
 
