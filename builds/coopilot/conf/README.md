@@ -33,8 +33,6 @@ and secure websocket connections, are found in the [`cert/`](cert/README.md) sub
 		}
 	}
 }
-Footer
-© 2022 GitHub, Inc.
 
 
 ### SSL Certificate
