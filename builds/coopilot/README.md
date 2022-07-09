@@ -1,5 +1,5 @@
 # Coopilot Docker Build Directory
-_This directory contains the configuration needed to run Coopilot in a Docker Container. Including the configuration for the required Mongo and SQL databases_
+_This directory contains the configuration needed to run Coopilot in a Docker Container. It also includes configuration for the required Mongo and SQL databases_
 
 
 ## Configuration
