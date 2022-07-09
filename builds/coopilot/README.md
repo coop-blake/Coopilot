@@ -1,0 +1,18 @@
+# Coopilot Docker Build Directory
+_This directory contains the configuration needed to run Coopilot in a Docker Container. Including the configuration for the required Mongo and SQL databases_
+
+
+## Configuration
+### Coopilot
+The [`conf/`](conf/) contains the configuration for the Coopilot instance and is a local directory that can be modified to change the behaviour of the contianer when it is ran.
+### Mongo
+The mongo container is configured using environment variables passed through the [`docker-compose.yml`](docker-compose.yml) file
+
+The [`data/mongoDB`](data/mongoDB) is the SQL database data directory is shared with the SQL Docker Container
+
+### SQL
+The SQL container is configured using environment variables passed through the [`docker-compose.yml`](docker-compose.yml) file
+
+It is also initially set up using the [`config/initSQL`](config/initSQL) directory
+
+The [`data/mysqlDB`](data/mysqlDB) is the SQL database data directory is shared with the SQL Docker Container
