@@ -23,6 +23,7 @@ Will take a few minutes to complete
 
     docker-compose -f ./builds/coopilot/docker-compose.yml build
 _This builds the mongo and mysql database server containers as well as the node.js container that runs Coopilot_
+_It also copies the repository to the main container and builds the minified interface files_
 ### Run:
 Start up the Balek containers in the background  
 
