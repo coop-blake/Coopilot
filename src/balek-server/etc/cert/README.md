@@ -5,4 +5,4 @@ This directory is used for configuring the Balek Instance Certificate and Key th
 Save your key as `key.pem` in this directory to have it loaded by Balek on startup
 
 ## Certficate
-Save your key as `cert.pem` in this directory to have it loaded by Balek on startup
+Save your certificate as `cert.pem` in this directory to have it loaded by Balek on startup
