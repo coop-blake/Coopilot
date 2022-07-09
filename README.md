@@ -51,7 +51,7 @@ To access the built/minified interface you have to request [https://localhost/re
 
 
 ## Configuring Coopilot
-The configuration directory for the docker build can be found at [`builds/coopilot/conf`](builds/coopilot/conf). This directory gets mounted as the  [`src/balek-server/etc`](src/balek-server/etc)
+The configuration directory for the docker build can be found at [`builds/coopilot/conf`](builds/coopilot/conf). This directory gets mounted as the  [`src/balek-server/etc`](src/balek-server/etc) directory when the container is ran
 ### SSL certificates
 Self signed certificates are auto generated along with a directory to hold them durring the build process
 
