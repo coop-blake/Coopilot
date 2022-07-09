@@ -32,7 +32,7 @@ and secure websocket connections, are found in the [`cert/`](cert/README.md) sub
 			"database": "balek"
 		}
 	}
-}
+	}
 
 
 ### SSL Certificate
