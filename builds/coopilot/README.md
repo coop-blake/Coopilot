@@ -1,6 +1,7 @@
 # Coopilot Docker Build Directory
 _This directory contains the configuration needed to run Coopilot in a Docker Container. Including the configuration for the required Mongo and SQL databases_
 
+
 ## Configuration
 ### Coopilot
 The [`conf/`](conf/) contains the configuration for the Coopilot instance and is a local directory that can be modified to change the behaviour of the contianer when it is ran.
