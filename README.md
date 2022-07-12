@@ -1,5 +1,5 @@
 # **Coopilot**
-A Web Application
+A Web Application to assist with Point Of Sale data and tasks
 
 You will need [**Docker** and **docker-compose**](https://www.docker.com) to build and run Coopilot using these instructions.
 
