@@ -2,18 +2,18 @@ define(['dojo/_base/declare',
         'dojo/_base/lang',
         'dojo/topic',
         'balek-modules/Module',
-        'balek-modules/coopilot/tabImporter/Instance',
+        'balek-modules/coopilot/UNFIPricer/Instance',
     ],
     function (declare, lang, topic, baseModule, moduleInstance) {
 
-        return declare("coopilotTabImporterModule", baseModule, {
+        return declare("coopilotUNFIPricerModule", baseModule, {
             _displayName: "CooPilot Tabbed Data Importer",
             _allowedSessions: [1],
 
             constructor: function (args) {
 
                 declare.safeMixin(this, args);
-                console.log("coopilotTabImporterModule  starting...");
+                console.log("coopilotUNFIPricerModule  starting...");
 
             },
             newInstance: function (args) {

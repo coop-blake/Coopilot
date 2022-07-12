@@ -2,11 +2,11 @@ define(['dojo/_base/declare',
         'dojo/_base/lang',
         'dojo/topic',
 
-        'balek-modules/coopilot/tabImporter/Interface/main',
+        'balek-modules/coopilot/UNFIPricer/Interface/main',
         'balek-modules/components/syncedMap/Interface',
         'balek-modules/components/syncedCommander/Interface',],
     function (declare, lang, topic,
-              TabImporter,
+              UNFIPricer,
               SyncedMapInterface,
               _SyncedCommanderInterface ) {
         return declare("moduleCoopilotMenuInterface", _SyncedCommanderInterface, {
@@ -18,7 +18,7 @@ define(['dojo/_base/declare',
 
             constructor: function (args) {
                 declare.safeMixin(this, args);
-                console.log("moduleCoopilotTabImporterInterface started", this._instanceKey);
+                console.log("moduleCoopilotUNFIPricerInterface started", this._instanceKey);
                 this.importerInterfaces = {}
                 this._newImporterSubscribeHandle=  topic.subscribe("newImporter", lang.hitch(this, function(topicCallback){
                     //    console.log("createNewDiaplodeFile topic Command Called");
@@ -53,16 +53,16 @@ define(['dojo/_base/declare',
                 let newImporterKeys = newState
                 if(this.importerInterfaces[newImporterKeys.componentKey] === undefined)
                 {
-                    let newTabImporter = TabImporter({
+                    let newUNFIPricer = UNFIPricer({
                         _instanceKey:newImporterKeys.instanceKey,
                         _componentKey:newImporterKeys.componentKey,
                         _sessionKey:newImporterKeys.sessionKey})
-                    this.importerInterfaces[newImporterKeys.componentKey] = newTabImporter
+                    this.importerInterfaces[newImporterKeys.componentKey] = newUNFIPricer
 
-                    newTabImporter.getContainerKeys().then(lang.hitch(this, function(containerKeys){
+                    newUNFIPricer.getContainerKeys().then(lang.hitch(this, function(containerKeys){
                         if(Array.isArray(containerKeys) && containerKeys.length === 0)
                         {
-                           topic.publish("addToCurrentWorkspace",newTabImporter );
+                           topic.publish("addToCurrentWorkspace",newUNFIPricer );
                         }
                     })).catch(lang.hitch(this, function(error){
                         console.log(error);

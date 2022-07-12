@@ -12,7 +12,7 @@ define(['dojo/_base/declare',
               SyncedStreamInstance,
               //Balek Instance Includes
               _SyncedCommanderInstance) {
-        return declare("moduleCoopilotTabImporterInstance", [_SyncedCommanderInstance], {
+        return declare("moduleCoopilotUNFIPricerInstance", [_SyncedCommanderInstance], {
 
             importers: null,
 

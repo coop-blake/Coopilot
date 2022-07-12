@@ -18,8 +18,8 @@ define(['dojo/_base/declare',
         'balek-modules/components/syncedCommander/Interface',
         'balek-client/session/workspace/container/containable',
 
-        'dojo/text!balek-modules/coopilot/tabImporter/resources/html/main.html',
-        'dojo/text!balek-modules/coopilot/tabImporter/resources/css/main.css'
+        'dojo/text!balek-modules/coopilot/UNFIPricer/resources/html/main.html',
+        'dojo/text!balek-modules/coopilot/UNFIPricer/resources/css/main.css'
     ],
     function (declare,
               lang,
@@ -48,7 +48,7 @@ define(['dojo/_base/declare',
         return declare("moduleDigivigilWWWSaleTagScanInterface", [_WidgetBase,_TemplatedMixin,_SyncedCommanderInterface,_BalekWorkspaceContainerContainable], {
 
 
-            baseClass: "coopilotTabImporterInterface",
+            baseClass: "coopilotUNFIPricerInterface",
 
             templateCssString: interfaceCSSFile,
             templateString: interfaceHTMLFile,
@@ -358,7 +358,7 @@ define(['dojo/_base/declare',
                         domClass.add(setSpan, this.baseClass+"SetSpan")
 
                         let setHeaderDiv = domConstruct.create("div")
-                        domConstruct.place(`<img src='balek-modules/coopilot/tabImporter/resources/images/triangleUp.svg' class='${this.baseClass}SetDivImage' alt="Set Header" />`, setHeaderDiv)
+                        domConstruct.place(`<img src='balek-modules/coopilot/UNFIPricer/resources/images/triangleUp.svg' class='${this.baseClass}SetDivImage' alt="Set Header" />`, setHeaderDiv)
                         domClass.add(setHeaderDiv, this.baseClass+"SetHeaderDiv")
 
                         on(setHeaderDiv, "mousedown", lang.hitch(this, function (linePosition, mouseEvent ){
@@ -372,7 +372,7 @@ define(['dojo/_base/declare',
 
                         let setFooterDiv = domConstruct.create("div")
                         domClass.add(setFooterDiv, this.baseClass+"SetFooterDiv")
-                        domConstruct.place(`<img src='balek-modules/coopilot/tabImporter/resources/images/triangleDown.svg' class='${this.baseClass}SetDivImage' alt="Set Footer" />`, setFooterDiv)
+                        domConstruct.place(`<img src='balek-modules/coopilot/UNFIPricer/resources/images/triangleDown.svg' class='${this.baseClass}SetDivImage' alt="Set Footer" />`, setFooterDiv)
 
 
 

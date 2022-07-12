@@ -2,7 +2,7 @@ define(['dojo/_base/declare',
         'dojo/_base/lang',
         'dojo/topic',
 
-        'balek-modules/coopilot/tabImporter/Instance/main',
+        'balek-modules/coopilot/UNFIPricer/Instance/main',
         'balek-modules/components/syncedMap/Instance',
 
         'balek-modules/components/syncedCommander/Instance'
@@ -17,7 +17,7 @@ define(['dojo/_base/declare',
 
                 declare.safeMixin(this, args);
 
-                console.log("moduleCoopilotTabImporterInstance starting...");
+                console.log("moduleCoopilotUNFIPricerInstance starting...");
 
                 this.importerInstancesSyncedMap = new SyncedMapInstance({_instanceKey: this._instanceKey});
                 //todo remove synced map from tab importer but add to dataTables
@@ -54,7 +54,7 @@ define(['dojo/_base/declare',
             },
             _end: function () {
                 return new Promise(lang.hitch(this, function(Resolve, Reject){
-                    console.log("destroying tabImporter Module Interface ");
+                    console.log("destroying UNFIPricer Module Interface ");
                     Resolve({success: "Unloaded Instance"});
                 }));
             }

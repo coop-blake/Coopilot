@@ -1,5 +1,5 @@
 
-.coopilotTabImporterInterface {
+.coopilotUNFIPricerInterface {
     color: #ffffff;
     background: rgba(20, 75, 115, 0.8);
     position: absolute;
@@ -17,7 +17,7 @@
 
 
 
-.coopilotTabImporterInterfaceDropZone {
+.coopilotUNFIPricerInterfaceDropZone {
     color: #ffffff;
     background: rgba(20, 75, 115, 0.8);
     border: none;
@@ -45,7 +45,7 @@
     "footer";
 }
 
-.coopilotTabImporterInterfacePreviewDiv {
+.coopilotUNFIPricerInterfacePreviewDiv {
     color: #ffffff;
     background: rgba(20, 75, 115, 0.8);
     text-align: left;
@@ -57,7 +57,7 @@
     grid-area: content;
     z-index: 2;
 }
-.coopilotTabImporterInterfacePreviewDropInfo{
+.coopilotUNFIPricerInterfacePreviewDropInfo{
     align-content: center;
     text-align: center;
     display: inline-block;
@@ -68,7 +68,7 @@
     left: 50%;
     transform: translate(-50%, -100%);
 }
-.coopilotTabImporterInterfacePreviewDivImportImage{
+.coopilotUNFIPricerInterfacePreviewDivImportImage{
     position: absolute;
     text-align: center;
     display: block;
@@ -80,7 +80,7 @@
 
 
 }
-.coopilotTabImporterInterfaceOutputDiv {
+.coopilotUNFIPricerInterfaceOutputDiv {
     position: relative;
     color: #ffffff;
     background: rgba(97, 91, 178, 0.8);
@@ -99,7 +99,7 @@
     grid-area: footer;
 }
 
-.coopilotTabImporterInterfaceOutputPreviewDiv {
+.coopilotUNFIPricerInterfaceOutputPreviewDiv {
     color: #ffffff;
     background: none;
 
@@ -121,12 +121,12 @@
 }
 
 
-.coopilotTabImporterInterfaceTableRowIdentityCell {
+.coopilotUNFIPricerInterfaceTableRowIdentityCell {
     background: rgba(0, 0, 0, 0.44);
     color: white;
 }
 
-.coopilotTabImporterInterfaceHeader {
+.coopilotUNFIPricerInterfaceHeader {
     background: rgba(0, 0, 0, 0.44);
     color: white;
     grid-area: header;
@@ -134,7 +134,7 @@
     max-height: 30px;
     overflow: hidden;
 }
-.coopilotTabImporterInterfaceAutoTrimDiv {
+.coopilotUNFIPricerInterfaceAutoTrimDiv {
     display: inline-block;
     background: none;
     color: white;
@@ -156,13 +156,13 @@
     border: solid transparent 2px;
 }
 
-.coopilotTabImporterInterfaceAutoTrimDiv:hover{
+.coopilotUNFIPricerInterfaceAutoTrimDiv:hover{
     border: solid rgba(121, 18, 18, 0.68) 2px;
     background: rgba(97, 91, 178, 0.46);
     color: rgb(97, 239, 55);
 }
 
-.coopilotTabImporterInterfaceInfoGroupDiv {
+.coopilotUNFIPricerInterfaceInfoGroupDiv {
     position:absolute;
     display: inline-block;
     margin: 0;
@@ -178,7 +178,7 @@
 }
 
 
-.coopilotTabImporterInterfaceDataInfoDiv {
+.coopilotUNFIPricerInterfaceDataInfoDiv {
     display: inline-block;
     background: none;
     color: orange;
@@ -191,7 +191,7 @@
 
 }
 
-.coopilotTabImporterInterfaceSeparatorChoice {
+.coopilotUNFIPricerInterfaceSeparatorChoice {
     position:absolute;
     display: inline-block;
 
@@ -208,12 +208,12 @@
     border: solid transparent 2px;
     text-align: center;
 }
-.coopilotTabImporterInterfaceSeparatorChoice:hover{
+.coopilotUNFIPricerInterfaceSeparatorChoice:hover{
     border: solid rgba(121, 18, 18, 0.68) 2px;
     background: rgba(97, 91, 178, 0.46);
     color: rgb(97, 239, 55);
 }
-.coopilotTabImporterInterfaceSetHeaderDiv {
+.coopilotUNFIPricerInterfaceSetHeaderDiv {
 
    display: block;
    cursor: pointer;
@@ -223,7 +223,7 @@
     top: 0px;
     left: 0;
 }
-.coopilotTabImporterInterfaceSetFooterDiv {
+.coopilotUNFIPricerInterfaceSetFooterDiv {
     display: block;
     cursor: pointer;
     padding: 0;
@@ -234,43 +234,43 @@
     left: 0;
 }
 
-.coopilotTabImporterInterfaceTable {
+.coopilotUNFIPricerInterfaceTable {
   background: rgba(97, 91, 178, 0.8);
 }
-.coopilotTabImporterInterfaceTable thead {
+.coopilotUNFIPricerInterfaceTable thead {
     position: sticky;
     top: 0;
 }
-.coopilotTabImporterInterfaceTable thead tr th{
+.coopilotUNFIPricerInterfaceTable thead tr th{
    background: black;
     cursor: pointer;
 }
-.coopilotTabImporterInterfaceTable thead tr th{
+.coopilotUNFIPricerInterfaceTable thead tr th{
 position: sticky;
     top: 0;
     }
 
-.coopilotTabImporterInterfaceTableRow {
+.coopilotUNFIPricerInterfaceTableRow {
 
     background: black;
     color: white;
 }
-.coopilotTabImporterInterfaceTable tr:nth-child(odd)  {
+.coopilotUNFIPricerInterfaceTable tr:nth-child(odd)  {
 
     background: rgba(16, 16, 16, 0.82);
 
 }
-.coopilotTabImporterInterfaceTable tr:nth-child(odd):hover  {
+.coopilotUNFIPricerInterfaceTable tr:nth-child(odd):hover  {
 
     background: rgba(132, 133, 134, 0.37);
 
 }
 
-.coopilotTabImporterInterfaceTableRow:hover {
+.coopilotUNFIPricerInterfaceTableRow:hover {
     background: rgba(132, 133, 134, 0.37);
 }
 
-.coopilotTabImporterInterfaceSetSpan {
+.coopilotUNFIPricerInterfaceSetSpan {
     display: inline;
     background: purple;
     color: black;
@@ -281,7 +281,7 @@ position: sticky;
     line-height: 0;
     position: relative;
 }
-.coopilotTabImporterInterfaceSetDivImage {
+.coopilotUNFIPricerInterfaceSetDivImage {
     display: block;
     background: rgba(123, 178, 91, 0.8);
     width: 20px;
@@ -291,15 +291,15 @@ position: sticky;
     cursor: pointer;
 
 }
-.coopilotTabImporterInterfaceSetDivImage:hover{
+.coopilotUNFIPricerInterfaceSetDivImage:hover{
     background: red;
 }
 
-.coopilotTabImporterInterfaceTableRowIdentityCell {
+.coopilotUNFIPricerInterfaceTableRowIdentityCell {
 
 }
 
-.coopilotTabImporterInterfaceFileNumberSpan {
+.coopilotUNFIPricerInterfaceFileNumberSpan {
     margin:0;
     margin-left: 25px;
 }
