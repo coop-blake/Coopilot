@@ -3,7 +3,7 @@ A Web Application to assist with Point Of Sale data and tasks
 
 You will need [**Docker**](https://www.docker.com) to build and run Coopilot using these instructions.
 
-You will also need [**git**](https://git-scm.com/downloads) to effortlesly obtain the Web Application and sub modules.
+You will also need [**Git**](https://git-scm.com/downloads) to effortlesly obtain the Web Application and sub modules.
 
 
 ## Getting Coopilot
