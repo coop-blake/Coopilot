@@ -87,7 +87,7 @@ define(['dojo/_base/declare',
                 declare.safeMixin(this, args);
                 domConstruct.place(domConstruct.toDom("<style>" + this.templateCssString + "</style>"), win.body());
 
-                this.setContainerName("📥 - Importer");
+                this.setContainerName("📟 - UNFI Pricer");
 
             },
 
