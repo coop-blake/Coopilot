@@ -13,7 +13,7 @@ define(['dojo/_base/declare',
             constructor: function (args) {
                 declare.safeMixin(this, args);
                 console.log("moduleCoopilotLoginInstance starting...");
-
+/*
                 topic.publish("loadModuleForClient", {_sessionKey: this._sessionKey}, "coopilot/saleTagScan", lang.hitch(function (moduleInterface) {
                     if (moduleInterface === null) {
                         //error
@@ -22,6 +22,8 @@ define(['dojo/_base/declare',
                        // topic.publish("sendBalekProtocolMessage", wssConnection, moduleInterface);
                     }
                 }));
+                
+ */
             },
             receiveMessage: function (moduleMessage, wssConnection, messageCallback) {
                 if (moduleMessage.instanceKey == this._instanceKey) {
