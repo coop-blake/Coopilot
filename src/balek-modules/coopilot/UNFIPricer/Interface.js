@@ -20,9 +20,9 @@ define(['dojo/_base/declare',
                 declare.safeMixin(this, args);
                 console.log("moduleCoopilotUNFIPricerInterface started", this._instanceKey);
                 this.importerInterfaces = {}
-                this._newImporterSubscribeHandle=  topic.subscribe("newImporter", lang.hitch(this, function(topicCallback){
+                this._newUNFIPricerSubscribeHandle=  topic.subscribe("newUNFIPricer", lang.hitch(this, function(topicCallback){
                     //    console.log("createNewDiaplodeFile topic Command Called");
-                    this._instanceCommands.newImporter().then(lang.hitch(this, function(commandReturnResults){
+                    this._instanceCommands.newUNFIPricer().then(lang.hitch(this, function(commandReturnResults){
 
 
                         topicCallback(commandReturnResults);
@@ -50,14 +50,14 @@ define(['dojo/_base/declare',
                 }
             },
             onImporterInstancesSyncedMapChange: function(name, oldState, newState){
-                let newImporterKeys = newState
-                if(this.importerInterfaces[newImporterKeys.componentKey] === undefined)
+                let newUNFIPricerKeys = newState
+                if(this.importerInterfaces[newUNFIPricerKeys.componentKey] === undefined)
                 {
                     let newUNFIPricer = UNFIPricer({
-                        _instanceKey:newImporterKeys.instanceKey,
-                        _componentKey:newImporterKeys.componentKey,
-                        _sessionKey:newImporterKeys.sessionKey})
-                    this.importerInterfaces[newImporterKeys.componentKey] = newUNFIPricer
+                        _instanceKey:newUNFIPricerKeys.instanceKey,
+                        _componentKey:newUNFIPricerKeys.componentKey,
+                        _sessionKey:newUNFIPricerKeys.sessionKey})
+                    this.importerInterfaces[newUNFIPricerKeys.componentKey] = newUNFIPricer
 
                     newUNFIPricer.getContainerKeys().then(lang.hitch(this, function(containerKeys){
                         if(Array.isArray(containerKeys) && containerKeys.length === 0)
@@ -73,7 +73,7 @@ define(['dojo/_base/declare',
             unload: function() {
                 this.importerInstancesSyncedMapStateWatchHandle.unwatch();
                 this.importerInstancesSyncedMapStateWatchHandle.remove();
-                this._newImporterSubscribeHandle.remove()
+                this._newUNFIPricerSubscribeHandle.remove()
                 this.importerInstancesSyncedMap.unload();
             }
         });

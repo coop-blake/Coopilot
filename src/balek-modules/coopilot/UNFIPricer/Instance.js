@@ -32,7 +32,7 @@ define(['dojo/_base/declare',
 
                 //set setRemoteCommander commands
                 this._commands={
-                    "newImporter": lang.hitch(this, this.newImporter)
+                    "newUNFIPricer": lang.hitch(this, this.newUNFIPricer)
                 };
                 this.setInterfaceCommands();
                 this._interfaceState.set("Component Name","Tab Importer");
@@ -42,13 +42,16 @@ define(['dojo/_base/declare',
                 this._interfaceState.set("Status", "Ready");
 
             },
-            newImporter: function( returnCallback){
-                //console.log("newImporter", input);
-                let newImporter = new ImporterInstance({_instanceKey: this._instanceKey, _sessionKey: this._sessionKey, _userKey: this._userKey});
-                this.importerInstancesSyncedMap.add(newImporter._componentKey,  {instanceKey: newImporter._instanceKey,
-                    sessionKey: newImporter._sessionKey,
-                    userKey: newImporter._userKey,
-                    componentKey: newImporter._componentKey})
+            newUNFIPricer: function( returnCallback){
+                //console.log("newUNFIPricer", input);
+
+                debugger;
+
+                let newUNFIPricer = new ImporterInstance({_instanceKey: this._instanceKey, _sessionKey: this._sessionKey, _userKey: this._userKey});
+                this.importerInstancesSyncedMap.add(newUNFIPricer._componentKey,  {instanceKey: newUNFIPricer._instanceKey,
+                    sessionKey: newUNFIPricer._sessionKey,
+                    userKey: newUNFIPricer._userKey,
+                    componentKey: newUNFIPricer._componentKey})
                 returnCallback({message: "success"});
 
             },
