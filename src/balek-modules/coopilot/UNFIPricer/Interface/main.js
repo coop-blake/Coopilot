@@ -64,6 +64,7 @@ define(['dojo/_base/declare',
            // values: null,
 
             lines: null,
+            linesByItemID: {},
             headerStart: 0,
             footerStart: 0,
             autoTrim: false,
@@ -83,7 +84,7 @@ define(['dojo/_base/declare',
             constructor: function (args) {
                 this.values = Array()
                 this.lines = Array()
-
+                this.linesByItemID = {}
                 declare.safeMixin(this, args);
                 domConstruct.place(domConstruct.toDom("<style>" + this.templateCssString + "</style>"), win.body());
 
@@ -131,6 +132,11 @@ define(['dojo/_base/declare',
                         break;
 
                 }
+            },
+            _onInputChange: function(){
+             console.log(this.linesByItemID)
+                console.log("refreshing on change")
+              this.refreshLookup()
             },
             _onDropped: function(dropEvent){
                 dropEvent.preventDefault()
@@ -222,85 +228,38 @@ define(['dojo/_base/declare',
 
                     }
                     this.lines.push(valuesToSaveArray)
+                    this.linesByItemID[valuesToSaveArray[10]] = valuesToSaveArray
 
                 }
                 if(!this.autoTrim && this.footerStart == 0)
                 {
                     this.footerStart = this.lines.length - 1
                 }
-
+                //this.refreshInfo()
                 this.refreshUI()
             },
-            _onSeparatorChoiceDown: function() {
-                if (this.valueSeparator == "\t")
-                {
-                    this.valueSeparator = ","
-                    this._separatorChoicePane.innerHTML = "Comma"
+            refreshLookup: function(){
+                if(this.linesByItemID[this._dataInput.value] ){
+
+                    let eachPrice = this.linesByItemID[this._dataInput.value][8].toString()
+                    let casePrice = this.linesByItemID[this._dataInput.value][9].toString()
+                    let productName = this.linesByItemID[this._dataInput.value][7].toString()
+                    let productBrand = this.linesByItemID[this._dataInput.value][1].toString()
+
+                    this._previewPane.innerHTML = this.linesByItemID[this._dataInput.value].toString() +
+                        "<br />" + "Brand:" + productBrand +
+                        "<br />" + "Name:" + productName +
+                        "<br />" + "Each Price:" + eachPrice +
+                        "<br />" + "Case Price:" + casePrice;
 
                 }else
                 {
-                    this.valueSeparator = "\t"
-                    this._separatorChoicePane.innerHTML = "Tab"
-
+                    this._previewPane.innerHTML = "No Match"
                 }
-                this.parseTabSeperatedString(this.fileData)
-            },
-            setColumnHeaderActions: function(headerNode, valuePosition){
-                let tableClassString = this.getColumnClass(valuePosition)
-                on(headerNode, "mouseenter", function (mouseEvent){
-                    //query(String("." + tableClassString)).style("backgroundColor", "orange");
-                    let nodeList = query(String("." + tableClassString), this._previewPane);
-
-                    for ( const node of nodeList)
-                    {
-                        domStyle.set(node,"backgroundColor", "rgba(123, 178, 91, 0.8)" )
-                        domStyle.set(node,"cursor", "pointer" )
-
-                    }
-                })
-
-                on(headerNode, "mouseleave", function (mouseEvent){
-                    //query(String("." + tableClassString)).style("backgroundColor", "orange");
-                    let nodeList = query(String("." + tableClassString), this._previewPane);
-
-                    for ( const node of nodeList)
-                    {
-                        domStyle.set(node,"backgroundColor", "unset" )
-                        domStyle.set(node,"cursor", "unset" )
-
-                    }
-                })
-
-
-                let currentColumn = valuePosition.valueOf()
-                on(headerNode, "dblclick", lang.hitch(this, function (mouseEvent){
-
-                    //query(String("." + tableClassString)).style("backgroundColor", "orange");
-                    let nodeList = query(String("." + tableClassString), this._previewPane);
-
-                    let currentColumnValueArray = this.getColumnValueArray(currentColumn)
-
-                    console.log("Get currentColumnValueArray:", currentColumnValueArray);
-
-                    this._outputPreviewPane.innerHTML = currentColumnValueArray.join(",")
-                    for ( const node of nodeList)
-                    {
-                        domStyle.set(node,"backgroundColor", "unset" )
-                        domStyle.set(node,"cursor", "unset" )
-
-                    }
-                }))
-
-
-
-
-            },
-            getColumnClass: function(headerPosition){
-                return this.baseClass+"TableRowIdentityCell" + headerPosition.toString()
             },
             refreshUI: function(){
                 this.refreshInfo()
-                this.refreshTable()
+                this.refreshLookup()
             },
             refreshInfo: function(){
                 this._dataInfoPane.innerHTML="";
@@ -308,131 +267,8 @@ define(['dojo/_base/declare',
                 this._dataInfoPane.innerHTML += " Footer: "+ this.footerStart;
 
                 let infoString = this.fileName + " " + this.fileSize + " [ Lines:" + this.lines.length + " | Columns: " + this.mostValuesInLine + " ]"
-
-                    this.setContainerName("📥 - Importing "+ infoString);
-            },
-            refreshTable: function(){
-
-
-                let linePosition = 0
-
-
-                let table = domConstruct.create("table");
-                let tableClassString = this.baseClass+"Table"
-                domClass.add(table, tableClassString)
-                let headerRow = domConstruct.create("tr")
-                let headerCount = 0;
-                do {
-                    let colHead = domConstruct.create("th")
-                    colHead.innerHTML = headerCount;
-                    domConstruct.place(colHead, headerRow)
-
-                    this.setColumnHeaderActions(colHead, headerCount-1)
-                    headerCount++
-                }while(this.mostValuesInLine >= headerCount)
-
-                let tableHead = domConstruct.create("thead")
-
-                domConstruct.place(headerRow, tableHead)
-
-                domConstruct.place(tableHead, table)
-                let row = domConstruct.create("tr")
-
-                for (const line of this.lines)
-                {
-                    if( linePosition >= this.headerStart && linePosition < this.footerStart+1)
-                    {
-                        let row = domConstruct.create("tr")
-                        let rowClassString = this.baseClass+"TableRow"
-                        let valuePosition = 0
-                        let firstTableData = domConstruct.create("td")
-                        let tableClassString = this.baseClass+"TableRowIdentityCell"
-
-
-                        domClass.add(row, rowClassString)
-                        domClass.add(firstTableData, tableClassString)
-
-                        //Create First Column Row Cell With Import Line Number and Head/Foot Set
-
-                        let setSpan = domConstruct.create("span")
-                        domClass.add(setSpan, this.baseClass+"SetSpan")
-
-                        let setHeaderDiv = domConstruct.create("div")
-                        domConstruct.place(`<img src='balek-modules/coopilot/UNFIPricer/resources/images/triangleUp.svg' class='${this.baseClass}SetDivImage' alt="Set Header" />`, setHeaderDiv)
-                        domClass.add(setHeaderDiv, this.baseClass+"SetHeaderDiv")
-
-                        on(setHeaderDiv, "mousedown", lang.hitch(this, function (linePosition, mouseEvent ){
-                            //query(String("." + tableClassString)).style("backgroundColor", "orange");
-                            this.setHeaderRow(linePosition)
-                        }, linePosition.valueOf() ))
-
-                        let lineNumberDiv = domConstruct.create("span")
-                        lineNumberDiv.innerHTML = linePosition.toString()
-                        domClass.add(lineNumberDiv, this.baseClass+"FileNumberSpan")
-
-                        let setFooterDiv = domConstruct.create("div")
-                        domClass.add(setFooterDiv, this.baseClass+"SetFooterDiv")
-                        domConstruct.place(`<img src='balek-modules/coopilot/UNFIPricer/resources/images/triangleDown.svg' class='${this.baseClass}SetDivImage' alt="Set Footer" />`, setFooterDiv)
-
-
-
-                        on(setFooterDiv, "mousedown", lang.hitch(this, function (linePosition, mouseEvent ){
-                            //query(String("." + tableClassString)).style("backgroundColor", "orange");
-                            this.setFooterRow(linePosition)
-                        }, linePosition.valueOf()  ))
-
-
-                        domConstruct.place(setHeaderDiv, setSpan)
-
-                        domConstruct.place(setFooterDiv, setSpan)
-
-                        domConstruct.place(setSpan, firstTableData)
-
-                        domConstruct.place(lineNumberDiv, firstTableData)
-
-                        domConstruct.place(firstTableData, row)
-
-
-                        for( const value of line)
-                        {
-                            let tableData = domConstruct.create("td")
-
-
-                            domClass.add(tableData, this.getColumnClass(valuePosition))
-
-
-                            tableData.innerHTML = value;
-                            domConstruct.place(tableData, row)
-                            valuePosition++
-                        }
-
-                        domConstruct.place(row, table)
-                    }
-
-                    linePosition++
-                }
-
-                this._previewPane.innerHTML = ""
-                domConstruct.place(table, this._previewPane)
-
-
-            },
-            setHeaderRow: function(headerRow){
-                 if((headerRow <= this.lines.length) && (headerRow >= 0)){
-                    this.headerStart = headerRow
-                    this.refreshUI()
-                }else {
-                    console.log("Out of Bounds: Not Setting Header to", headerRow)
-                }
-            },
-            setFooterRow: function(footerRow){
-                if((footerRow <= this.lines.length) && (footerRow >= 0)){
-                    this.footerStart = footerRow
-                    this.refreshUI()
-                }else {
-                    console.log("Out Of Bounds: Not Setting Footer to", headerRow)
-
-                }
+                this._dataInfoPane.innerHTML = infoString;
+                    this.setContainerName("📟 - UNFI Pricebook "+ infoString);
             },
             getColumnValueArray(columnIndex){
                 let returnIndex = []

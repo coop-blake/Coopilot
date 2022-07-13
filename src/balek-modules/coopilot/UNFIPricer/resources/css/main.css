@@ -1,7 +1,7 @@
 
 .coopilotUNFIPricerInterface {
     color: #ffffff;
-    background: rgba(20, 75, 115, 0.8);
+    background: rgba(20, 75, 0, 0.8);
     position: absolute;
     background: none;
     padding: 0;
@@ -19,7 +19,7 @@
 
 .coopilotUNFIPricerInterfaceDropZone {
     color: #ffffff;
-    background: rgba(20, 75, 115, 0.8);
+    background: rgba(20, 75, 0, 0.8);
     border: none;
     text-align: left;
     text-wrap: none;
@@ -47,7 +47,7 @@
 
 .coopilotUNFIPricerInterfacePreviewDiv {
     color: #ffffff;
-    background: rgba(20, 75, 115, 0.8);
+    background: rgba(20, 75, 0, 0.8);
     text-align: left;
     text-wrap: none;
     padding: 0px;
@@ -83,7 +83,7 @@
 .coopilotUNFIPricerInterfaceOutputDiv {
     position: relative;
     color: #ffffff;
-    background: rgba(97, 91, 178, 0.8);
+    background: rgba(97, 91, 0, 0.8);
 
     text-align: left;
     text-wrap: normal;
@@ -177,14 +177,20 @@
     z-index: 1;
 }
 
-
+.mainInput{
+    color: orange;
+    background: rgba(121, 18, 18, 0.68);
+    position: absolute;
+    top: 2px;
+    left: 4px;
+}
 .coopilotUNFIPricerInterfaceDataInfoDiv {
     display: inline-block;
     background: none;
     color: orange;
     position:absolute;
     top: 0;
-    left: 100px;
+    left: 200px;
     text-align: left;
     text-wrap: none;
     white-space: pre;

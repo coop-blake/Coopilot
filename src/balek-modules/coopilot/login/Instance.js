@@ -22,7 +22,7 @@ define(['dojo/_base/declare',
                        // topic.publish("sendBalekProtocolMessage", wssConnection, moduleInterface);
                     }
                 }));
-                
+
  */
             },
             receiveMessage: function (moduleMessage, wssConnection, messageCallback) {
