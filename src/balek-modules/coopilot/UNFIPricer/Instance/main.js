@@ -19,7 +19,7 @@ define(['dojo/_base/declare',
 
             constructor: function (args) {
                 declare.safeMixin(this, args);
-                console.log("starting moduleCoopilotScansInstance");
+                console.log("starting moduleCoopilotUNFIPricerMainInstance");
 
 
                 this.importers = new SyncedStreamInstance({_instanceKey: this._instanceKey});
