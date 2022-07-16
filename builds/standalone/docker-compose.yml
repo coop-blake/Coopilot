@@ -1,0 +1,11 @@
+version: '3'
+services:
+  balek-coopilot:
+    image: "balek-coopilot-standalone-builder:release"
+    build:
+      context: "../.."
+      dockerfile: "builds/standalone/Dockerfile"
+    ports:
+      - "443:8080"
+    volumes:
+      - ./webroot:/balek/builds/standalone/buildScripts/UNFIPricer/webroot

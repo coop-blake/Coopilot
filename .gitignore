@@ -18,3 +18,5 @@ builds/docker/mysql/mysqlDB/
 src/balek-server/etc/cert/
 
 data/
+
+builds/standalone/webroot/
