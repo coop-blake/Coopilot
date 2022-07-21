@@ -1,0 +1,10 @@
+{
+  "name": "StandaloneBuilds",
+  "version": "0.0.1",
+  "description": "Standalone Builds",
+  "scripts": {
+    "build": "npm run build --prefix UNFIPricer && npm run build --prefix tabImporter "
+  },
+  "author": "Blake Glanville",
+  "license": "BSD-3-Clause"
+}

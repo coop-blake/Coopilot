@@ -4,9 +4,10 @@
         class="${baseClass}DropZone">
        <div class="${baseClass}Header" data-dojo-attach-point='_headerPane'>
            <div class="${baseClass}InfoGroupDiv" data-dojo-attach-point='_InfoGroupPane'>
-               <input class="mainInput" type="text" data-dojo-attach-point='_dataInput' data-dojo-attach-event="onchange:_onInputChange,onkeyup:_onInputChange" value="188244-000465"/>
-                 <div class="${baseClass}DataInfoDiv" data-dojo-attach-point='_dataInfoPane'></div>
-
+               <div class="${baseClass}DataInfoDiv" data-dojo-attach-point='_dataInfoPane'></div>
+               <div  class="mainInputDiv">
+                   <input class="mainInput" type="text" data-dojo-attach-point='_dataInput' data-dojo-attach-event="onchange:_onInputChange,onkeyup:_onInputChange" value="188244000465"/>
+               </div>
            </div>
        </div>
 
@@ -20,7 +21,7 @@
             </div>
         </div>
         <div class="${baseClass}OutputDiv" data-dojo-attach-point='_outputPane'>
-          <div class="${baseClass}OutputPreviewDiv" data-dojo-attach-point='_outputPreviewPane'></div>
+          <div class="${baseClass}OutputPreviewDiv" data-dojo-attach-point='_outputStatusPane'></div>
        </div>
    </div>
 </div>

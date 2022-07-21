@@ -15,11 +15,17 @@ define(['dojo/_base/declare',
         "dijit/_WidgetBase",
         "dijit/_TemplatedMixin",
 
+        'balek-modules/coopilot/UNFIPricer/Interface/itemInfo',
+
+
         'balek-modules/components/syncedCommander/Interface',
         'balek-client/session/workspace/container/containable',
 
+
+
         'dojo/text!balek-modules/coopilot/UNFIPricer/resources/html/main.html',
-        'dojo/text!balek-modules/coopilot/UNFIPricer/resources/css/main.css'
+        'dojo/text!balek-modules/coopilot/UNFIPricer/resources/css/main.css',
+
     ],
     function (declare,
               lang,
@@ -37,15 +43,16 @@ define(['dojo/_base/declare',
               _WidgetBase,
               _TemplatedMixin,
 
+              ItemInfo,
+
               _SyncedCommanderInterface,
               _BalekWorkspaceContainerContainable,
 
               interfaceHTMLFile,
               interfaceCSSFile
-
               ) {
 
-        return declare("moduleDigivigilWWWSaleTagScanInterface", [_WidgetBase,_TemplatedMixin,_SyncedCommanderInterface,_BalekWorkspaceContainerContainable], {
+        return declare("moduleCoopilotUNFIPricerMainInterface", [_WidgetBase,_TemplatedMixin,_SyncedCommanderInterface,_BalekWorkspaceContainerContainable], {
 
 
             baseClass: "coopilotUNFIPricerInterface",
@@ -58,10 +65,12 @@ define(['dojo/_base/declare',
             _autoTrimPane: null,
             _previewPane: null,
             _outputPane: null,
-            _outputPreviewPane: null,
+            _outputStatusPane: null,
             _dropZone: null,
 
            // values: null,
+
+            infoNodes: null,
 
             lines: null,
             linesByItemID: {},
@@ -71,7 +80,6 @@ define(['dojo/_base/declare',
             valueSeparator: "\t",
 
             fileData: "",
-
             fileSize: 0,
             fileDateString: "",
             fileName: "",
@@ -85,6 +93,7 @@ define(['dojo/_base/declare',
                 this.values = Array()
                 this.lines = Array()
                 this.linesByItemID = {}
+                this.infoNodes = {}
                 declare.safeMixin(this, args);
                 domConstruct.place(domConstruct.toDom("<style>" + this.templateCssString + "</style>"), win.body());
 
@@ -158,7 +167,7 @@ define(['dojo/_base/declare',
 
                         this.inputType="file"
 
-                        this.refreshInfo()
+                       // this.refreshInfo()
                         this.parseTabSeperatedString( onLoadEvent.target.result)
                     });
                     // Read in the image file as a data URL.
@@ -173,12 +182,7 @@ define(['dojo/_base/declare',
               //  this._textFile.files = files
                 console.log("Dropped",files)
             },
-            _autoTrimMouseDown: function(mouseEvent){
-                this.autoTrim = !this.autoTrim
-                this.headerStart = 0;
-                this.footerStart = 0;
-                this.parseTabSeperatedString(this.fileData)
-            },
+
             _onDragEnter: function(dragEvent){
                 dragEvent.preventDefault()
                 dragEvent.stopPropagation()
@@ -192,6 +196,7 @@ define(['dojo/_base/declare',
 
             parseTabSeperatedString: function(stringToParse)
             {
+                this.setUILoading()
 
                 this.fileData = stringToParse;
 
@@ -228,7 +233,13 @@ define(['dojo/_base/declare',
 
                     }
                     this.lines.push(valuesToSaveArray)
-                    this.linesByItemID[valuesToSaveArray[10]] = valuesToSaveArray
+                    if(valuesToSaveArray[10] && valuesToSaveArray[10].replace){
+                        let normalizedItemID = valuesToSaveArray[10].replace(/-/g, "")
+                        this.linesByItemID[normalizedItemID] = valuesToSaveArray
+                    }else {
+                        console.log("unknow line...", valuesToSaveArray)
+                    }
+
 
                 }
                 if(!this.autoTrim && this.footerStart == 0)
@@ -236,21 +247,45 @@ define(['dojo/_base/declare',
                     this.footerStart = this.lines.length - 1
                 }
                 //this.refreshInfo()
+
+                this._outputStatusPane.innerHTML = `${this.fileName} Loaded`
                 this.refreshUI()
             },
+            setUILoading: function(){
+                this._dataInfoPane.innerHTML="Loading Dropped File";
+                this._previewPane.innerHTML ="";
+                this._outputStatusPane.innerHTML ="Loading Dropped File";
+
+            },
             refreshLookup: function(){
-                if(this.linesByItemID[this._dataInput.value] ){
+                let inputValue = this._dataInput.value;
+                if(this.linesByItemID[inputValue] ){
 
-                    let eachPrice = this.linesByItemID[this._dataInput.value][8].toString()
-                    let casePrice = this.linesByItemID[this._dataInput.value][9].toString()
-                    let productName = this.linesByItemID[this._dataInput.value][7].toString()
-                    let productBrand = this.linesByItemID[this._dataInput.value][1].toString()
+                    let eachPrice = this.linesByItemID[inputValue][8].toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+                    let casePrice = this.linesByItemID[inputValue][9].toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+                    let productName = this.linesByItemID[inputValue][7].toString()
+                    let productBrand = this.linesByItemID[inputValue][1].toString()
 
-                    this._previewPane.innerHTML = this.linesByItemID[this._dataInput.value].toString() +
-                        "<br />" + "Brand:" + productBrand +
-                        "<br />" + "Name:" + productName +
-                        "<br />" + "Each Price:" + eachPrice +
-                        "<br />" + "Case Price:" + casePrice;
+
+
+                    if (!this.infoNodes[inputValue]){
+                        this.infoNodes[inputValue]= new ItemInfo({
+                            eachPrice : eachPrice,
+                            casePrice : casePrice,
+                            productName : productName,
+                            productBrand : productBrand,
+                        });
+                    }
+                    let itemInfoNode = this.infoNodes[inputValue];
+
+
+
+
+
+
+                    domConstruct.place(itemInfoNode.domNode, this._previewPane, "first")
+
+
 
                 }else
                 {
@@ -266,7 +301,7 @@ define(['dojo/_base/declare',
                 this._dataInfoPane.innerHTML += " Header: "+ this.headerStart;
                 this._dataInfoPane.innerHTML += " Footer: "+ this.footerStart;
 
-                let infoString = this.fileName + " " + this.fileSize + " [ Lines:" + this.lines.length + " | Columns: " + this.mostValuesInLine + " ]"
+                let infoString = this.fileDateString + " : " + this.fileName + " " + this.fileSize + " [ Lines:" + this.lines.length + " | Columns: " + this.mostValuesInLine + " ]"
                 this._dataInfoPane.innerHTML = infoString;
                     this.setContainerName("📟 - UNFI Pricebook "+ infoString);
             },

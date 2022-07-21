@@ -45,7 +45,7 @@ define(['dojo/_base/declare',
 
               ) {
 
-        return declare("moduleDigivigilWWWSaleTagScanInterface", [_WidgetBase,_TemplatedMixin,_SyncedCommanderInterface,_BalekWorkspaceContainerContainable], {
+        return declare("moduleCoopilotTabImporterMainInterface", [_WidgetBase,_TemplatedMixin,_SyncedCommanderInterface,_BalekWorkspaceContainerContainable], {
 
 
             baseClass: "coopilotTabImporterInterface",

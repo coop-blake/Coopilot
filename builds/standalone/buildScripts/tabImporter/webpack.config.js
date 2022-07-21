@@ -11,7 +11,7 @@ module.exports = {
         historyApiFallback: true,
     },
     output: {
-        filename: 'UNFIPricer.js',
+        filename: 'tabImporter.js',
         path: path.resolve(__dirname, 'webroot/'),
         chunkFilename: "chunk-[name].[contenthash].js"
         //,
@@ -38,7 +38,7 @@ module.exports = {
         new HTMLWebpackPlugin({
             showErrors: true,
             cache: true,
-            title: 'UNFIPricer',
+            title: 'tabImporter',
             favicon: null,
             template: path.resolve(__dirname, 'src/index.html')
         }),
@@ -55,8 +55,8 @@ module.exports = {
         ),
         new CopyWebpackPlugin({
             patterns: [
-                {from: '../../../../src/balek-modules/coopilot/UNFIPricer/resources/images/' ,
-                to: 'balek-modules/coopilot/UNFIPricer/resources/images/' }
+                {from: '../../../../src/balek-modules/coopilot/tabImporter/resources/images/' ,
+                to: 'balek-modules/coopilot/tabImporter/resources/images/' }
             ]
         })
     ]

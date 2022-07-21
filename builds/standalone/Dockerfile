@@ -16,6 +16,15 @@ WORKDIR /balek/builds/standalone/buildScripts/UNFIPricer/
 
 RUN npm install
 
+
+WORKDIR /balek/builds/standalone/buildScripts/tabImporter/
+
+RUN npm install
+
+WORKDIR /balek/builds/standalone/buildScripts/
+
+
+
 # Run loadServer.js when the container launches
 CMD ["npm", "run", "build"]
 
