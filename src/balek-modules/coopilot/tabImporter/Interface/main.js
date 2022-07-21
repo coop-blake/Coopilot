@@ -152,7 +152,10 @@ define(['dojo/_base/declare',
 
                         this.inputType="file"
 
+
+
                         this.refreshInfo()
+                        this.resetValues()
                         this.parseTabSeperatedString( onLoadEvent.target.result)
                     });
                     // Read in the image file as a data URL.
@@ -166,6 +169,13 @@ define(['dojo/_base/declare',
 
               //  this._textFile.files = files
                 console.log("Dropped",files)
+            },
+            resetValues: function ()  {
+                    this.lines = null
+                    this.headerStart = 0
+                    this.footerStart = 0
+                    this.autoTrim = false
+                    this.mostValuesInLine = 0
             },
             _autoTrimMouseDown: function(mouseEvent){
                 this.autoTrim = !this.autoTrim
