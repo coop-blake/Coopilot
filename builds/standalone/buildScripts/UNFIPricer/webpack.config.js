@@ -11,7 +11,7 @@ module.exports = {
         historyApiFallback: true,
     },
     output: {
-        filename: 'UNFIPricer.js',
+        filename: '[hash].js',
         path: path.resolve(__dirname, 'webroot/'),
         chunkFilename: "chunk-[name].[contenthash].js"
         //,
@@ -37,7 +37,7 @@ module.exports = {
     plugins: [
         new HTMLWebpackPlugin({
             showErrors: true,
-            cache: true,
+            cache: false,
             title: 'UNFIPricer',
             favicon: null,
             template: path.resolve(__dirname, 'src/index.html')
