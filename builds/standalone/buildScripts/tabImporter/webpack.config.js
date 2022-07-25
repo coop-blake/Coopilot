@@ -11,7 +11,7 @@ module.exports = {
         historyApiFallback: true,
     },
     output: {
-        filename: 'tabImporter.js',
+        filename: '[name]tabImporter.js',
         path: path.resolve(__dirname, 'webroot/'),
         chunkFilename: "chunk-[name].[contenthash].js"
         //,

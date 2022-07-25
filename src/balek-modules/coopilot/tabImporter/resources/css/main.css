@@ -1,4 +1,8 @@
 
+.coopilotTabImporterMainTableInterface{
+    background: pink;
+}
+
 .coopilotTabImporterInterface {
     color: #ffffff;
     background: rgba(20, 75, 115, 0.8);
@@ -44,7 +48,22 @@
     "content"
     "footer";
 }
+.coopilotTabImporterInterfacePreviewStatusDiv {
+    display: inline;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    height: 20px;
+    width: 300px;
+    color: #ffffff;
+    background: rgba(20, 75, 115, 0.8);
+    text-align: left;
+    text-wrap: none;
+    padding: 0px;
+    font-family: monospace, monospace;
 
+    z-index: 2;
+}
 .coopilotTabImporterInterfacePreviewDiv {
     color: #ffffff;
     background: rgba(20, 75, 115, 0.8);
@@ -121,7 +140,7 @@
 }
 
 
-.coopilotTabImporterInterfaceTableRowIdentityCell {
+.coopilotTabImporterMainTableInterfaceRowIdentityCell {
     background: rgba(0, 0, 0, 0.44);
     color: white;
 }
@@ -234,39 +253,39 @@
     left: 0;
 }
 
-.coopilotTabImporterInterfaceTable {
+.coopilotTabImporterMainTableInterface {
   background: rgba(97, 91, 178, 0.8);
 }
-.coopilotTabImporterInterfaceTable thead {
+.coopilotTabImporterMainTableInterface thead {
     position: sticky;
     top: 0;
 }
-.coopilotTabImporterInterfaceTable thead tr th{
+.coopilotTabImporterMainTableInterface thead tr th{
    background: black;
     cursor: pointer;
 }
-.coopilotTabImporterInterfaceTable thead tr th{
+.coopilotTabImporterMainTableInterface thead tr th{
 position: sticky;
     top: 0;
     }
 
-.coopilotTabImporterInterfaceTableRow {
+.coopilotTabImporterMainTableInterfaceRow {
 
     background: black;
     color: white;
 }
-.coopilotTabImporterInterfaceTable tr:nth-child(odd)  {
+.coopilotTabImporterMainTableInterface tr:nth-child(odd)  {
 
     background: rgba(16, 16, 16, 0.82);
 
 }
-.coopilotTabImporterInterfaceTable tr:nth-child(odd):hover  {
+.coopilotTabImporterMainTableInterface tr:nth-child(odd):hover  {
 
     background: rgba(132, 133, 134, 0.37);
 
 }
 
-.coopilotTabImporterInterfaceTableRow:hover {
+.coopilotTabImporterMainTableInterfaceRow:hover {
     background: rgba(132, 133, 134, 0.37);
 }
 
@@ -295,7 +314,7 @@ position: sticky;
     background: red;
 }
 
-.coopilotTabImporterInterfaceTableRowIdentityCell {
+.coopilotTabImporterMainTableInterfaceRowIdentityCell {
 
 }
 
