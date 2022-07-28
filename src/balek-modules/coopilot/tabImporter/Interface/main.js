@@ -78,6 +78,9 @@ define(['dojo/_base/declare',
             _outputPreviewPane: null,
             _dropZone: null,
 
+            _headerRowInput: null,
+            _footerRowInput: null,
+
 
 
 
@@ -130,22 +133,24 @@ define(['dojo/_base/declare',
             //#####################################################
             //###   On Model State Changes
             onFileModelStateChange: function(name, oldState, newState) {
-                console.log("MAOOOOOFILE", name, oldState, newState)
+                console.log("📧 FileModelStateChange in main ⚡️", name, oldState, newState)
                 if(name == "fileDataStringWhen"){
                     let newData= this.fileModel.getFileDataString()
-                    console.log("MAOOOOOFILE",               newData )
-
                     this.tableModel.setDataString(newData)
+
 
                 }
             },
             onTableModelStateChange: function(name, oldState, newState) {
-                console.log("MAOOOOO", name, oldState, newState)
+                console.log("💌 TableModelStateChange in main ⚡️", name, oldState, newState)
                 if(name == "dataProcessedWhen"){
                    this.refreshTable()
+                    this.refreshInfo()
                 }else if( name== "valueSeparator"){
-
                     this.refreshValueSeperatorStatus()
+                }else if ( name == "headerStart" ||  name == "footerStart")
+                {
+                    this.refreshInfo()
                 }
             },
             postCreate: function(){
@@ -190,6 +195,16 @@ define(['dojo/_base/declare',
 
                 }
             },
+            _onHeaderInputChange: function(){
+            console.log("Changed",this._headerRowInput.value)
+                this.tableModel.setHeaderRow(this._headerRowInput.value)
+
+            },
+            _onFooterInputChange: function(){
+                console.log("Changed",this._footerRowInput.value)
+                this.tableModel.setFooterRow(this._footerRowInput.value)
+
+            },
             _onDropped: function(dropEvent){
                 dropEvent.preventDefault()
                 dropEvent.stopPropagation()
@@ -211,18 +226,10 @@ define(['dojo/_base/declare',
               //  this._textFile.files = files
                 console.log("Dropped",files)
             },
-            resetValues: function ()  {
-                    this.lines = null
-                    this.headerStart = 0
-                    this.footerStart = 0
-                    this.autoTrim = false
-                    this.mostValuesInLine = 0
-            },
+
             _autoTrimMouseDown: function(mouseEvent){
-                this.autoTrim = !this.autoTrim
-                this.headerStart = 0;
-                this.footerStart = 0;
-              //  this.promiseParseTabSeperatedString(this.fileData)
+                let autoTrim = this.tableModel.getAutoTrim()
+                this.tableModel.setAutoTrim(!autoTrim)
             },
             _onDragEnter: function(dragEvent){
                 dragEvent.preventDefault()
@@ -261,20 +268,23 @@ define(['dojo/_base/declare',
                 this.refreshTable()
             },
             refreshInfo: function(){
-                this._dataInfoPane.innerHTML="";
-                this._dataInfoPane.innerHTML += " Header: "+ this.headerStart;
-                this._dataInfoPane.innerHTML += " Footer: "+ this.footerStart;
+                this._headerRowInput.value = this.tableModel.getHeaderRow()
+                this._footerRowInput.value = this.tableModel.getFooterRow()
 
-                let infoString = this.fileName + " " + this.fileSize + " [ Lines:" + this.lines.length + " | Columns: " + this.mostValuesInLine + " ]"
+                this._fileInfoDiv.innerHTML = this.fileModel.getFileName() + " " + this.fileModel.getFileSize() + " [ Lines:" + this.tableModel.getLines().length + " | Columns: " + this.tableModel.getMostValuesInAnyLine() + " ]"
+                let infoString = this.fileModel.getFileName() + " " + this.fileModel.getFileSize() + " [ Lines:" + this.tableModel.getLines().length + " | Columns: " + this.mostValuesInLine + " ]"
                 this.setContainerName("📥 - Importing "+ infoString);
             },
             refreshTable: function(){
                 if(this.MainTable == null)
                 {
-                    this.MainTable = MainTable({tableModel: this.tableModel, domStatusDiv: this._previewStatusDiv})
+                    this.MainTable = MainTable({tableModel: this.tableModel,
+                                                domStatusDiv: this._previewStatusDiv,
+                                                outputPreviewPane: this._outputPreviewPane
+                    })
                     console.log("MainTable was created", this.MainTable)
 
-                    domConstruct.place(this.MainTable.domNode, this._previewPane, 'replace')
+                    domConstruct.place(this.MainTable.domNode, this._previewPane, 'only')
                 }else{
                     console.log("MainTable already exists", this.MainTable)
                 }

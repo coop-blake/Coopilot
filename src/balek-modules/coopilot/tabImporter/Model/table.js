@@ -11,6 +11,7 @@ define(['dojo/_base/declare',
         footerStart : 0,
         dataProcessedWhen: 0,
         valueSeparator: "\t",
+        autoTrim: false,
 
         modelState: null,
         parseWorker: null,
@@ -32,7 +33,8 @@ define(['dojo/_base/declare',
                 footerStart: lang.clone(this.footerStart),
                 mostValuesInAnyLine: lang.clone(this.mostValuesInAnyLine),
                 dataProcessedWhen: lang.clone(this.dataProcessedWhen),
-                valueSeparator: lang.clone(this.valueSeparator)
+                valueSeparator: lang.clone(this.valueSeparator),
+                autoTrim: lang.clone(this.autoTrim),
 
             });
 
@@ -53,18 +55,19 @@ define(['dojo/_base/declare',
         },
 
         parseWorkerDone: function(parseDataReadyEvent){
-            console.log('Message received from worker', parseDataReadyEvent.data);
+            console.log('👨‍🔧 Message received from worker', parseDataReadyEvent.data);
 
             if(parseDataReadyEvent.data.parseTabSeperatedString && parseDataReadyEvent.data.parseTabSeperatedString.lines){
 
                 let lines = parseDataReadyEvent.data.parseTabSeperatedString.lines
+                this.lineArray = parseDataReadyEvent.data.parseTabSeperatedString.lines;
+                this.autoHeaderStart = parseDataReadyEvent.data.parseReturnParameters.autoHeaderStart
+                this.autoFooterStart = parseDataReadyEvent.data.parseReturnParameters.autoFooterStart
                 if(parseDataReadyEvent.data.parseReturnParameters ){
                     this.setMostValuesInAnyLine(parseDataReadyEvent.data.parseReturnParameters.mostValuesInALine)
-                    this.setHeaderRow(parseDataReadyEvent.data.parseReturnParameters.headerStart)
-                    this.setFooterRow(parseDataReadyEvent.data.parseReturnParameters.footerStart)
+                    this.setAutoTrim(this.getAutoTrim())
                 }
-                this.lineArray = parseDataReadyEvent.data.parseTabSeperatedString.lines;
-                console.log("DONNNNNNNE", this.lineArray, lines)
+
                 this.setDataProcessedWhen(Date.now())
             }
         },
@@ -72,6 +75,7 @@ define(['dojo/_base/declare',
 
             this.parseWorker.postMessage({ parseTabSeperatedString: this.dataString,
                 parseParameters: {  valueSeparator: this.getValueSeparator(),
+                    autoTrim: this.getAutoTrim()
                 }});
         },
         setDataString: function(dataString){
@@ -82,7 +86,7 @@ define(['dojo/_base/declare',
         getModelState: function(){
             return this.modelState;
         },
-        getColumnValueArray(columnIndex, startRow = 0 , endRow = this.lineArray.length){
+        getColumnValueArray(columnIndex, startRow = this.getHeaderRow() , endRow = this.getFooterRow()){
             let returnIndex = []
             let linePosition = 0
             for( const line of this.lineArray)
@@ -105,24 +109,36 @@ define(['dojo/_base/declare',
             this.modelState.set("mostValuesInAnyLine", mostValues)
         },
         setHeaderRow: function(headerRow){
-            if((headerRow <= this.lineArray.length) && (headerRow >= 0)){
-                this.modelState.set("headerStart", headerRow)
-            }else {
-                console.log("Out of Bounds: Not Setting Header to", headerRow)
+            if(parseInt(headerRow) >= 0 && parseInt(headerRow) <= parseInt(this.getFooterRow())){
+                this.modelState.set("headerStart", parseInt(headerRow))
+            }else
+            {
+                console.log('################Attempting to set to same"')
+                this.modelState.set("headerStart", this.getHeaderRow())
             }
         },
         getHeaderRow: function(){
             return this.modelState.get("headerStart")
         },
         setFooterRow: function(footerRow){
-            if((footerRow <= this.lineArray.length) && (footerRow >= 0)){
-                this.modelState.set("footerStart", footerRow)
-            }else {
-                console.log("Out Of Bounds: Not Setting Footer to", footerRow)
+            if(parseInt(footerRow )< this.lineArray.length && parseInt(footerRow) >= parseInt(this.getHeaderRow())){
+                this.modelState.set("footerStart", parseInt(footerRow))
+            }else
+            {
+                console.log('################Attempting to set to same"')
+                this.modelState.set("footerStart", this.getFooterRow())
             }
         },
         getFooterRow: function(){
           return this.modelState.get("footerStart")
+        },
+        setAutoTrim: function(setTo){
+            this.modelState.set("autoTrim",setTo)
+            this.modelState.set("footerStart",setTo ? this.lineArray.length-1: this.autoFooterStart)
+            this.modelState.set("headerStart",setTo ? 0: this.autoHeaderStart)
+        },
+        getAutoTrim: function(){
+          return this.modelState.get("autoTrim")
         },
 
 
