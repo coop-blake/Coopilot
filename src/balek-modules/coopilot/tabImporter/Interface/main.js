@@ -7,6 +7,7 @@ define(['dojo/_base/declare',
         "dojo/dom-construct",
         'dojo/dom-style',
         "dojo/dom-class",
+        "dojo/dom-attr",
         "dojo/_base/window",
 
         "dojo/keys",
@@ -37,6 +38,7 @@ define(['dojo/_base/declare',
               domConstruct,
               domStyle,
               domClass,
+              domAttr,
               win,
 
               dojoKeys,
@@ -270,6 +272,8 @@ define(['dojo/_base/declare',
             refreshInfo: function(){
                 this._headerRowInput.value = this.tableModel.getHeaderRow()
                 this._footerRowInput.value = this.tableModel.getFooterRow()
+                domAttr.set( this._headerRowInput,"max", this.tableModel.getLines().length)
+                domAttr.set( this._footerRowInput,"max", this.tableModel.getLines().length)
 
                 this._fileInfoDiv.innerHTML = this.fileModel.getFileName() + " " + this.fileModel.getFileSize() + " [ Lines:" + this.tableModel.getLines().length + " | Columns: " + this.tableModel.getMostValuesInAnyLine() + " ]"
                 let infoString = this.fileModel.getFileName() + " " + this.fileModel.getFileSize() + " [ Lines:" + this.tableModel.getLines().length + " | Columns: " + this.mostValuesInLine + " ]"

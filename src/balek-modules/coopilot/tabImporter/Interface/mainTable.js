@@ -79,8 +79,6 @@ define(['dojo/_base/declare',
                 declare.safeMixin(this, args);
                 domConstruct.place(domConstruct.toDom("<style>" + this.templateCssString + "</style>"), win.body());
 
-
-
                 if(this.tableModel != null)
                 {
                     this.tableModelState = this.tableModel.getModelState()
@@ -93,7 +91,6 @@ define(['dojo/_base/declare',
                 this.domDisplayTable = this.createTable()
 
             },
-
             postCreate: function(){
                 domConstruct.place(this.domDisplayTable, this._tableDiv, "only")
                 let dataProcessedWhen = this.tableModel.getDataProcessedWhen()
@@ -107,8 +104,6 @@ define(['dojo/_base/declare',
 
             },
             reloadTable(){
-
-
                 this.stopBuild()
                 console.log("🤖🤖reloadTable")
                 this._tableBuilt = false
@@ -141,7 +136,6 @@ define(['dojo/_base/declare',
               if(name=="footerStart" ){
                   console.log("Footer Start Changed",name, oldState, newState)
                   this.adjustFooter(parseInt(oldState), parseInt(newState))
-
               }
 
             },
@@ -252,8 +246,6 @@ define(['dojo/_base/declare',
                     this.buildPromiseResolve = null
                     this.buildPromiseReject = null
                 }
-
-
             },
             createTable(){
                 let table = domConstruct.create("table");
