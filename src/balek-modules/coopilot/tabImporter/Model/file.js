@@ -1,11 +1,11 @@
 define(['dojo/_base/declare',
         'dojo/_base/lang',
-        'dojo/Stateful'], function (declare, lang, Stateful){
+        'dojo/Stateful',], function (declare, lang, Stateful){
     return declare("tabImporterFileModel", null, {
 
         fileDataString : null,
 
-//state variables
+        //state variables
         fileDate : null,
         fileDataStringWhen: null,
         fileSize : null,

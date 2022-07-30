@@ -15,7 +15,6 @@ parseTabSeperatedString = function( stringToParse, parseParameters ){
     let autoHeaderStart = 0
     let autoFooterStart = 0
 
-
     for (const line of linesArray)
     {
         let valuesArray = line.split(parseParameters.valueSeparator)

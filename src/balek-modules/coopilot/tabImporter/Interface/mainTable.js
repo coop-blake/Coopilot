@@ -1,47 +1,52 @@
-define(['dojo/_base/declare',
+define([//------------------------------|
+        // Base Includes:---------------|
+        'dojo/_base/declare',
         'dojo/_base/lang',
-        'dojo/topic',
         'dojo/on',
         'dojo/query',
-
+        //------------------------------|
+        //Dom Includes:-----------------|
         "dojo/dom-construct",
         'dojo/dom-style',
         "dojo/dom-class",
         "dojo/_base/window",
-
+        //------------------------------|
+        //Input Includes:---------------|
         "dojo/keys",
-
-
+        //------------------------------|
+        //Widget Declare Mixins:--------|
         "dijit/_WidgetBase",
         "dijit/_TemplatedMixin",
-
+        //------------------------------|
+        //Widget HTML and CSS:----------|
         'dojo/text!balek-modules/coopilot/tabImporter/resources/html/mainTable.html',
-        'dojo/text!balek-modules/coopilot/tabImporter/resources/css/table.css'
-
+        'dojo/text!balek-modules/coopilot/tabImporter/resources/css/table.css',
     ],
-    function (declare,
-              lang,
-              topic,
-              on,
-              query,
-
-              domConstruct,
-              domStyle,
-              domClass,
-              win,
-
-              dojoKeys,
-
-              _WidgetBase,
-              _TemplatedMixin,
-
-
-              interfaceHTMLFile,
-              interfaceCSSFile
-
-
+    function (
+        //------------------------------|
+        //Base Modules:-----------------|
+        declare,
+        lang,
+        on,
+        query,
+        //------------------------------|
+        //Dom Modules:------------------|
+        domConstruct,
+        domStyle,
+        domClass,
+        win,
+        //------------------------------|
+        //Input Modules:----------------|
+        dojoKeys,
+        //------------------------------|
+        //Widget Declare Extenstions:---|
+        _WidgetBase,
+        _TemplatedMixin,
+        //------------------------------|
+        //Widget HTML and CSS Strings:--|
+        interfaceHTMLFile,
+        interfaceCSSFile
     ) {
-
         return declare("moduleCoopilotTabImporterMainTableInterface",
             [_WidgetBase,_TemplatedMixin], {
             //Widget Variables:---------
@@ -53,9 +58,9 @@ define(['dojo/_base/declare',
             buildPromise: null,
             buildPromiseResolve: null,
             buildPromiseReject: null,
-            _nextBuildTimeout: null,
-            _tableBuilt: false,
-            _tableBuilding: false,
+            nextBuildTimeout: null,
+            tableBuilt: false,
+            tableBuilding: false,
             buildPosition: 0,
             headerRow : 0,
             footerRow : 0,
@@ -65,8 +70,8 @@ define(['dojo/_base/declare',
             _tableDiv: null,
             _tableStatusDiv: null,
             _rowDoms: null,
-            domHiddenTable : null,
-            domDisplayTable : null,
+            _domHiddenTable : null,
+            _domDisplayTable : null,
             //----------------------------
             //Table Model:----------------
             tableModel: null,
@@ -78,7 +83,6 @@ define(['dojo/_base/declare',
                 this.rowDoms = {}
                 declare.safeMixin(this, args);
                 domConstruct.place(domConstruct.toDom("<style>" + this.templateCssString + "</style>"), win.body());
-
                 if(this.tableModel != null)
                 {
                     this.tableModelState = this.tableModel.getModelState()
@@ -87,26 +91,25 @@ define(['dojo/_base/declare',
                     console.log("🤖🤖No Table Nodel")
                 }
 
-                this.domHiddenTable = this.createTable()
-                this.domDisplayTable = this.createTable()
+                this._domHiddenTable = this.createTable()
+                this._domDisplayTable = this.createTable()
 
             },
             postCreate: function(){
-                domConstruct.place(this.domDisplayTable, this._tableDiv, "only")
+                domConstruct.place(this._domDisplayTable, this._tableDiv, "only")
                 let dataProcessedWhen = this.tableModel.getDataProcessedWhen()
                 if(dataProcessedWhen != 0)
                 {
                     this.reloadTable()
                 }else {
                     console.log("🤖🤖ERRORRRR DONNNNNE", Error)
-
                 }
 
             },
             reloadTable(){
                 this.stopBuild()
                 console.log("🤖🤖reloadTable")
-                this._tableBuilt = false
+                this.tableBuilt = false
                 this.buildPosition = 0
 
                 this.rowDoms = {}
@@ -185,7 +188,7 @@ define(['dojo/_base/declare',
 
                     console.log(`🧭🪫removeFooterRows Position:${i}`, rowToRemove,  this.rowDoms);
                     console.log(`🧭🪫rowToRemove: ${rowToRemove} rowsToRemove:${rowsToRemove} startAt:${startAt}`);
-                    domConstruct.place(rowToRemove, this.domHiddenTable, "last")
+                    domConstruct.place(rowToRemove, this._domHiddenTable, "last")
                 }
                 console.log(`🧭🪫Footer i: ${i} rowsToRemove: ${rowsToRemove}  startAt:${startAt}`);
 
@@ -196,7 +199,7 @@ define(['dojo/_base/declare',
                     let rowToMove = this.getTableRow(i)
                     console.log(`☎️removePosition:${i}`, rowToMove, this.rowDoms);
                     console.log(`☎️rowstomove: ${rowToMove} rowsToRemove:${rowsToRemove} startAt:${startAt}`);
-                    domConstruct.place(rowToMove, this.domHiddenTable.firstChild, "after")
+                    domConstruct.place(rowToMove, this._domHiddenTable.firstChild, "after")
                 }
             },
             addHeaderRows: function(startAt, rowsToAdd)
@@ -223,7 +226,7 @@ define(['dojo/_base/declare',
             },
             onTableBuilt: function(){
                 console.log("DONNNNNE")
-                this._tableBuilt = true
+                this.tableBuilt = true
             },
 
             setBuildParameters: function(){
@@ -233,11 +236,10 @@ define(['dojo/_base/declare',
 
             },
             stopBuild: function(){
-                if (this._nextBuildTimeout != null){
-                    clearTimeout(this._nextBuildTimeout)
+                if (this.nextBuildTimeout != null){
+                    clearTimeout(this.nextBuildTimeout)
                 }
-                this._nextBuildTimeout = null
-
+                this.nextBuildTimeout = null
 
                 if(this.buildPromise != null && this.buildPromiseReject != null)
                 {
@@ -259,7 +261,6 @@ define(['dojo/_base/declare',
                     domClass.add(colHead, headerClassString)
                     colHead.innerHTML = headerCount;
                     domConstruct.place(colHead, headerRow)
-
                     this.setColumnHeaderActions(colHead, headerCount-1)
                     headerCount++
                 }while(this.tableModel.getMostValuesInAnyLine() >= headerCount)
@@ -272,13 +273,13 @@ define(['dojo/_base/declare',
             },
             startBuild: function(){
                 //stop any other timeout Build calls
-                clearTimeout(this._nextBuildTimeout)
-                domConstruct.empty(this.domHiddenTable)
-                domConstruct.empty(this.domDisplayTable)
-                this.domHiddenTable = this.createTable()
-                this.domDisplayTable = this.createTable()
+                clearTimeout(this.nextBuildTimeout)
+                domConstruct.empty(this._domHiddenTable)
+                domConstruct.empty(this._domDisplayTable)
+                this._domHiddenTable = this.createTable()
+                this._domDisplayTable = this.createTable()
                 require(["dojo/domReady!"], lang.hitch(this, function(){
-                    domConstruct.place(this.domDisplayTable, this._tableDiv, "only")
+                    domConstruct.place(this._domDisplayTable, this._tableDiv, "only")
                 }));
 
                 this.rowDoms = {}
@@ -337,9 +338,9 @@ define(['dojo/_base/declare',
                             this.rowDoms[this.buildPosition] = row
 
                             if(this.buildPosition<=displayCount){
-                                domConstruct.place(row, this.domDisplayTable)
+                                domConstruct.place(row, this._domDisplayTable)
                             }else{
-                                domConstruct.place(row, this.domHiddenTable)
+                                domConstruct.place(row, this._domHiddenTable)
                             }
                             console.log(`🔋I: ${i} Count: ${count} End: ${end} headerStar:${headerRow} FooterStart:${footerRow} BuildPosition ${this.buildPosition}`);
 
@@ -353,9 +354,12 @@ define(['dojo/_base/declare',
                     }
                     if(count != end){
 
-                        clearTimeout(this._nextBuildTimeout)
-                        this._nextBuildTimeout =   setTimeout(lang.hitch(this, this.keepBuilding), 0)
-                        this._tableStatusDiv.innerHTML =`Building Table ${this.tableModel.getLines().length - this.buildPosition}/${this.tableModel.getLines().length} lines`
+                        clearTimeout(this.nextBuildTimeout)
+                        require(["dojo/domReady!"], lang.hitch(this, function(){
+                            this.nextBuildTimeout =   setTimeout(lang.hitch(this, this.keepBuilding), 0)
+                            this._tableStatusDiv.innerHTML =`Building Table ${this.tableModel.getLines().length - this.buildPosition}/${this.tableModel.getLines().length} lines`
+                        }));
+
 
                     }else {
 
@@ -473,13 +477,16 @@ define(['dojo/_base/declare',
             setShowTableButtonActions: function(buttonNode)
             {
                 on(buttonNode, "dblclick", lang.hitch(this, function (mouseEvent){
-                        if (this._tableBuilt){
+                        if (this.tableBuilt){
                              this._tableStatusDiv.innerHTML = "Please Wait"
                             setTimeout(lang.hitch(this, function(){
 
                                 require(["dojo/domReady!"], lang.hitch(this, function(){
                                     console.log("ready")
-                                       domConstruct.place(this.domHiddenTable.children, this.domDisplayTable, "last")
+
+                                    for( node in this._domHiddenTable.children){
+                                        domConstruct.place(node, this._domDisplayTable, "last")                                    }
+
                                     this._tableStatusDiv.innerHTML = "Table Displayed"
 
                                 }));

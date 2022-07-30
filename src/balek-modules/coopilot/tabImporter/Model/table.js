@@ -1,6 +1,6 @@
 define(['dojo/_base/declare',
         'dojo/_base/lang',
-        'dojo/Stateful'], function (declare, lang, Stateful){
+        'dojo/Stateful',], function (declare, lang, Stateful){
     return declare("tabImporterTableModel", null, {
         lineArray: null,
 
@@ -41,6 +41,7 @@ define(['dojo/_base/declare',
             //Create the worker for reading string passed to table
             if (window.Worker) {
                 this.parseWorker = new Worker(new URL('balek-modules/coopilot/tabImporter/Workers/mainWorker.js', import.meta.url));
+                //this.parseWorker = new Worker(new URL('balek-modules/coopilot/tabImporter/Workers/mainWorker.js'));
                 this.parseWorker.onmessage = lang.hitch(this, this.parseWorkerDone)
 
             }else {

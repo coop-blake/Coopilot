@@ -15,7 +15,7 @@ define(['dojo/_base/declare',
         "dijit/_WidgetBase",
         "dijit/_TemplatedMixin",
 
-        'dojo/text!balek-modules/coopilot/UNFIPricer/resources/html/itemInfo.html'
+        'dojo/text!balek-modules/coopilot/UNFIPricer/resources/html/itemInfo.html',
     ],
     function (declare,
               lang,
@@ -34,7 +34,7 @@ define(['dojo/_base/declare',
               _TemplatedMixin,
 
 
-              interfaceHTMLFile,
+              interfaceHTMLFile
 
     ) {
 

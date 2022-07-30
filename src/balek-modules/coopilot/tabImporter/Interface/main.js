@@ -1,22 +1,25 @@
-define(['dojo/_base/declare',
+define([//------------------------------|
+        // Base Includes:---------------|
+        'dojo/_base/declare',
         'dojo/_base/lang',
         'dojo/topic',
         'dojo/on',
         'dojo/query',
-
+        //------------------------------|
+        //Dom Includes:-----------------|
         "dojo/dom-construct",
         'dojo/dom-style',
         "dojo/dom-class",
         "dojo/dom-attr",
         "dojo/_base/window",
-
+        //------------------------------|
+        //Input Includes:---------------|
         "dojo/keys",
-
-
+        //------------------------------|
+        //Widget Declare Mixins:--------|
         "dijit/_WidgetBase",
         "dijit/_TemplatedMixin",
 
-        "dojo/Stateful",
 
         'balek-modules/components/syncedCommander/Interface',
         'balek-client/session/workspace/container/containable',
@@ -27,7 +30,7 @@ define(['dojo/_base/declare',
 
 
         'dojo/text!balek-modules/coopilot/tabImporter/resources/html/main.html',
-        'dojo/text!balek-modules/coopilot/tabImporter/resources/css/main.css'
+        'dojo/text!balek-modules/coopilot/tabImporter/resources/css/main.css',
     ],
     function (declare,
               lang,
@@ -46,7 +49,6 @@ define(['dojo/_base/declare',
               _WidgetBase,
               _TemplatedMixin,
 
-              Stateful,
 
               _SyncedCommanderInterface,
               _BalekWorkspaceContainerContainable,
@@ -109,7 +111,6 @@ define(['dojo/_base/declare',
 
                 declare.safeMixin(this, args);
                 domConstruct.place(domConstruct.toDom("<style>" + this.templateCssString + "</style>"), win.body());
-
 
                 //Main Table model and state
                 this.tableModel = new TableModel({
