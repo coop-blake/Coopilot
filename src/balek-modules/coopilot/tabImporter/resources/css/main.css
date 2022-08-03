@@ -103,6 +103,8 @@
     max-width: 100%;
     word-wrap: break-word;
     grid-area: footer;
+    border-top: solid white 2px;
+
 }
 
 .coopilotTabImporterInterfaceOutputPreviewDiv {
@@ -122,7 +124,6 @@
     max-width: 100%;
     word-wrap: break-word;
     grid-area: footer;
-
 
 }
 

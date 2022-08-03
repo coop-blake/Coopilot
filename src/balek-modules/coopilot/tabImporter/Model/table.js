@@ -79,6 +79,13 @@ define(['dojo/_base/declare',
                     autoTrim: this.getAutoTrim()
                 }});
         },
+        getNumberOfFilteredLines: function()
+        {
+            let footerRow = parseInt(this.modelState.get("footerStart"))
+            let headerRow = parseInt(this.modelState.get("headerStart"))
+
+            return (footerRow-headerRow+1)
+        },
         setDataString: function(dataString){
             this.dataString = dataString
             this.parseDataString()
