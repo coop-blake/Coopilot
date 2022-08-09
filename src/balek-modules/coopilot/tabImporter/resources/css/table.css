@@ -55,13 +55,13 @@
     position: relative;
     width: 100%;
     height: 0;
-    background: greenyellow;
+    background: #0ff806;
 }
 .coopilotTabImporterMainTableInterfaceTableDivFooterSpacer{
     position: relative;
    width: 100%;
     height: 0;
-    background: pink
+    background: #f116d5
 }
 .coopilotTabImporterMainTableInterface {
     background: rgba(97, 91, 178, 0.8);
@@ -87,6 +87,11 @@
 .coopilotTabImporterMainTableInterface tr:nth-child(odd)  {
 
     background: rgba(16, 16, 16, 0.82);
+
+}
+.coopilotTabImporterMainTableInterface td:nth-child(odd)  {
+
+    border-right: solid #00ba00 5px;
 
 }
 .coopilotTabImporterMainTableInterface tr:nth-child(odd):hover  {

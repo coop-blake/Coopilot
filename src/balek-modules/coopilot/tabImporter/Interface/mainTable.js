@@ -227,6 +227,27 @@ define([//------------------------------|
                 //Add bottom rows
                 this.checkAndAddOrRemoveRowsToBottomOfDisplay()
             },
+                resetViewRows: function(firstRow){
+                    console.log(`🚜🚜🚜add firstRow : ${firstRow} `);
+
+                   domConstruct.place(this._tableDisplayHead, this._domDisplayTable, "only")
+                    console.log(`🚜🚜🚜continue `);
+                    let displayCount = parseInt(lang.clone(this.displayCount))
+                    this.firstRowInRange = firstRow
+                    let startAt = this.firstRowInRange
+                    let finishAt = Math.min(firstRow + displayCount , this.footerRow)
+                    console.log(`🚜🚜🚜add finishAt : ${finishAt}| startAt : ${startAt} `);
+
+                    for ( i = parseInt(startAt)  ; i <= parseInt(finishAt)  ; ++i) {
+                       // console.log(`🚜🚜🚜add i : ${i} `);
+
+                        let rowToADD = this.buildRow(i)
+                        domConstruct.place(rowToADD, this._domDisplayTable, "last")
+                        this.lastRowInRange = i
+                    }
+                    console.log(`🚜🚜🚜add done : ${i} `);
+
+                },
                 checkAndAddOrRemoveRowsToTopOfDisplay: function(){
                     let headerRow = parseInt(this.tableModel.getHeaderRow())
                     let rowsInDisplayTable = this.getRowsInDisplayTable()
@@ -302,7 +323,7 @@ define([//------------------------------|
                 //---------------------------------------|
                 //Dom Calculated Values:----------------|
             getRowHeight(){
-                let rowHeight = this.getTableRow(this.firstRowInRange).offsetHeight +4
+                let rowHeight = this._tableDisplayHead.offsetHeight +4
                 return rowHeight
             },
             updateSpacers: function() {
@@ -402,30 +423,44 @@ define([//------------------------------|
                     console.log("🛹Looking to 🛹 to scroll for")
                     if(scrollPercent <=.5)
                     {
+                        let amountChanged = Math.max( targetFirstRowInRange-firstRowInRange, firstRowInRange - targetFirstRowInRange)
 
-                        if(targetFirstRowInRange>firstRowInRange)
-                        {
-                            addedRows = targetFirstRowInRange-firstRowInRange
-                            this.removeHeaderRows(parseInt(addedRows))
-                        }else if(targetFirstRowInRange<firstRowInRange){
-                            addedRows = firstRowInRange - targetFirstRowInRange
-                            this.addHeaderRows(parseInt(addedRows))
+                        if(amountChanged < (this.displayCount/2)){
+                            if(targetFirstRowInRange>firstRowInRange)
+                            {
+                                addedRows = targetFirstRowInRange-firstRowInRange
+                                this.removeHeaderRows(parseInt(addedRows))
+                            }else if(targetFirstRowInRange<firstRowInRange){
+                                addedRows = firstRowInRange - targetFirstRowInRange
+                                this.addHeaderRows(parseInt(addedRows))
+                            }
+                        }else{
+                            console.log(`🚜🚜🚜add amountChanged header : ${amountChanged} `);
+
+                            this.resetViewRows(targetFirstRowInRange)
                         }
+
 
 
                     }else {
-                        if( targetLastRowInRange>lastRowInRange ){
+                        let amountChanged = Math.max(targetLastRowInRange - lastRowInRange,lastRowInRange-targetLastRowInRange)
+                        if(amountChanged < (this.displayCount/2)) {
+                            if (targetLastRowInRange > lastRowInRange) {
 
-                            addedRows = targetLastRowInRange - lastRowInRange
+                                addedRows = targetLastRowInRange - lastRowInRange
                                 this.addFooterRows(parseInt(addedRows))
-                        }else if(targetLastRowInRange<lastRowInRange)
-                        {
-                            addedRows = lastRowInRange-targetLastRowInRange
-                            this.addHeaderRows(parseInt(addedRows))
+                            } else if (targetLastRowInRange < lastRowInRange) {
+                                addedRows = lastRowInRange - targetLastRowInRange
+                                this.addHeaderRows(parseInt(addedRows))
+                            }
+                        }else{
+                            console.log(`🚜🚜🚜add amountChanged footer : ${amountChanged} `);
+
+                            this.resetViewRows(targetFirstRowInRange)
                         }
                     }
 
-                    
+
 
 this._tableStatusDiv.innerHTML=`firstRowInRange ${firstRowInRange} | lastRowInRange ${lastRowInRange} | rowsInDisplayTable ${rowsInDisplayTable}
 | totalRows ${totalRows} | scrollHeight ${scrollHeight}    | scrollAreaHeight ${scrollAreaHeight} | rowHeight ${rowHeight}
