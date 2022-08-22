@@ -104,7 +104,7 @@ define([//------------------------------|
 
                 for ( i = 0 ; i < totalEntries ; ++i)
                 {
-                    let entryWidget = new EntryWidget({entry: entries[i]})
+                    let entryWidget = new EntryWidget({entry: entries[i], entryModel: this.entryModel})
                 domConstruct.place(entryWidget.domNode, this._activeEntryDiv)
                 }
                 this.updateStatus()

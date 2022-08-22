@@ -5,6 +5,7 @@ define(['dojo/_base/declare',
     function (declare, lang, Stateful, packChangeEntriesFromFileWorkerCode){
     return declare("UNFIPackChangesModel", null, {
         entriesArray: null,
+        entriesByID: null,
 
         _WorkerCode: packChangeEntriesFromFileWorkerCode,
 
@@ -17,6 +18,7 @@ define(['dojo/_base/declare',
 
         constructor: function(args){
             this.entriesArray = []
+            this.entriesByID = {}
             declare.safeMixin(this, args);
             console.log("UNFIPackChangesModel")
 
@@ -57,6 +59,10 @@ define(['dojo/_base/declare',
 
             if(parseDataReadyEvent.data.parseTabSeperatedString && parseDataReadyEvent.data.parseTabSeperatedString.entries){
                 this.entriesArray = parseDataReadyEvent.data.parseTabSeperatedString.entries;
+
+                for (entry of this.entriesArray){
+                    this.entriesByID[String(entry.original.supplierID)] = entry
+                }
                 this.setDataProcessedWhen(Date.now())
             }
         },
@@ -67,6 +73,22 @@ define(['dojo/_base/declare',
         setDataString: function(dataString){
             this.dataString = dataString
             this.parseDataString()
+
+        },
+        getUpdatedSupplierID(originalSupplierID){
+            let entry = this.entriesByID[String(originalSupplierID)]
+            if(entry && lang.exists("instructions.entry",entry)) {
+                let instructions = String(entry.instructions.entry)
+                if (instructions.includes("Replaced by item")) {
+                    let sliceEnd = instructions.indexOf("Replaces item")
+                    if( sliceEnd == -1)
+                    {
+                        sliceEnd = instructions.length
+                    }
+                   return instructions.slice( instructions.indexOf("Replaced by item")+17, sliceEnd)
+                }
+            }
+            return false
 
         },
         getModelState: function(){

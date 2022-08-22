@@ -55,7 +55,7 @@ define(['dojo/_base/declare',
                 update: {supplierID: "", unitOfSale: "", UCU: ""}
 
             },
-
+            entryModel: null,
             constructor: function (args) {
 
                 declare.safeMixin(this, args);
@@ -93,8 +93,15 @@ define(['dojo/_base/declare',
 
                 let entryUpdateCopy = lang.clone(this.entry.update)
                 delete entryUpdateCopy.valuesArray
-                this._UpdateObjectDiv.innerHTML += JSON.stringify(entryUpdateCopy,null, 4)
+                this._UpdateObjectDiv.innerHTML = JSON.stringify(entryUpdateCopy,null, 4)
 
+
+                let originalValues = `\nsupplierID ${this.entry.original.supplierID}`
+                this._OriginalObjectDiv.innerHTML +=originalValues
+
+
+                let updateValues = `\nsupplierID ${this.entryModel.getUpdatedSupplierID(this.entry.original.supplierID)}`
+                this._UpdateObjectDiv.innerHTML += updateValues
             },
 
             unload: function () {

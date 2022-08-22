@@ -77,6 +77,8 @@ entryFromValueArray = function (valueArray){
 
     entry.valuesArray = valueArray
 
+
+
     return entry
 }
 
