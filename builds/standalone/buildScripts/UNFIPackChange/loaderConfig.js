@@ -1,5 +1,5 @@
 
-var loadModule = "../../../../balek-modules/coopilot/UNFIPricer/Interface/main.js";
+var loadModule = "../../../../balek-modules/coopilot/UNFIPackChange/Interface/main.js";
 
 function getConfig(env) {
     // env is set by the 'buildEnvronment' and/or 'environment' plugin options (see webpack.config.js),

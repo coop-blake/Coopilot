@@ -38,7 +38,7 @@ module.exports = {
         new HTMLWebpackPlugin({
             showErrors: true,
             cache: false,
-            title: 'UNFIPricer',
+            title: 'UNFIPackChange',
             favicon: null,
             template: path.resolve(__dirname, 'src/index.html')
         }),
@@ -55,8 +55,8 @@ module.exports = {
         ),
         new CopyWebpackPlugin({
             patterns: [
-                {from: '../../../../src/balek-modules/coopilot/UNFIPricer/resources/images/' ,
-                to: 'balek-modules/coopilot/UNFIPricer/resources/images/' }
+                {from: '../../../../src/balek-modules/coopilot/UNFIPackChange/resources/images/' ,
+                to: 'balek-modules/coopilot/UNFIPackChange/resources/images/' }
             ]
         })
     ]
