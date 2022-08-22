@@ -176,6 +176,13 @@ define(['dojo/_base/declare',
                     console.log("newUNFIPricer", returnResult)
                 })
             },
+            _onUNFIPackChangeClicked: function(clickEvent){
+                topic.publish("newUNFIPackChange", function(returnResult)
+                {
+                    debugger;
+                    console.log("newUNFIPackChange", returnResult)
+                })
+            },
             _onLoadModuleButtonClicked: function(clickEvent){
                 console.log("New Command clicked");
 
