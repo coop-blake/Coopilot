@@ -89,19 +89,55 @@ define(['dojo/_base/declare',
 
                 let entryOriginalCopy = lang.clone(this.entry.original)
                 delete entryOriginalCopy.valuesArray
-                this._OriginalObjectDiv.innerHTML = JSON.stringify(entryOriginalCopy,null, 4)
+              //  this._OriginalObjectDiv.innerHTML = JSON.stringify(entryOriginalCopy,null, 4)
 
                 let entryUpdateCopy = lang.clone(this.entry.update)
                 delete entryUpdateCopy.valuesArray
-                this._UpdateObjectDiv.innerHTML = JSON.stringify(entryUpdateCopy,null, 4)
+               // this._UpdateObjectDiv.innerHTML = JSON.stringify(entryUpdateCopy,null, 4)
 
 
-                let originalValues = `\nsupplierID ${this.entry.original.supplierID}`
+                let originalValues = `supplierID ${this.entry.original.supplierID}`
+                let updateValues = ` ${this.entryModel.getUpdatedSupplierID(this.entry.original.supplierID)}`
+
+                if (this.entry.update.UPC != "")
+                {
+                    originalValues += `\nUPC ${this.entry.original.UPC}`
+                    updateValues  += `\n ${this.entry.update.UPC}`
+                }
+
+                if (this.entry.update.unitSize != "")
+                {
+                    originalValues  += `\nunitSize ${this.entry.original.unitSize}`
+                    updateValues  += `\n ${this.entry.update.unitSize}`
+                }
+
+                if (this.entry.update.unitOfSale != "")
+                {
+                    originalValues  += `\nunitOfSale ${this.entry.original.unitOfSale}`
+                    updateValues  += `\n ${this.entry.update.unitOfSale}`
+                }
+
+                if (this.entry.update.caseSize != "")
+                {
+                    originalValues  += `\ncaseSize ${this.entry.original.caseSize}`
+                    updateValues  += `\n ${this.entry.update.caseSize}`
+                }
+
+                if (this.entry.update.casePrice != "")
+                {
+                    originalValues  += `\ncasePrice ${this.entry.original.casePrice}`
+                    updateValues  += `\n ${this.entry.update.casePrice}`
+                }
+
+                if (this.entry.update.unitPrice != "")
+                {
+                    originalValues  += `\nunitPrice ${this.entry.original.unitPrice}`
+                    updateValues  += `\n ${this.entry.update.unitPrice}`
+                }
                 this._OriginalObjectDiv.innerHTML +=originalValues
-
-
-                let updateValues = `\nsupplierID ${this.entryModel.getUpdatedSupplierID(this.entry.original.supplierID)}`
                 this._UpdateObjectDiv.innerHTML += updateValues
+
+
             },
 
             unload: function () {
