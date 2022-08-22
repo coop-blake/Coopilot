@@ -1,0 +1,86 @@
+
+.coopilotUNFIPackChangeEntriesGridInterface{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    nargin: 0;
+    overflow: auto;
+    background: rgba(189, 68, 47, 0.99);
+
+    white-space: nowrap;
+}
+.coopilotUNFIPackChangeEntriesGridInterfaceGridDiv{
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.coopilotUNFIPackChangeEntriesGridInterfaceStatusDiv{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: white;
+    color: black;
+    z-index: 10;
+}
+
+
+.coopilotUNFIPackChangeEntryInterface{
+    position: relative;
+    border: solid black 2px;
+    background: #23a4b6;
+}
+
+
+.coopilotUNFIPackChangeEntryInterfaceOriginalSpan{
+
+    padding:0 ;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: solid black 2px;
+    background: #c07e32;
+}
+.coopilotUNFIPackChangeEntryInterfaceActionsSpan{
+    padding:0 ;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: solid black 2px;
+    background: #d0c93f;
+}
+
+.coopilotUNFIPackChangeEntryInterfaceUpdateSpan{
+    padding:0 ;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: solid black 2px;
+    background: rgba(70, 168, 70, 0.68);
+}
+.coopilotUNFIPackChangeEntryInterfaceUpdateJSONSpan{
+    padding: 10px;
+    display: inline-block;
+    border: none;
+    background: none;
+    white-space: nowrap;
+}
+
+.coopilotUNFIPackChangeEntryInterfaceOriginalJSONDiv{
+    display: inline-block;
+    border: solid black 2px;
+    background: #c07e32;
+    white-space: pre;
+
+}
+
+
+.coopilotUNFIPackChangeEntryInterfaceUpdateJSONDiv{
+    display: inline-block;
+    border: solid black 2px;
+    background: rgba(70, 168, 70, 0.68);
+    white-space: pre;
+
+}
+
+
+
+
