@@ -49,11 +49,9 @@ define(['dojo/_base/declare',
 
               //  }else{
                 console.log(this._WorkerCode)
+                let WorkerCodeBlob = new Blob([String(this._WorkerCode)], {type: 'application/javascript'})
+                this.parseWorker = new Worker(URL.createObjectURL(WorkerCodeBlob));
 
-                    this.parseWorker = new Worker(URL.createObjectURL(this._WorkerCode));
-
-              //  }
-                //this.parseWorker = new Worker(new URL('balek-modules/coopilot/tabImporter/Workers/mainWorker.js'));
                 this.parseWorker.onmessage = lang.hitch(this, this.parseWorkerDone)
 
             }else {
