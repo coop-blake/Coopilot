@@ -26,6 +26,8 @@ define([//------------------------------|
 
         'balek-modules/coopilot/UNFIPackChange/Interface/entriesGrid.js',
         'balek-modules/coopilot/UNFIPackChange/Model/packChanges.js',
+        'balek-modules/coopilot/UNFIPackChange/Model/inventory.js',
+
         'balek-modules/coopilot/UNFIPackChange/Model/file.js',
 
 
@@ -55,6 +57,7 @@ define([//------------------------------|
 
               EntriesGrid,
               PackChangeModel,
+              InventoryModel,
               FileModel,
 
               interfaceHTMLFile,
@@ -91,9 +94,18 @@ define([//------------------------------|
             packChangeModelState: null,
             packChangeModelStateWatchHandle: null,
 
+            inventoryModel: null,
+            inventoryModelState: null,
+            inventoryModelStateWatchHandle: null,
+
             fileModel: null,
             fileModelState: null,
             fileModelStateWatchHandle: null,
+
+            inventoryFileModel: null,
+            inventoryFileModelState: null,
+            inventoryFileModelStateWatchHandle: null,
+
 
             constructor: function (args) {
 
@@ -101,20 +113,26 @@ define([//------------------------------|
                 declare.safeMixin(this, args);
                 domConstruct.place(domConstruct.toDom("<style>" + this.templateCssString + "</style>"), win.body());
 
-                //Main Table model and state
+                //Pack Change model and state
                 this.packChangeModel = new PackChangeModel({
-                    mostValuesInAnyLine: this.mostValuesInALine,
-                    headerStart : this.headerStart,
-                    footerStart : this.footerStart,
-                    valueSeparator: this.valueSeparator
                 });
                 this.packChangeModelState = this.packChangeModel.getModelState()
                 this.packChangeModelStateWatchHandle = this.packChangeModelState.watch(lang.hitch(this, this.onEntryModelStateChange))
 
+
+                this.inventoryModel = new InventoryModel({})
+                this.inventoryModelState = this.inventoryModel.getModelState()
+                this.inventoryModelStateWatchHandle = this.inventoryModelState.watch(lang.hitch(this, this.onInventoryModelStateChange))
+
                 //File Model and State Handels
                 this.fileModel = new FileModel({});
-                this.FileModelState = this.fileModel.getModelState()
-                this.FileModelStateWatchHandle = this.FileModelState.watch(lang.hitch(this, this.onFileModelStateChange))
+                this.fileModelState = this.fileModel.getModelState()
+                this.fileModelStateWatchHandle = this.fileModelState.watch(lang.hitch(this, this.onFileModelStateChange))
+
+
+                this.inventoryFileModel = new FileModel({});
+                this.inventoryFileModelState = this.inventoryFileModel.getModelState()
+                this.inventoryFileModelStateWatchHandle = this.inventoryFileModelState.watch(lang.hitch(this, this.onInventoryFileModelStateChange))
 
                 //Set Balek Container Name
                 this.setContainerName("📥 - Importer");
@@ -130,17 +148,28 @@ define([//------------------------------|
                     this.packChangeModel.setDataString(newData)
                 }
             },
+            onInventoryFileModelStateChange: function(name, oldState, newState) {
+                if(name == "fileDataStringWhen"){
+                    let newData= this.inventoryFileModel.getFileDataString()
+                    this.inventoryModel.setDataString(newData)
+                }
+            },
             onEntryModelStateChange: function(name, oldState, newState) {
-                console.log("💌 TableModelStateChange in main ⚡️", name, oldState, newState)
-                if(name == "dataProcessedWhen"){
-                   this.refreshGrid()
-                    this.refreshInfo()
-                }else if( name== "valueSeparator"){
-                    this.refreshValueSeperatorStatus()
-                }else if ( name == "headerStart" ||  name == "footerStart")
-                {
+                console.log("💌 Pack change entry in main ⚡️", name, oldState, newState)
+                if(name == "dataProcessedWhen") {
+                    this.refreshGrid()
                     this.refreshInfo()
                 }
+            },
+            onInventoryModelStateChange: function(name, oldState, newState) {
+                console.log("💌 onInventoryModelStateChange in main ⚡️", name, oldState, newState)
+                if(name == "dataProcessedWhen"){
+                    this.refreshGrid()
+                    this.refreshInfo()
+                }
+                console.log(this.inventoryModel.getEntryByScanCode("013562491629"))
+                console.log(this.inventoryModel.getEntries())
+
             },
             postCreate: function(){
                 this.initializeContainable();
@@ -198,6 +227,7 @@ define([//------------------------------|
                     } else if (file.name.startsWith("Mas"))
                     {
                        // process the inventory here
+                        this.inventoryFileModel.readFile(file)
                     }else {
                         alert("Not named as a pack change or inventory file")
                     }
@@ -228,6 +258,7 @@ define([//------------------------------|
                 if(this.EntriesGrid == null)
                 {
                     this.EntriesGrid = EntriesGrid({entryModel: this.packChangeModel,
+                                                inventoryModel: this.inventoryModel,
                                                 domStatusDiv: this._previewStatusDiv,
                                                 outputPreviewPane: this._outputPreviewPane
                     })
@@ -245,8 +276,12 @@ define([//------------------------------|
                 //unwatch states
                 this.packChangeModelStateWatchHandle.unwatch()
                 this.packChangeModelStateWatchHandle.remove()
-                this.FileModelStateWatchHandle.unwatch()
-                this.FileModelStateWatchHandle.remove()
+                this.fileModelStateWatchHandle.unwatch()
+                this.fileModelStateWatchHandle.remove()
+                this.inventoryFileModelStateWatchHandle.unwatch()
+                this.inventoryFileModelStateWatchHandle.remove()
+                this.inventoryModelStateWatchHandle.unwatch()
+                this.inventoryModelStateWatchHandle.remove()
                 //call destroy function
                 this.destroy();
             }

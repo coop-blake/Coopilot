@@ -44,9 +44,12 @@ define(['dojo/_base/declare',
             baseClass: "coopilotUNFIPackChangeEntryInterface",
 
             templateString: interfaceHTMLFile,
+            _InventoryItemInfoSpan: null,
             _ItemActionsSpan: null,
             _UpdateObjectDiv: null,
             _OriginalObjectDiv: null,
+            _InventoryObjectDiv: null,
+            _ValuesObjectDiv: null,
             _ChangeSpan: null,
             _ReplaceSpan: null,
             entry: {
@@ -95,47 +98,91 @@ define(['dojo/_base/declare',
                 delete entryUpdateCopy.valuesArray
                // this._UpdateObjectDiv.innerHTML = JSON.stringify(entryUpdateCopy,null, 4)
 
+                let headerValues = `Values \nSupplier ID`
+                let originalValues = `Original \n ${this.entry.original.supplierID}`
+                let updateValues = `Update \n ${this.entryModel.getUpdatedSupplierID(this.entry.original.supplierID)}`
 
-                let originalValues = `supplierID ${this.entry.original.supplierID}`
-                let updateValues = ` ${this.entryModel.getUpdatedSupplierID(this.entry.original.supplierID)}`
 
-                if (this.entry.update.UPC != "")
-                {
-                    originalValues += `\nUPC ${this.entry.original.UPC}`
-                    updateValues  += `\n ${this.entry.update.UPC}`
+
+                let inventoryEntry =  this.inventoryModel.getEntryByScanCode(this.entry.original.UPC)
+                //should look up by supplier id and other upc
+
+
+                let inventoryValues = "Inventory \n "
+
+                if (inventoryEntry){
+                    inventoryValues += `${inventoryEntry.supplierUnitID}`
+                    if (this.entry.update.UPC != "")
+                    {
+                        headerValues += `\nUPC `
+                        originalValues += `\n ${this.entry.original.UPC}`
+                        updateValues  += `\n ${this.entry.update.UPC}`
+                        inventoryValues += `\n ${inventoryEntry.scanCode}`
+                    }
+
+                    if (this.entry.update.unitSize != "")
+                    {
+                        headerValues += `\nUnit Size `
+
+                        originalValues  += `\n ${this.entry.original.unitSize}`
+                        updateValues  += `\n ${this.entry.update.unitSize}`
+                        inventoryValues += `\n ${inventoryEntry.size}`
+                    }
+
+                    if (this.entry.update.unitOfSale != "")
+                    {
+                        headerValues += `\nUnit Of Sale `
+
+
+                        originalValues  += `\n ${this.entry.original.unitOfSale}`
+                        updateValues  += `\n ${this.entry.update.unitOfSale}`
+                        inventoryValues += `\n ${inventoryEntry.quantity}/${inventoryEntry.size}`
+                    }
+
+                    if (this.entry.update.caseSize != "")
+                    {
+                        headerValues += `\nCase Size `
+
+                        originalValues  += `\n ${this.entry.original.caseSize}`
+                        updateValues  += `\n ${this.entry.update.caseSize}`
+                        inventoryValues += `\n ${inventoryEntry.quantity}`
+
+                    }
+
+                    if (this.entry.update.casePrice != "")
+                    {
+                        headerValues += `\nCase Price `
+
+                        originalValues  += `\n ${this.entry.original.casePrice}`
+                        updateValues  += `\n ${this.entry.update.casePrice}`
+                        inventoryValues += `\n ${inventoryEntry.lastCost*inventoryEntry.quantity}`
+
+                    }
+
+                    if (this.entry.update.unitPrice != "")
+                    {
+                        headerValues += `\nUnit Price `
+
+
+                        originalValues  += `\n ${this.entry.original.unitPrice}`
+                        updateValues  += `\n ${this.entry.update.unitPrice}`
+                        inventoryValues += `\n ${inventoryEntry.lastCost}`
+
+                    }
+                    this._ValuesObjectDiv.innerHTML +=headerValues
+                    this._OriginalObjectDiv.innerHTML +=originalValues
+                    this._UpdateObjectDiv.innerHTML += updateValues
+                    this._InventoryObjectDiv.innerHTML += inventoryValues
+                    let allValues = JSON.stringify(inventoryEntry, null, 4)
+
+                    this._InventoryItemInfoSpan.innerHTML += `${inventoryEntry.scanCode}  - ${inventoryEntry.brand} ${inventoryEntry.name}  ${inventoryEntry.size}`
+
+                    domConstruct.place(this.domNode, this.placeIn)
+
+                }else {
+                    this._InventoryObjectDiv.innerHTML = "Item UPC does not match inventory scan code"
                 }
 
-                if (this.entry.update.unitSize != "")
-                {
-                    originalValues  += `\nunitSize ${this.entry.original.unitSize}`
-                    updateValues  += `\n ${this.entry.update.unitSize}`
-                }
-
-                if (this.entry.update.unitOfSale != "")
-                {
-                    originalValues  += `\nunitOfSale ${this.entry.original.unitOfSale}`
-                    updateValues  += `\n ${this.entry.update.unitOfSale}`
-                }
-
-                if (this.entry.update.caseSize != "")
-                {
-                    originalValues  += `\ncaseSize ${this.entry.original.caseSize}`
-                    updateValues  += `\n ${this.entry.update.caseSize}`
-                }
-
-                if (this.entry.update.casePrice != "")
-                {
-                    originalValues  += `\ncasePrice ${this.entry.original.casePrice}`
-                    updateValues  += `\n ${this.entry.update.casePrice}`
-                }
-
-                if (this.entry.update.unitPrice != "")
-                {
-                    originalValues  += `\nunitPrice ${this.entry.original.unitPrice}`
-                    updateValues  += `\n ${this.entry.update.unitPrice}`
-                }
-                this._OriginalObjectDiv.innerHTML +=originalValues
-                this._UpdateObjectDiv.innerHTML += updateValues
 
 
             },

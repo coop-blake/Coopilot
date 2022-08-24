@@ -68,6 +68,7 @@ define([//------------------------------|
             //----------------------------
             //Entries Model:----------------
             entryModel: null,
+            inventoryModel: null,
 
             constructor: function (args) {
                 declare.safeMixin(this, args);
@@ -76,21 +77,25 @@ define([//------------------------------|
                 {
                     console.log("🤖🤖No Entry Model")
                 }
+                if(this.inventoryModel == null)
+                {
+                    console.log("🤖🤖No Entry Model")
+                }
 
             },
             postCreate: function(){
 
-                if(this.entryModel != null)
+                if(this.entryModel != null && this.inventoryModel != null )
                 {
-                    let dataProcessedWhen = this.entryModel.getDataProcessedWhen()
-                    if(dataProcessedWhen != 0)
+                    let entryModelDataProcessedWhen = this.entryModel.getDataProcessedWhen()
+                    if(entryModelDataProcessedWhen != 0)
                     {
                         this.reloadEntries()
                     }else {
                         console.log("🤖🤖ERRORRRR DONNNNNE", Error)
                     }
                 }else {
-                    console.log("🤖🤖No Entry Model")
+                    console.log("🤖🤖No Entry Model or no Inventory Model!")
                 }
 
 
@@ -104,8 +109,7 @@ define([//------------------------------|
 
                 for ( i = 0 ; i < totalEntries ; ++i)
                 {
-                    let entryWidget = new EntryWidget({entry: entries[i], entryModel: this.entryModel})
-                domConstruct.place(entryWidget.domNode, this._activeEntryDiv)
+                    let entryWidget = new EntryWidget({entry: entries[i], entryModel: this.entryModel, inventoryModel: this.inventoryModel, placeIn:  this._activeEntryDiv})
                 }
                 this.updateStatus()
             },
