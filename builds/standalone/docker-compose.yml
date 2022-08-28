@@ -8,5 +8,6 @@ services:
     ports:
       - "443:8080"
     volumes:
+      - ./webroot-UNFIPackChange:/balek/builds/standalone/buildScripts/UNFIPackChange/webroot
       - ./webroot-UNFIPricer:/balek/builds/standalone/buildScripts/UNFIPricer/webroot
       - ./webroot-tabImporter:/balek/builds/standalone/buildScripts/tabImporter/webroot

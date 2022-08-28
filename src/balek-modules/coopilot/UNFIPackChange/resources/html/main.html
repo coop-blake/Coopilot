@@ -4,24 +4,19 @@
         class="${baseClass}DropZone">
        <div class="${baseClass}Header" data-dojo-attach-point='_headerPane'>
            <div class="${baseClass}InfoGroupDiv" data-dojo-attach-point='_InfoGroupPane'>
-               <div class="${baseClass}DataInfoDiv" data-dojo-attach-point='_dataInfoPane'></div>
-               <div  class="mainInputDiv">
-                   <input class="mainInput" type="text" data-dojo-attach-point='_dataInput' data-dojo-attach-event="onchange:_onInputChange,onkeyup:_onInputChange" value="075810004357"/>
-               </div>
+           </div>
+           <div class="${baseClass}FileInfoDiv" data-dojo-attach-point='_fileInfoDiv'>Waiting For File
            </div>
        </div>
-
         <div class="${baseClass}PreviewDiv" data-dojo-attach-point='_previewPane'>
-
             <div class="${baseClass}PreviewDropInfo">
-
-                <pre>Drop Tab Seperated UNFI Pricebook and Inventory Text Files Here
+                <pre>Drop Tab Seperated Text File Here
                 </pre>
-                <img class="${baseClass}PreviewDivImportImage" src="balek-modules/coopilot/UNFIPricer/resources/images/import.png" />
+                <img class="${baseClass}PreviewDivImportImage" src="balek-modules/coopilot/UNFIPackChange/resources/images/import.png" />
             </div>
         </div>
         <div class="${baseClass}OutputDiv" data-dojo-attach-point='_outputPane'>
-          <div class="${baseClass}OutputPreviewDiv" data-dojo-attach-point='_outputStatusPane'></div>
+          <div class="${baseClass}OutputPreviewDiv" data-dojo-attach-point='_outputPreviewPane'></div>
        </div>
    </div>
 </div>

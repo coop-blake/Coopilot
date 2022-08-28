@@ -21,6 +21,10 @@ WORKDIR /balek/builds/standalone/buildScripts/tabImporter/
 
 RUN npm install
 
+WORKDIR /balek/builds/standalone/buildScripts/UNFIPackChange/
+
+RUN npm install
+
 WORKDIR /balek/builds/standalone/buildScripts/
 
 

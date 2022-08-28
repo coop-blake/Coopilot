@@ -1,9 +1,9 @@
 
 
 
-.coopilotTabImporterInterface {
+.coopilotUNFIPackChangeInterface {
     color: #ffffff;
-    background: rgba(20, 75, 115, 0.8);
+    background: rgba(186, 42, 210, 0.8);
     position: absolute;
     background: none;
     padding: 0;
@@ -19,9 +19,9 @@
 
 
 
-.coopilotTabImporterInterfaceDropZone {
+.coopilotUNFIPackChangeInterfaceDropZone {
     color: #ffffff;
-    background: rgba(20, 75, 115, 0.8);
+    background: rgba(114, 53, 126, 0.93);;
     border: none;
     text-align: left;
     text-wrap: none;
@@ -46,7 +46,7 @@
     "content"
     "footer";
 }
-.coopilotTabImporterInterfaceFileInfoDiv {
+.coopilotUNFIPackChangeInterfaceFileInfoDiv {
     display: inline;
     position: absolute;
     top: 0px;
@@ -63,7 +63,7 @@
     z-index: 2;
 }
 
-.coopilotTabImporterInterfacePreviewDropInfo{
+.coopilotUNFIPackChangeInterfacePreviewDropInfo{
     align-content: center;
     text-align: center;
     display: inline-block;
@@ -74,7 +74,7 @@
     left: 50%;
     transform: translate(-50%, -100%);
 }
-.coopilotTabImporterInterfacePreviewDivImportImage{
+.coopilotUNFIPackChangeInterfacePreviewDivImportImage{
     position: absolute;
     text-align: center;
     display: block;
@@ -86,10 +86,10 @@
 
 
 }
-.coopilotTabImporterInterfaceOutputDiv {
+.coopilotUNFIPackChangeInterfaceOutputDiv {
     position: relative;
     color: #ffffff;
-    background: rgba(97, 91, 178, 0.8);
+    background: rgba(154, 58, 121, 0.8);
 
     text-align: left;
     text-wrap: normal;
@@ -107,7 +107,7 @@
 
 }
 
-.coopilotTabImporterInterfaceOutputPreviewDiv {
+.coopilotUNFIPackChangeInterfaceOutputPreviewDiv {
     color: #ffffff;
     background: none;
 
@@ -127,7 +127,7 @@
 
 }
 
-.coopilotTabImporterInterfaceHeader {
+.coopilotUNFIPackChangeInterfaceHeader {
     background: rgba(0, 0, 0, 0.44);
     color: white;
     grid-area: header;
@@ -135,7 +135,7 @@
     max-height: 30px;
     overflow: hidden;
 }
-.coopilotTabImporterInterfaceAutoTrimDiv {
+.coopilotUNFIPackChangeInterfaceAutoTrimDiv {
     display: inline-block;
     background: none;
     color: white;
@@ -157,16 +157,16 @@
     border: solid transparent 2px;
 }
 
-.coopilotTabImporterInterfaceAutoTrimDiv:hover{
+.coopilotUNFIPackChangeInterfaceAutoTrimDiv:hover{
     border: solid rgba(121, 18, 18, 0.68) 2px;
-    background: rgba(97, 91, 178, 0.46);
+    background: rgba(172, 91, 178, 0.46);
     color: rgb(97, 239, 55);
 }
 
-.coopilotTabImporterInterfacePreviewDiv {
+.coopilotUNFIPackChangeInterfacePreviewDiv {
    position:relative;
     color: #ffffff;
-    background: rgba(20, 75, 115, 0.8);
+    background: rgba(69, 20, 115, 0.8);
     text-align: left;
     text-wrap: none;
     padding: 0px;
@@ -177,7 +177,7 @@
     z-index: 2;
 }
 
-.coopilotTabImporterInterfaceInfoGroupDiv {
+.coopilotUNFIPackChangeInterfaceInfoGroupDiv {
     position:absolute;
     display: inline-block;
     margin: 0;
@@ -195,7 +195,7 @@
 
 
 
-.coopilotTabImporterInterfaceSeparatorChoice {
+.coopilotUNFIPackChangeInterfaceSeparatorChoice {
     position:absolute;
     display: inline-block;
 
@@ -213,12 +213,12 @@
     text-align: center;
 
 }
-.coopilotTabImporterInterfaceSeparatorChoice:hover{
+.coopilotUNFIPackChangeInterfaceSeparatorChoice:hover{
     border: solid rgba(121, 18, 18, 0.68) 2px;
     background: rgba(97, 91, 178, 0.46);
     color: rgb(97, 239, 55);
 }
-.coopilotTabImporterInterfaceDataInfoDiv {
+.coopilotUNFIPackChangeInterfaceDataInfoDiv {
     display: inline;
     background: none;
     color: white;
@@ -230,9 +230,8 @@
     text-wrap: none;
     white-space: normal;
     font-weight: bold ;
-
 }
-.coopilotTabImporterInterfaceTextInput{
+.coopilotUNFIPackChangeInterfaceTextInput{
     color: white;
 
     background: rgba(67, 87, 138, 0.66);

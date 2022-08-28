@@ -1,0 +1,116 @@
+
+.coopilotUNFIPackChangeEntriesGridInterface{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    nargin: 0;
+    overflow: auto;
+    background: none;
+
+    white-space: nowrap;
+}
+.coopilotUNFIPackChangeEntriesGridInterfaceGridDiv{
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.coopilotUNFIPackChangeEntriesGridInterfaceStatusDiv{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: white;
+    color: black;
+    z-index: 10;
+}
+
+
+.coopilotUNFIPackChangeEntryInterface{
+    position: relative;
+    border: solid black 2px;
+    background: #23a4b6;
+    margin-bottom: 10px;
+
+}
+
+.coopilotUNFIPackChangeEntryInterfaceChangeInfoSpan{
+    display: block;
+    position: relative;
+    margin: 0;
+    width: 100%;
+    padding: 5px;
+    padding-left: 0;
+
+    background: rgba(70, 168, 70, 0.68);
+}
+.coopilotUNFIPackChangeEntryInterfaceOriginalSpan{
+    padding: 5px;
+
+    background: #c07e32;
+}
+.coopilotUNFIPackChangeEntryInterfaceActionsSpan{
+    background: #d0c93f;
+    padding: 5px;
+}
+
+.coopilotUNFIPackChangeEntryInterfaceUpdateSpan{
+    padding: 5px;
+    background: rgba(70, 168, 70, 0.68);
+}
+.coopilotUNFIPackChangeEntryInterfaceUpdateJSONSpan{
+    display: block;
+    padding: 10px;
+    display: inline-block;
+    border: none;
+    background: none;
+    white-space: nowrap;
+}
+.coopilotUNFIPackChangeEntryInterfaceValuesDiv{
+    display: inline-block;
+    border: solid black 2px;
+    background: #a632c0;
+    color: black;
+    white-space: pre;
+    padding: 5px;
+}
+.coopilotUNFIPackChangeEntryInterfaceOriginalJSONDiv{
+    display: inline-block;
+    border: solid black 2px;
+    background: #c07e32;
+    white-space: pre;
+    padding: 5px;
+
+}
+
+
+.coopilotUNFIPackChangeEntryInterfaceUpdateJSONDiv{
+    display: inline-block;
+    border: solid black 2px;
+    background: rgba(70, 168, 70, 0.68);
+    white-space: pre;
+    padding: 5px;
+
+}
+
+
+.coopilotUNFIPackChangeEntryInterfaceInventoryJSONDiv{
+    display: inline-block;
+    border: solid black 2px;
+    background: rgba(26, 88, 159, 0.68);
+    white-space: pre;
+    padding: 5px;
+
+}
+
+
+
+.coopilotUNFIPackChangeEntryInterfaceInventoryItemInfoSpan {
+    display: block;
+    border-top: solid black 2px;
+    border-bottom: solid black 2px;
+    padding: 5px;
+    background: rgba(26, 88, 159, 0.68);
+    white-space: pre;
+
+}

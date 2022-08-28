@@ -1,8 +1,11 @@
 define(['dojo/_base/declare',
         'dojo/_base/lang',
-        'dojo/Stateful',], function (declare, lang, Stateful){
+        'dojo/Stateful',
+        'dojo/text!balek-modules/coopilot/tabImporter/Workers/mainWorker.js',], function (declare, lang, Stateful, mainWorkerCode){
     return declare("tabImporterTableModel", null, {
         lineArray: null,
+
+        _WorkerCode: mainWorkerCode,
 
         dataString: null,
         //State Variables
@@ -40,7 +43,16 @@ define(['dojo/_base/declare',
 
             //Create the worker for reading string passed to table
             if (window.Worker) {
-                this.parseWorker = new Worker(new URL('balek-modules/coopilot/tabImporter/Workers/mainWorker.js', import.meta.url));
+
+              //  if( import.meta){
+              //      this.parseWorker = new Worker(new URL('balek-modules/coopilot/tabImporter/Workers/mainWorker.js', import.meta.url));
+
+              //  }else{
+                console.log(this._WorkerCode)
+
+                    this.parseWorker = new Worker(URL.createObjectURL(this._WorkerCode));
+
+              //  }
                 //this.parseWorker = new Worker(new URL('balek-modules/coopilot/tabImporter/Workers/mainWorker.js'));
                 this.parseWorker.onmessage = lang.hitch(this, this.parseWorkerDone)
 
@@ -78,6 +90,13 @@ define(['dojo/_base/declare',
                 parseParameters: {  valueSeparator: this.getValueSeparator(),
                     autoTrim: this.getAutoTrim()
                 }});
+        },
+        getNumberOfFilteredLines: function()
+        {
+            let footerRow = parseInt(this.modelState.get("footerStart"))
+            let headerRow = parseInt(this.modelState.get("headerStart"))
+
+            return (footerRow-headerRow+1)
         },
         setDataString: function(dataString){
             this.dataString = dataString
