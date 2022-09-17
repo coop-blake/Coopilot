@@ -169,18 +169,30 @@ define([//------------------------------|
             //--------------------------------------|
             //View Update Functions:----------------|
             addFooterRows: function(rowsToAdd){
+                let maxLine = this.tableModel.getFooterRow()
+
+
                // console.log(`➕🦶add FooterRows  rowsToAdd: ${rowsToAdd} `);
                 let startAt = parseInt(this.lastRowInRange) + 1
-                let finishAt = parseInt(startAt+rowsToAdd)
-               // console.log(`➕🦶add FooterRows  startAt: ${startAt} #|# finishAt: ${finishAt}   this.lastRowInRang:${this.lastRowInRange} \``);
-                for ( i = startAt  ; i < finishAt ; ++i) {
-                  //  console.log(`➕🦶add i : ${i} `);
-                    let rowToAdd = this.buildRow(i)
-                    domConstruct.place(rowToAdd, this._domDisplayTable, "last")
-                    this.lastRowInRange = i
+
+                if( startAt <= maxLine){
+                    let finishAt = parseInt(startAt+rowsToAdd)
+                    console.log(`➕🦶add FooterRows  startAt: ${startAt} #|# finishAt: ${finishAt}   this.lastRowInRang:${this.lastRowInRange} \``);
+                    for ( i = startAt  ; i < finishAt ; ++i) {
+
+                        if(i>= this.las)
+                            console.log(`➕🦶add i : ${i} `);
+                        let rowToAdd = this.buildRow(i)
+                        domConstruct.place(rowToAdd, this._domDisplayTable, "last")
+                        this.lastRowInRange = i
+                    }
+                    //console.log(`➕🦶add this.lastRowInRange : ${this.lastRowInRange} `);
+                    this.checkAndAddOrRemoveRowsToTopOfDisplay()
+                }else {
+                 //   alert("cannot add footer rows!")
+                    //todo uncomment this to find bad caller
                 }
-                //console.log(`➕🦶add this.lastRowInRange : ${this.lastRowInRange} `);
-                this.checkAndAddOrRemoveRowsToTopOfDisplay()
+
             },
             removeFooterRows: function(rowsToRemove){
                 //todo check this function
@@ -317,8 +329,8 @@ define([//------------------------------|
                 let rowsInDisplayTable = this.getRowsInDisplayTable()
                  let totalTableRows = this.tableModel.getNumberOfFilteredLines()
                  let scrollPercent = this.getScrollPercentage()
-                 this._tableStatusDiv.innerHTML=`firstRowInRange ${this.firstRowInRange} | lastRowInRange ${this.lastRowInRange} | rowsInDisplayTable ${rowsInDisplayTable} | totalTableRows ${totalTableRows}
-                 getScrollPercentage ${scrollPercent}`
+                // this._tableStatusDiv.innerHTML=`firstRowInRange ${this.firstRowInRange} | lastRowInRange ${this.lastRowInRange} | rowsInDisplayTable ${rowsInDisplayTable} | totalTableRows ${totalTableRows}
+                // getScrollPercentage ${scrollPercent}`
              },
                 //---------------------------------------|
                 //Dom Calculated Values:----------------|
@@ -462,13 +474,13 @@ define([//------------------------------|
 
 
 
-this._tableStatusDiv.innerHTML=`firstRowInRange ${firstRowInRange} | lastRowInRange ${lastRowInRange} | rowsInDisplayTable ${rowsInDisplayTable}
+/*this._tableStatusDiv.innerHTML=`firstRowInRange ${firstRowInRange} | lastRowInRange ${lastRowInRange} | rowsInDisplayTable ${rowsInDisplayTable}
 | totalRows ${totalRows} | scrollHeight ${scrollHeight}    | scrollAreaHeight ${scrollAreaHeight} | rowHeight ${rowHeight}
 | rowsInView ${rowsInView}| midRow ${midRow}| firstRow ${firstRow}| lastRow ${lastRow} 
 rowsAboveViewInRange ${rowsAboveViewInRange} totalRowsAboveView ${totalRowsAboveView} | rowsBelowViewInRange ${rowsBelowViewInRange} totalRowsBelowView ${totalRowsBelowView} 
 | scrollPercent ${scrollPercent}|addedRows ${addedRows}| maxHeaderAdd ${maxHeaderAdd}| maxFooterAdd ${maxFooterAdd}|
 targetFirstRowInRange ${targetFirstRowInRange}| targetLastRowInRange ${targetLastRowInRange}|`
-
+*/
 
 
                 },
