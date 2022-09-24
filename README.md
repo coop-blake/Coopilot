@@ -63,3 +63,5 @@ You can place your own ssl certificates in the [`builds/coopilot/conf/cert`](bui
 Modify [`builds/coopilot/conf/config.json`](builds/coopilot/conf/config.json) and restart containers.  
 See the [`src/balek-server/etc/README.md`](src/balek-server/etc/README.md) for more info.
 
+## Standalone Builds
+To build module interfaces that can be stored on and loaded from a static web server see the [Standalone Builds](builds/standalone/README.md) for more info.

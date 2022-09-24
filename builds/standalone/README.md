@@ -11,5 +11,5 @@ then
 `docker-compose -f builds/standalone/docker-compose.yml up`
 
 
-Then look in [webroot-tabImporter](./webroot-tabImporter) and [webroot-UNFIPricer](./webroot-UNFIPricer) directory for the built widget
+Then look in [webroot-tabImporter](./webroot-tabImporter), [webroot-UNFIPackChange](./webroot-UNFIPackChange)  and [webroot-UNFIPricer](./webroot-UNFIPricer) directory for the built widgets
 
