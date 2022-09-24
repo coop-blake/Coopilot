@@ -84,6 +84,8 @@ define(['dojo/_base/declare',
                                             {
 
                                                 topic.publish("requestModuleLoad", "coopilot/tabImporter");
+                                                topic.publish("requestModuleLoad", "coopilot/UNFIPricer");
+
                                                 topic.publish("requestModuleLoad", "coopilot/menu");
 
                                                 this.destroy();

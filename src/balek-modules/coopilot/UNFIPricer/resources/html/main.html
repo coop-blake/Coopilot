@@ -1,0 +1,27 @@
+<div class="${baseClass}" data-dojo-attach-event="onkeyup:_onKeyUp,onkeydown:_onKeyDown,onfocus:_onFocus" tabindex="0">
+   <div  data-dojo-attach-point='_dropZone'
+        data-dojo-attach-event="drop:_onDropped,dragenter:_onDragEnter,dragleave:_onDragLeave"
+        class="${baseClass}DropZone">
+       <div class="${baseClass}Header" data-dojo-attach-point='_headerPane'>
+           <div class="${baseClass}InfoGroupDiv" data-dojo-attach-point='_InfoGroupPane'>
+               <div class="${baseClass}DataInfoDiv" data-dojo-attach-point='_dataInfoPane'></div>
+               <div  class="mainInputDiv">
+                   <input class="mainInput" type="text" data-dojo-attach-point='_dataInput' data-dojo-attach-event="onchange:_onInputChange,onkeyup:_onInputChange" value="188244000465"/>
+               </div>
+           </div>
+       </div>
+
+        <div class="${baseClass}PreviewDiv" data-dojo-attach-point='_previewPane'>
+
+            <div class="${baseClass}PreviewDropInfo">
+
+                <pre>Drop Tab Seperated UNFI Price Book Text File Here
+                </pre>
+                <img class="${baseClass}PreviewDivImportImage" src="balek-modules/coopilot/UNFIPricer/resources/images/import.png" />
+            </div>
+        </div>
+        <div class="${baseClass}OutputDiv" data-dojo-attach-point='_outputPane'>
+          <div class="${baseClass}OutputPreviewDiv" data-dojo-attach-point='_outputStatusPane'></div>
+       </div>
+   </div>
+</div>

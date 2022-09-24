@@ -4,11 +4,15 @@
         class="${baseClass}DropZone">
        <div class="${baseClass}Header" data-dojo-attach-point='_headerPane'>
            <div class="${baseClass}InfoGroupDiv" data-dojo-attach-point='_InfoGroupPane'>
-
                <div class="${baseClass}SeparatorChoice" data-dojo-attach-point='_separatorChoicePane' data-dojo-attach-event="onmousedown:_onSeparatorChoiceDown">Tab</div>
                <div class="${baseClass}AutoTrimDiv" data-dojo-attach-point='_autoTrimPane' data-dojo-attach-event="onmousedown:_autoTrimMouseDown">AutoTrim
-                   <div class="${baseClass}DataInfoDiv" data-dojo-attach-point='_dataInfoPane'></div>
                </div>
+               <div class="${baseClass}DataInfoDiv" data-dojo-attach-point='_dataInfoPane'>
+                   Header:<input class="${baseClass}TextInput" type="number" min="0" data-dojo-attach-point='_headerRowInput' data-dojo-attach-event="onchange:_onHeaderInputChange,onkeyup:_onHeaderInputChange" value="0"/>
+                   Footer:<input class="${baseClass}TextInput" type="number" min="0" data-dojo-attach-point='_footerRowInput' data-dojo-attach-event="onchange:_onFooterInputChange,onkeyup:_onFooterInputChange" value="0"/>
+               </div>
+           </div>
+           <div class="${baseClass}FileInfoDiv" data-dojo-attach-point='_fileInfoDiv'>Waiting For File
            </div>
        </div>
 

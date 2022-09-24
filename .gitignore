@@ -18,3 +18,13 @@ builds/docker/mysql/mysqlDB/
 src/balek-server/etc/cert/
 
 data/
+
+builds/standalone/webroot/
+
+builds/standalone/buildScripts/UNFIPricer/webroot/
+
+builds/standalone/webroot-tabImporter/
+
+builds/standalone/webroot-UNFIPricer/
+
+builds/standalone/webroot-UNFIPackChange/

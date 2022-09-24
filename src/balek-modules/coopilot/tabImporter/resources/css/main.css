@@ -1,4 +1,6 @@
 
+
+
 .coopilotTabImporterInterface {
     color: #ffffff;
     background: rgba(20, 75, 115, 0.8);
@@ -44,19 +46,23 @@
     "content"
     "footer";
 }
-
-.coopilotTabImporterInterfacePreviewDiv {
+.coopilotTabImporterInterfaceFileInfoDiv {
+    display: inline;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    height: 20px;
     color: #ffffff;
-    background: rgba(20, 75, 115, 0.8);
+    background: none;
     text-align: left;
     text-wrap: none;
+
     padding: 0px;
     font-family: monospace, monospace;
-    overflow: auto;
-    scroll-behavior: auto;
-    grid-area: content;
+
     z-index: 2;
 }
+
 .coopilotTabImporterInterfacePreviewDropInfo{
     align-content: center;
     text-align: center;
@@ -97,6 +103,8 @@
     max-width: 100%;
     word-wrap: break-word;
     grid-area: footer;
+    border-top: solid white 2px;
+
 }
 
 .coopilotTabImporterInterfaceOutputPreviewDiv {
@@ -117,13 +125,6 @@
     word-wrap: break-word;
     grid-area: footer;
 
-
-}
-
-
-.coopilotTabImporterInterfaceTableRowIdentityCell {
-    background: rgba(0, 0, 0, 0.44);
-    color: white;
 }
 
 .coopilotTabImporterInterfaceHeader {
@@ -162,6 +163,20 @@
     color: rgb(97, 239, 55);
 }
 
+.coopilotTabImporterInterfacePreviewDiv {
+   position:relative;
+    color: #ffffff;
+    background: rgba(20, 75, 115, 0.8);
+    text-align: left;
+    text-wrap: none;
+    padding: 0px;
+    font-family: monospace, monospace;
+    overflow: auto;
+    scroll-behavior: auto;
+    grid-area: content;
+    z-index: 2;
+}
+
 .coopilotTabImporterInterfaceInfoGroupDiv {
     position:absolute;
     display: inline-block;
@@ -173,23 +188,12 @@
     max-height: 30px;
     text-align: left;
     vertical-align: top;
-
+    margin: auto;
     z-index: 1;
 }
 
 
-.coopilotTabImporterInterfaceDataInfoDiv {
-    display: inline-block;
-    background: none;
-    color: orange;
-    position:absolute;
-    top: 0;
-    left: 100px;
-    text-align: left;
-    text-wrap: none;
-    white-space: pre;
 
-}
 
 .coopilotTabImporterInterfaceSeparatorChoice {
     position:absolute;
@@ -207,99 +211,31 @@
     vertical-align: center;
     border: solid transparent 2px;
     text-align: center;
+
 }
 .coopilotTabImporterInterfaceSeparatorChoice:hover{
     border: solid rgba(121, 18, 18, 0.68) 2px;
     background: rgba(97, 91, 178, 0.46);
     color: rgb(97, 239, 55);
 }
-.coopilotTabImporterInterfaceSetHeaderDiv {
-
-   display: block;
-   cursor: pointer;
-    padding: 0;
-    margin: 0;
-    height: 7px;
-    top: 0px;
-    left: 0;
-}
-.coopilotTabImporterInterfaceSetFooterDiv {
-    display: block;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    height: 7px;
-    position: absolute;
-    top: 8px;
-    left: 0;
-}
-
-.coopilotTabImporterInterfaceTable {
-  background: rgba(97, 91, 178, 0.8);
-}
-.coopilotTabImporterInterfaceTable thead {
-    position: sticky;
-    top: 0;
-}
-.coopilotTabImporterInterfaceTable thead tr th{
-   background: black;
-    cursor: pointer;
-}
-.coopilotTabImporterInterfaceTable thead tr th{
-position: sticky;
-    top: 0;
-    }
-
-.coopilotTabImporterInterfaceTableRow {
-
-    background: black;
-    color: white;
-}
-.coopilotTabImporterInterfaceTable tr:nth-child(odd)  {
-
-    background: rgba(16, 16, 16, 0.82);
-
-}
-.coopilotTabImporterInterfaceTable tr:nth-child(odd):hover  {
-
-    background: rgba(132, 133, 134, 0.37);
-
-}
-
-.coopilotTabImporterInterfaceTableRow:hover {
-    background: rgba(132, 133, 134, 0.37);
-}
-
-.coopilotTabImporterInterfaceSetSpan {
+.coopilotTabImporterInterfaceDataInfoDiv {
     display: inline;
-    background: purple;
-    color: black;
-    width: 20px;
-    height: 14px;
-    padding: 0;
-    margin: 0;
-    line-height: 0;
-    position: relative;
-}
-.coopilotTabImporterInterfaceSetDivImage {
-    display: block;
-    background: rgba(123, 178, 91, 0.8);
-    width: 20px;
-    height: 7px;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
+    background: none;
+    color: white;
+    position:absolute;
+    top: 0;
+    left: 200px;
+    width: 300px;
+    text-align: left;
+    text-wrap: none;
+    white-space: normal;
+    font-weight: bold ;
 
 }
-.coopilotTabImporterInterfaceSetDivImage:hover{
-    background: red;
-}
+.coopilotTabImporterInterfaceTextInput{
+    color: white;
 
-.coopilotTabImporterInterfaceTableRowIdentityCell {
-
-}
-
-.coopilotTabImporterInterfaceFileNumberSpan {
-    margin:0;
-    margin-left: 25px;
+    background: rgba(67, 87, 138, 0.66);
+    display: inline-block;
+    width: 50px;
 }
