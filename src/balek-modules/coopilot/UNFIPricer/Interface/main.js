@@ -21,6 +21,9 @@ define(['dojo/_base/declare',
         'balek-modules/components/syncedCommander/Interface',
         'balek-client/session/workspace/container/containable',
 
+        'balek-modules/coopilot/models/inventory.js',
+        'balek-modules/coopilot/models/file.js',
+        'balek-modules/coopilot/models/pricebook.js',
 
 
         'dojo/text!balek-modules/coopilot/UNFIPricer/resources/html/main.html',
@@ -48,6 +51,10 @@ define(['dojo/_base/declare',
               _SyncedCommanderInterface,
               _BalekWorkspaceContainerContainable,
 
+              InventoryModel,
+              FileModel,
+              PricebookModel,
+
               interfaceHTMLFile,
               interfaceCSSFile
               ) {
@@ -72,30 +79,47 @@ define(['dojo/_base/declare',
 
             infoNodes: null,
 
-            lines: null,
-            linesByItemID: {},
-            headerStart: 0,
-            footerStart: 0,
-            autoTrim: false,
-            valueSeparator: "\t",
-
-            fileData: "",
-            fileSize: 0,
-            fileDateString: "",
-            fileName: "",
 
             inputType: "",
 
 
-            mostValuesInLine: 0,
+            inventoryFileModel: null,
+            inventoryFileModelState: null,
+            inventoryFileModelStateWatchHandle: null,
+
+            inventoryModel: null,
+            inventoryModelState: null,
+            inventoryModelStateWatchHandle: null,
+
+            pricebookFileModel: null,
+            pricebookFileModelState: null,
+            pricebookFileModelStateWatchHandle: null,
 
             constructor: function (args) {
-                this.values = Array()
-                this.lines = Array()
-                this.linesByItemID = {}
+
                 this.infoNodes = {}
                 declare.safeMixin(this, args);
                 domConstruct.place(domConstruct.toDom("<style>" + this.templateCssString + "</style>"), win.body());
+
+
+                this.inventoryModel = new InventoryModel({})
+                this.inventoryModelState = this.inventoryModel.getModelState()
+                this.inventoryModelStateWatchHandle = this.inventoryModelState.watch(lang.hitch(this, this.onInventoryModelStateChange))
+
+                //File Model and State Handels
+                this.inventoryFileModel = new FileModel({});
+                this.inventoryFileModelState = this.inventoryFileModel.getModelState()
+                this.inventoryFileModelStateWatchHandle = this.inventoryFileModelState.watch(lang.hitch(this, this.onInventoryFileModelStateChange))
+
+
+                this.pricebookFileModel = new FileModel({});
+                this.pricebookFileModelState = this.pricebookFileModel.getModelState()
+                this.pricebookFileModelStateWatchHandle = this.pricebookFileModelState.watch(lang.hitch(this, this.onPricebookFileModelStateChange))
+
+                this.pricebookModel = new PricebookModel({})
+                this.pricebookModelState = this.pricebookModel.getModelState()
+                this.pricebookModelStateWatchHandle = this.pricebookModelState.watch(lang.hitch(this, this.onPricebookModelStateChange))
+
 
                 this.setContainerName("📟 - UNFI Pricer");
 
@@ -108,9 +132,45 @@ define(['dojo/_base/declare',
                 on(this._dropZone, ["dragenter, dragstart, dragend, dragleave, dragover, drag, drop"], function (e) {
                        e.preventDefault()
                     e.stopPropagation()});
+
+
+
+
             },
             startupContainable: function(){
                 console.log("startupContainable Tab Importer containable");
+            },
+            onPricebookFileModelStateChange: function(name, oldState, newState) {
+                if(name == "fileDataStringWhen"){
+                    console.log(name)
+                    let newData= this.pricebookFileModel.getFileDataString()
+                    this.pricebookModel.setDataString(newData)
+                }else {
+                    console.log(name)
+                }
+            },
+            onPricebookModelStateChange: function(name, oldState, newState) {
+                console.log("💌 onPricebookModelStateChange in main ⚡️", name, oldState, newState)
+                if(name == "dataProcessedWhen"){
+                    this.refreshUI()
+                }
+                console.log(this.pricebookModel)
+
+            },
+            onInventoryFileModelStateChange: function(name, oldState, newState) {
+                if(name == "fileDataStringWhen"){
+                    let newData= this.inventoryFileModel.getFileDataString()
+                    this.inventoryModel.setDataString(newData)
+                }
+            },
+            onInventoryModelStateChange: function(name, oldState, newState) {
+                console.log("💌 onInventoryModelStateChange in main ⚡️", name, oldState, newState)
+                if(name == "dataProcessedWhen"){
+                    this.refreshUI()
+
+                }
+
+
             },
             _onFocus: function(){
 
@@ -158,20 +218,20 @@ define(['dojo/_base/declare',
 
 
                 if (file.type.match('text.*')) {
-                    let reader = new FileReader();
-                    reader.onload = lang.hitch(this, function (onLoadEvent) {
-                        let fileDate = new Date(file.lastModified)
-                        this.fileDateString = fileDate.toLocaleDateString("en-US")
-                        this.fileSize = Math.round(file.size/1024) +"kb"
-                        this.fileName = file.name
 
-                        this.inputType="file"
+                    if(file.name.startsWith("pb"))
+                    {
+                        //Price Book File
+                        this.pricebookFileModel.readFile(file)
+                    } else if (file.name.startsWith("Mas"))
+                    {
+                        // process the inventory here
+                        this.inventoryFileModel.readFile(file)
+                    }else {
+                        alert("Not named as a pack change or inventory file")
+                    }
 
-                       // this.refreshInfo()
-                        this.parseTabSeperatedString( onLoadEvent.target.result)
-                    });
-                    // Read in the image file as a data URL.
-                    reader.readAsText(file);
+
                 } else {
                     alert("Not a Text File!");
                 }
@@ -194,63 +254,7 @@ define(['dojo/_base/declare',
                 console.log("Out",dragEvent)
             },
 
-            parseTabSeperatedString: function(stringToParse)
-            {
-                this.setUILoading()
 
-                this.fileData = stringToParse;
-
-                this.mostValuesInLine = 0;
-                this.lines = []
-                let linesArray = stringToParse.split("\n");
-
-                for (const line of linesArray)
-                {
-
-                    let valuesArray = line.split(this.valueSeparator);
-                    let valuesToSaveArray = [];
-
-                    if (this.mostValuesInLine < valuesArray.length){
-                        this.mostValuesInLine = valuesArray.length
-                        if(this.autoTrim)
-                        {
-                            this.headerStart = this.lines.length
-                        }
-                    }
-
-                    if (this.mostValuesInLine > valuesArray.length){
-                        if(this.autoTrim)
-                        {
-                            this.footerStart = this.lines.length - 1
-                        }
-
-                    }
-
-                    for (const value of valuesArray) {
-                       let valueWithoutQuotes = value.replace(/^["'](.+(?=["']$))["']$/, '$1');
-                        //regex removes quotes around value
-                        valuesToSaveArray.push(valueWithoutQuotes);
-
-                    }
-                    this.lines.push(valuesToSaveArray)
-                    if(valuesToSaveArray[10] && valuesToSaveArray[10].replace){
-                        let normalizedItemID = valuesToSaveArray[10].replace(/-/g, "")
-                        this.linesByItemID[normalizedItemID] = valuesToSaveArray
-                    }else {
-                        console.log("unknow line...", valuesToSaveArray)
-                    }
-
-
-                }
-                if(!this.autoTrim && this.footerStart == 0)
-                {
-                    this.footerStart = this.lines.length - 1
-                }
-                //this.refreshInfo()
-
-                this._outputStatusPane.innerHTML = `${this.fileName} Loaded`
-                this.refreshUI()
-            },
             setUILoading: function(){
                 this._dataInfoPane.innerHTML="Loading Dropped File";
                 this._previewPane.innerHTML ="";
@@ -259,12 +263,13 @@ define(['dojo/_base/declare',
             },
             refreshLookup: function(){
                 let inputValue = this._dataInput.value;
-                if(this.linesByItemID[inputValue] ){
+                let pricebookEntry = this.pricebookModel.getEntryByScanCode(inputValue)
+                if(pricebookEntry ){
 
-                    let eachPrice = this.linesByItemID[inputValue][8].toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
-                    let casePrice = this.linesByItemID[inputValue][9].toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
-                    let productName = this.linesByItemID[inputValue][7].toString()
-                    let productBrand = this.linesByItemID[inputValue][1].toString()
+                    let eachPrice = String(pricebookEntry.eachPrice).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+                    let casePrice = String(pricebookEntry.casePrice).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+                    let productName = pricebookEntry.description.toString()
+                    let productBrand = pricebookEntry.brand.toString()
 
 
 
@@ -274,12 +279,12 @@ define(['dojo/_base/declare',
                             casePrice : casePrice,
                             productName : productName,
                             productBrand : productBrand,
+                            scanCode: inputValue,
+                            pricebookModel: this.pricebookModel,
+                            inventoryModel: this.inventoryModel
                         });
                     }
                     let itemInfoNode = this.infoNodes[inputValue];
-
-
-
 
 
 
@@ -289,7 +294,8 @@ define(['dojo/_base/declare',
 
                 }else
                 {
-                    this._previewPane.innerHTML = "No Match"
+                    console.log()
+                   // this._previewPane.innerHTML = "No Match"
                 }
             },
             refreshUI: function(){
@@ -297,11 +303,12 @@ define(['dojo/_base/declare',
                 this.refreshLookup()
             },
             refreshInfo: function(){
-                this._dataInfoPane.innerHTML="";
-                this._dataInfoPane.innerHTML += " Header: "+ this.headerStart;
-                this._dataInfoPane.innerHTML += " Footer: "+ this.footerStart;
+                let fileDate = new Date(this.pricebookFileModel.getFileDate())
+                let fileDateString = fileDate.toLocaleDateString("en-US")
+                let fileSize = Math.round(this.pricebookFileModel.getFileSize()/1024) +"kb"
+                let fileName = this.pricebookFileModel.getFileName()
 
-                let infoString = this.fileDateString + " : " + this.fileName + " " + this.fileSize + " [ Lines:" + this.lines.length + " | Columns: " + this.mostValuesInLine + " ]"
+                let infoString = fileDateString + " : " + fileName + " " + fileSize + "  " + this.pricebookModel.getNumberOfEntries() +" Pricebook Entries | "+ this.inventoryModel.getNumberOfEntries() + " Inventory Entries |"  ;
                 this._dataInfoPane.innerHTML = infoString;
                     this.setContainerName("📟 - UNFI Pricebook "+ infoString);
             },
@@ -322,6 +329,14 @@ define(['dojo/_base/declare',
                 return this.domNode;
             },
             unload: function () {
+                this.inventoryFileModelStateWatchHandle.unwatch()
+                this.inventoryFileModelStateWatchHandle.remove()
+                this.inventoryModelStateWatchHandle.unwatch()
+                this.inventoryModelStateWatchHandle.remove()
+                this.pricebookModelStateWatchHandle.unwatch()
+                this.pricebookModelStateWatchHandle.remove()
+                this.pricebookFileModelStateWatchHandle.unwatch()
+                this.pricebookFileModelStateWatchHandle.remove()
                 this.destroy();
             }
         });

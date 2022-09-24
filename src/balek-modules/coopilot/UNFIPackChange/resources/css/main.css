@@ -1,0 +1,240 @@
+
+
+
+.coopilotUNFIPackChangeInterface {
+    color: #ffffff;
+    background: rgba(186, 42, 210, 0.8);
+    position: absolute;
+    background: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    visibility: visible;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+
+
+.coopilotUNFIPackChangeInterfaceDropZone {
+    color: #ffffff;
+    background: rgba(114, 53, 126, 0.93);;
+    border: none;
+    text-align: left;
+    text-wrap: none;
+    white-space: pre;
+    padding: 0;
+    font-family: monospace, monospace;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    scroll-behavior: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px 1fr 150px;
+    gap: 0px 0px;
+    grid-template-areas:
+    "header"
+    "content"
+    "footer";
+}
+.coopilotUNFIPackChangeInterfaceFileInfoDiv {
+    display: inline;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    height: 20px;
+    color: #ffffff;
+    background: none;
+    text-align: left;
+    text-wrap: none;
+
+    padding: 0px;
+    font-family: monospace, monospace;
+
+    z-index: 2;
+}
+
+.coopilotUNFIPackChangeInterfacePreviewDropInfo{
+    align-content: center;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+.coopilotUNFIPackChangeInterfacePreviewDivImportImage{
+    position: absolute;
+    text-align: center;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+}
+.coopilotUNFIPackChangeInterfaceOutputDiv {
+    position: relative;
+    color: #ffffff;
+    background: rgba(154, 58, 121, 0.8);
+
+    text-align: left;
+    text-wrap: normal;
+    white-space: normal;
+    padding: 5px;
+    font-family: monospace, monospace;
+
+    overflow: auto;
+    overflow-wrap: anywhere;
+    scroll-behavior: auto;
+    max-width: 100%;
+    word-wrap: break-word;
+    grid-area: footer;
+    border-top: solid white 2px;
+
+}
+
+.coopilotUNFIPackChangeInterfaceOutputPreviewDiv {
+    color: #ffffff;
+    background: none;
+
+    text-align: left;
+    text-wrap: normal;
+    white-space: normal;
+    padding: 5px;
+    font-family: monospace, monospace;
+
+
+    overflow: auto;
+    overflow-wrap: anywhere;
+    scroll-behavior: auto;
+    max-width: 100%;
+    word-wrap: break-word;
+    grid-area: footer;
+
+}
+
+.coopilotUNFIPackChangeInterfaceHeader {
+    background: rgba(0, 0, 0, 0.44);
+    color: white;
+    grid-area: header;
+    padding: 0;
+    max-height: 30px;
+    overflow: hidden;
+}
+.coopilotUNFIPackChangeInterfaceAutoTrimDiv {
+    display: inline-block;
+    background: none;
+    color: white;
+    border: none;
+    position:absolute;
+
+
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+
+    top: 0;
+    left: 60px;
+    width: 100px;
+
+    max-height: 22px;
+    vertical-align: top;
+    text-align: center;
+    border: solid transparent 2px;
+}
+
+.coopilotUNFIPackChangeInterfaceAutoTrimDiv:hover{
+    border: solid rgba(121, 18, 18, 0.68) 2px;
+    background: rgba(172, 91, 178, 0.46);
+    color: rgb(97, 239, 55);
+}
+
+.coopilotUNFIPackChangeInterfacePreviewDiv {
+   position:relative;
+    color: #ffffff;
+    background: rgba(69, 20, 115, 0.8);
+    text-align: left;
+    text-wrap: none;
+    padding: 0px;
+    font-family: monospace, monospace;
+    overflow: auto;
+    scroll-behavior: auto;
+    grid-area: content;
+    z-index: 2;
+}
+
+.coopilotUNFIPackChangeInterfaceInfoGroupDiv {
+    position:absolute;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    top: 3px;
+    left: 3px;
+    max-height: 30px;
+    text-align: left;
+    vertical-align: top;
+    margin: auto;
+    z-index: 1;
+}
+
+
+
+
+.coopilotUNFIPackChangeInterfaceSeparatorChoice {
+    position:absolute;
+    display: inline-block;
+
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+
+    top: 0;
+    left: 0;
+
+    height: 22px;
+    width: 56px;
+    vertical-align: center;
+    border: solid transparent 2px;
+    text-align: center;
+
+}
+.coopilotUNFIPackChangeInterfaceSeparatorChoice:hover{
+    border: solid rgba(121, 18, 18, 0.68) 2px;
+    background: rgba(97, 91, 178, 0.46);
+    color: rgb(97, 239, 55);
+}
+.coopilotUNFIPackChangeInterfaceDataInfoDiv {
+    display: inline;
+    background: none;
+    color: white;
+    position:absolute;
+    top: 0;
+    left: 200px;
+    width: 300px;
+    text-align: left;
+    text-wrap: none;
+    white-space: normal;
+    font-weight: bold ;
+}
+.coopilotUNFIPackChangeInterfaceTextInput{
+    color: white;
+
+    background: rgba(67, 87, 138, 0.66);
+    display: inline-block;
+    width: 50px;
+}

@@ -1,4 +1,10 @@
 
+
+.coopilotUNFIPricerInterface  a {
+    text-decoration: none;
+    color: navajowhite;
+}
+
 .coopilotUNFIPricerInterface {
     color: #ffffff;
     background: rgba(20, 75, 0, 0.8);
@@ -145,7 +151,6 @@
 
     margin: 0;
     padding: 0;
-    cursor: pointer;
 
     top: 0;
     left: 60px;
@@ -168,7 +173,7 @@
     display: inline-block;
     margin: 0;
     padding: 0;
-    cursor: pointer;
+
     top: 3px;
     left: 3px;
     right:3px;
@@ -213,7 +218,6 @@
 
     margin: 0;
     padding: 0;
-    cursor: pointer;
 
     top: 0;
     left: 0;
@@ -232,7 +236,6 @@
 .coopilotUNFIPricerInterfaceSetHeaderDiv {
 
    display: block;
-   cursor: pointer;
     padding: 0;
     margin: 0;
     height: 7px;
@@ -244,13 +247,22 @@
     display: inline-block;
     padding: 5px;
     margin: 0;
+    border: solid orange 2px;
+
+
+}
+.coopilotUNFIPricerItemInfoInterfaceInventoryInfoDiv {
+    display: inline-block;
+    padding: 5px;
+    margin: 0;
+    background: #16356e;
+    border: solid Black 2px;
 }
 
 .coopilotUNFIPricerItemInfoInterface{
     display: block;
     position: relative;
     border: solid transparent 2px;
-    cursor: pointer;
     margin: 10px;
     padding: 10px;
     padding-top:0;
@@ -271,16 +283,7 @@
     border: solid black 2px;
 }
 
-.coopilotUNFIPricerInterfaceSetFooterDiv {
-    display: block;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    height: 7px;
-    position: absolute;
-    top: 8px;
-    left: 0;
-}
+
 
 .coopilotUNFIPricerInterfaceTable {
   background: rgba(97, 91, 178, 0.8);
@@ -289,10 +292,7 @@
     position: sticky;
     top: 0;
 }
-.coopilotUNFIPricerInterfaceTable thead tr th{
-   background: black;
-    cursor: pointer;
-}
+
 .coopilotUNFIPricerInterfaceTable thead tr th{
 position: sticky;
     top: 0;
@@ -336,7 +336,6 @@ position: sticky;
     height: 7px;
     padding: 0;
     margin: 0;
-    cursor: pointer;
 
 }
 .coopilotUNFIPricerInterfaceSetDivImage:hover{
@@ -351,3 +350,4 @@ position: sticky;
     margin:0;
     margin-left: 25px;
 }
+
