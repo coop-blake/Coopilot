@@ -50,7 +50,8 @@ define(['dojo/_base/declare',
               //  }else{
                 console.log(this._WorkerCode)
                 let WorkerCodeBlob = new Blob([String(this._WorkerCode)], {type: 'application/javascript'})
-                this.parseWorker = new Worker(URL.createObjectURL(WorkerCodeBlob));
+                let URLCodeBlob = URL.createObjectURL(WorkerCodeBlob)
+                this.parseWorker = new Worker(URLCodeBlob);
 
                 this.parseWorker.onmessage = lang.hitch(this, this.parseWorkerDone)
 
@@ -114,6 +115,8 @@ define(['dojo/_base/declare',
                 }
                 linePosition++
             }
+
+
             return returnIndex
         },
 

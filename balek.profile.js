@@ -1,6 +1,5 @@
 var profile = (function () {
-
-
+    
     //#####################################################################
     //todo work on the build and release system
     //#####################################################################
@@ -12,7 +11,7 @@ var profile = (function () {
         action: "release",
 
         optimizeOptions: {
-            languageIn: "ECMASCRIPT6",
+            languageIn: "ECMASCRIPT_2019",
             languageOut: "ECMASCRIPT5"
         },
 
@@ -87,9 +86,10 @@ var profile = (function () {
                     let balekNodeModules = /^balek-modules\/node_modules\/|^balek-modules\/build\//,
                         codeMirror = /codemirror\/addon\/lint\/|codemirror\/addon\/merge\/|codemirror\/src\/|rollup\.config\.js/,
                         quill = /blots\/text.js/;
+                        coopilotWorkers = /.*Worker.js/;
 
 
-                    return codeMirror.test(mid) || quill.test(filename) || codeMirror.test(filename) || balekNodeModules.test(mid);
+                    return codeMirror.test(mid) || quill.test(filename) || codeMirror.test(filename) || balekNodeModules.test(mid) || coopilotWorkers.test(filename);
                 }
 
                 //todo
@@ -117,6 +117,9 @@ var profile = (function () {
             },
             "balek-modules/coopilot/saleTagScan/Interface": {
                 include: [  "balek-modules/coopilot/saleTagScan/Interface"]
+            },
+            "balek-modules/coopilot/tabImporter/Interface": {
+                include: [  "balek-modules/coopilot/tabImporter/Interface"]
             }
 
         }

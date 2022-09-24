@@ -24,9 +24,9 @@ define([//------------------------------|
         'balek-modules/components/syncedCommander/Interface',
         'balek-client/session/workspace/container/containable',
 
-        'balek-modules/coopilot/tabImporter/Interface/mainTable.js',
-        'balek-modules/coopilot/tabImporter/Model/table.js',
-        'balek-modules/coopilot/tabImporter/Model/file.js',
+        'balek-modules/coopilot/tabImporter/Model/table',
+        'balek-modules/coopilot/tabImporter/Model/file',
+        'balek-modules/coopilot/tabImporter/Interface/mainTable',
 
 
         'dojo/text!balek-modules/coopilot/tabImporter/resources/html/main.html',
@@ -53,9 +53,9 @@ define([//------------------------------|
               _SyncedCommanderInterface,
               _BalekWorkspaceContainerContainable,
 
-              MainTable,
               TableModel,
               FileModel,
+              MainTable,
 
               interfaceHTMLFile,
               interfaceCSSFile
@@ -130,8 +130,6 @@ define([//------------------------------|
                 //Set Balek Container Name
                 this.setContainerName("📥 - Importer");
 
-
-
             },
             //#####################################################
             //###   On Model State Changes
@@ -140,7 +138,6 @@ define([//------------------------------|
                 if(name == "fileDataStringWhen"){
                     let newData= this.fileModel.getFileDataString()
                     this.tableModel.setDataString(newData)
-
 
                 }
             },

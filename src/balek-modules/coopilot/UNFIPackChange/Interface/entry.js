@@ -37,7 +37,6 @@ define(['dojo/_base/declare',
               interfaceHTMLFile
 
     ) {
-
         return declare("moduleCoopilotUNFIPackChangeEntryInterface", [_WidgetBase,_TemplatedMixin], {
 
 
@@ -193,6 +192,4 @@ define(['dojo/_base/declare',
         });
     }
 );
-
-
 

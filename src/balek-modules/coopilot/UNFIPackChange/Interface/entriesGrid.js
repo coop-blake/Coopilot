@@ -23,7 +23,7 @@ define([//------------------------------|
         'dojo/text!balek-modules/coopilot/UNFIPackChange/resources/html/entriesGrid.html',
         'dojo/text!balek-modules/coopilot/UNFIPackChange/resources/css/entriesGrid.css',
         //Entry Widget
-        'balek-modules/coopilot/UNFIPackChange/Interface/entry.js'
+        'balek-modules/coopilot/UNFIPackChange/Interface/entry',
     ],
     function (
         //------------------------------|

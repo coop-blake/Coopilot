@@ -24,11 +24,11 @@ define([//------------------------------|
         'balek-modules/components/syncedCommander/Interface',
         'balek-client/session/workspace/container/containable',
 
-        'balek-modules/coopilot/UNFIPackChange/Interface/entriesGrid.js',
-        'balek-modules/coopilot/UNFIPackChange/Model/packChanges.js',
-        'balek-modules/coopilot/UNFIPackChange/Model/inventory.js',
+        'balek-modules/coopilot/UNFIPackChange/Interface/entriesGrid',
+        'balek-modules/coopilot/UNFIPackChange/Model/packChanges',
+        'balek-modules/coopilot/UNFIPackChange/Model/inventory',
 
-        'balek-modules/coopilot/UNFIPackChange/Model/file.js',
+        'balek-modules/coopilot/UNFIPackChange/Model/file',
 
 
         'dojo/text!balek-modules/coopilot/UNFIPackChange/resources/html/main.html',

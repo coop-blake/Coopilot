@@ -21,9 +21,9 @@ define(['dojo/_base/declare',
         'balek-modules/components/syncedCommander/Interface',
         'balek-client/session/workspace/container/containable',
 
-        'balek-modules/coopilot/models/inventory.js',
-        'balek-modules/coopilot/models/file.js',
-        'balek-modules/coopilot/models/pricebook.js',
+        'balek-modules/coopilot/models/inventory',
+        'balek-modules/coopilot/models/file',
+        'balek-modules/coopilot/models/pricebook',
 
 
         'dojo/text!balek-modules/coopilot/UNFIPricer/resources/html/main.html',
