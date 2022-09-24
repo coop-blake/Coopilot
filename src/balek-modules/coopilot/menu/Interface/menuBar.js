@@ -156,7 +156,7 @@ define(['dojo/_base/declare',
             },
 
             _onInfoClicked: function(event){
-              alert("No Info Yet")
+                topic.publish("showAboutInterface")
             },
             _onScansClicked: function(event){
                 topic.publish("saleTagScanToggleShowMainInterface")
