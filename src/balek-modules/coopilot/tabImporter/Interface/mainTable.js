@@ -474,13 +474,13 @@ define([//------------------------------|
 
 
 
-/*this._tableStatusDiv.innerHTML=`firstRowInRange ${firstRowInRange} | lastRowInRange ${lastRowInRange} | rowsInDisplayTable ${rowsInDisplayTable}
-| totalRows ${totalRows} | scrollHeight ${scrollHeight}    | scrollAreaHeight ${scrollAreaHeight} | rowHeight ${rowHeight}
-| rowsInView ${rowsInView}| midRow ${midRow}| firstRow ${firstRow}| lastRow ${lastRow} 
-rowsAboveViewInRange ${rowsAboveViewInRange} totalRowsAboveView ${totalRowsAboveView} | rowsBelowViewInRange ${rowsBelowViewInRange} totalRowsBelowView ${totalRowsBelowView} 
-| scrollPercent ${scrollPercent}|addedRows ${addedRows}| maxHeaderAdd ${maxHeaderAdd}| maxFooterAdd ${maxFooterAdd}|
-targetFirstRowInRange ${targetFirstRowInRange}| targetLastRowInRange ${targetLastRowInRange}|`
-*/
+                    /*this._tableStatusDiv.innerHTML=`firstRowInRange ${firstRowInRange} | lastRowInRange ${lastRowInRange} | rowsInDisplayTable ${rowsInDisplayTable}
+                    | totalRows ${totalRows} | scrollHeight ${scrollHeight}    | scrollAreaHeight ${scrollAreaHeight} | rowHeight ${rowHeight}
+                    | rowsInView ${rowsInView}| midRow ${midRow}| firstRow ${firstRow}| lastRow ${lastRow}
+                    rowsAboveViewInRange ${rowsAboveViewInRange} totalRowsAboveView ${totalRowsAboveView} | rowsBelowViewInRange ${rowsBelowViewInRange} totalRowsBelowView ${totalRowsBelowView}
+                    | scrollPercent ${scrollPercent}|addedRows ${addedRows}| maxHeaderAdd ${maxHeaderAdd}| maxFooterAdd ${maxFooterAdd}|
+                    targetFirstRowInRange ${targetFirstRowInRange}| targetLastRowInRange ${targetLastRowInRange}|`
+                    */
 
 
                 },
